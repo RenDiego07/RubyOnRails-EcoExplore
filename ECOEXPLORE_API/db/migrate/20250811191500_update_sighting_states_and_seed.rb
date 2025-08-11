@@ -6,7 +6,7 @@ class UpdateSightingStatesAndSeed < ActiveRecord::Migration[8.0]
     STATES = [
       { name: "pending",  code: "PENDING" },
       { name: "accepted", code: "ACCEPTED" },
-      { name: "rejected", code: "REJECTED" }
+      { name: "Rejected", code: "REJECTED" }
     ].freeze
   
     def up
@@ -31,3 +31,11 @@ class UpdateSightingStatesAndSeed < ActiveRecord::Migration[8.0]
   
       # Intento de revertir a integer si fuese necesario; ignora si no es posible por datos presentes
       begin
+        change_column :sighting_states, :code, :integer, using: 'code::integer'
+      rescue StandardError
+        # Si existen datos no convertibles, se deja como string para no romper la reversión
+      end
+    end
+  end
+  
+  
