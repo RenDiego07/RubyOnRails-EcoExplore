@@ -52,14 +52,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_193500) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "first_name"
     t.string "email"
-    t.string "last_name"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "points"
     t.string "role"
+    t.string "password_digest"
+    t.string "name", null: false
+    t.boolean "active", default: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "sightings", "ecosystems"
