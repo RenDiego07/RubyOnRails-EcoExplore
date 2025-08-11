@@ -1,0 +1,2 @@
+class Ecosystem < ApplicationRecord
+end
