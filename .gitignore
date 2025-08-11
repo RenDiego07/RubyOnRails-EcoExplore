@@ -12,6 +12,7 @@ ECOEXPLORE_API/.envrc
 *.swp
 *.swo
 
+
 # --- Ruby / Rails (scoped a carpeta app: ECOEXPLORE_API) ---
 ECOEXPLORE_API/.bundle/
 ECOEXPLORE_API/vendor/bundle/
@@ -46,6 +47,13 @@ ECOEXPLORE_API/public/packs-test
 ECOEXPLORE_API/public/builds
 ECOEXPLORE_API/app/assets/builds/*
 !ECOEXPLORE_API/app/assets/builds/.keep
+
+
+ECOEXPLORE_API/tmp/
+!ECOEXPLORE_API/tmp/.keep
+!ECOEXPLORE_API/tmp/pids/
+!ECOEXPLORE_API/tmp/pids/.keep
+ECOEXPLORE_API/log/
 
 # Node (por si se añade tooling JS)
 ECOEXPLORE_API/node_modules/

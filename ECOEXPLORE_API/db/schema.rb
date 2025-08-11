@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_11_193500) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_204914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,6 +51,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_193500) do
     t.index ["user_id"], name: "index_sightings_on_user_id"
   end
 
+  create_table "species", force: :cascade do |t|
+    t.bigint "type_specie_id", null: false
+    t.string "name", limit: 40, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type_specie_id", "name"], name: "index_species_on_type_specie_id_and_name", unique: true
+    t.index ["type_specie_id"], name: "index_species_on_type_specie_id"
+  end
+
+  create_table "type_species", force: :cascade do |t|
+    t.string "name", limit: 10, null: false
+    t.string "code", limit: 10, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_type_species_on_code", unique: true
+    t.index ["name"], name: "index_type_species_on_name", unique: true
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
@@ -67,4 +85,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_193500) do
   add_foreign_key "sightings", "locations"
   add_foreign_key "sightings", "sighting_states"
   add_foreign_key "sightings", "users"
+  add_foreign_key "species", "type_species", column: "type_specie_id"
 end
