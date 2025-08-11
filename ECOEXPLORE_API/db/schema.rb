@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_11_182725) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_195348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,11 +53,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_182725) do
     t.string "first_name"
     t.string "email"
     t.string "last_name"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "points"
     t.string "role"
+    t.string "password_digest"
   end
 
   add_foreign_key "sightings", "ecosystems"
