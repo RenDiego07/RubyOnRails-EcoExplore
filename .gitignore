@@ -18,7 +18,10 @@ ECOEXPLORE_API/vendor/bundle/
 
 # Logs
 ECOEXPLORE_API/log/*
+ECOEXPLORE_API/log/development.log
 !ECOEXPLORE_API/log/.keep
+
+
 
 # Archivos temporales
 ECOEXPLORE_API/tmp/*
