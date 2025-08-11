@@ -3,7 +3,7 @@ class AuthController < ApplicationController
   
   def register
     user = User.new(user_params)
-    user.role = 'user' unless user.role.present?
+    user.role = 'member' unless user.role.present?
     
     if user.save
       result = AuthService.authenticate(user.email, params[:password])
