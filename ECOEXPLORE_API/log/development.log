@@ -151,3 +151,68 @@ FOREIGN KEY ("sighting_state_id")
   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='EcoexploreApi'*/[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6037356068423077650) /*application='EcoexploreApi'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (310.1ms)[0m  [1m[35mCREATE DATABASE "ecoexplore_db" ENCODING = 'unicode' /*application='EcoexploreApi'*/[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (348.6ms)[0m  [1m[35mCREATE DATABASE "ecoexplore_db" ENCODING = 'unicode' /*application='EcoexploreApi'*/[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='EcoexploreApi'*/[0m
+  [1m[35m (198.0ms)[0m  [1m[35mCREATE DATABASE "ecoexplore_db" ENCODING = 'unicode' /*application='EcoexploreApi'*/[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "ecosystems" CASCADE /*application='EcoexploreApi'*/[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "ecosystems" ("id" bigserial primary key, "name" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "locations" CASCADE /*application='EcoexploreApi'*/[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "locations" ("id" bigserial primary key, "name" character varying, "coordinates" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "sighting_states" CASCADE /*application='EcoexploreApi'*/[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "sighting_states" ("id" bigserial primary key, "name" character varying, "code" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "sightings" CASCADE /*application='EcoexploreApi'*/[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "sightings" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "user_id" uuid NOT NULL, "ecosystem_id" bigint NOT NULL, "location_id" bigint NOT NULL, "sighting_state_id" bigint NOT NULL, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_sightings_on_ecosystem_id" ON "sightings" ("ecosystem_id") /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_sightings_on_location_id" ON "sightings" ("location_id") /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_sightings_on_sighting_state_id" ON "sightings" ("sighting_state_id") /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_sightings_on_user_id" ON "sightings" ("user_id") /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='EcoexploreApi'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "first_name" character varying, "email" character varying, "last_name" character varying, "password" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "points" integer, "role" character varying) /*application='EcoexploreApi'*/[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "sightings" ADD CONSTRAINT "fk_rails_22298afc30"
+FOREIGN KEY ("ecosystem_id")
+  REFERENCES "ecosystems" ("id")
+ /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "sightings" ADD CONSTRAINT "fk_rails_2915c3aa31"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+ /*application='EcoexploreApi'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "sightings" ADD CONSTRAINT "fk_rails_de2ce44b6d"
+FOREIGN KEY ("sighting_state_id")
+  REFERENCES "sighting_states" ("id")
+ /*application='EcoexploreApi'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "sightings" ADD CONSTRAINT "fk_rails_23b73508c9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='EcoexploreApi'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250811182725) /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250811181742),
+(20250811181716),
+(20250811181422),
+(20250811180534),
+(20250811180417),
+(20250811174329),
+(20250811174120); /*application='EcoexploreApi'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-08-11 18:39:48.706905', '2025-08-11 18:39:48.706906') RETURNING "key" /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '41b07f8e3b88cb171e88e69de34dc00a3c8f317c', '2025-08-11 18:39:48.713762', '2025-08-11 18:39:48.713764') RETURNING "key" /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6037356068423077650) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(6037356068423077650) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
