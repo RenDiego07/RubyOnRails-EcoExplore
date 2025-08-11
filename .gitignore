@@ -2,9 +2,9 @@
 .DS_Store
 
 # --- Entornos / Secrets ---
-.env
-.env.*
-.envrc
+ECOEXPLORE_API/.env
+ECOEXPLORE_API/.env.*
+ECOEXPLORE_API/.envrc
 
 # --- IDE / Editores ---
 .idea/
