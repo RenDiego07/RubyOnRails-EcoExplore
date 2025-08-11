@@ -1,5 +1,4 @@
 class AuthController < ApplicationController
-  skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_request
   
   def register
@@ -40,7 +39,7 @@ class AuthController < ApplicationController
   private
   
   def user_params
-    params.permit(:name, :email, :password, :password_confirmation, :role)
+    params.permit(:name, :email, :password, :role)
   end
   
   def user_response(user)
@@ -49,7 +48,7 @@ class AuthController < ApplicationController
       name: user.name,
       email: user.email,
       role: user.role,
-      points: user.points
+      active: user.active
     }
   end
 end
