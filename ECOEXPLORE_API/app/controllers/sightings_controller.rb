@@ -6,7 +6,13 @@ class SightingsController < ApplicationController
   end
 
 
-  # POST /sightings
+  # GET /sightings
+  def index
+    sightings = Sighting.includes(:sighting_state, :location, :ecosystem, :user).all
+    render json: sightings.map { |s| sighting_response(s) }, status: :ok
+  end
+  
+  
   def create
     result = SightingService.create(user: current_user, params: creation_params)
     if result.success
@@ -16,10 +22,26 @@ class SightingsController < ApplicationController
     end
   end
 
+  def update
+    sighting_id = params[:id].presence || params[:sighting_id]
+    result = SightingService.update_state(user: current_user, sighting_id: sighting_id, params: update_params)
+
+    if result.success
+      render json: sighting_response(result.sighting), status: :ok
+    else
+      status = result.error.to_s.downcase == 'unauthorized' ? :unauthorized : :unprocessable_entity
+      render json: { error: result.error }, status: status
+    end
+  end
+
   private
 
   def creation_params
     params.permit(:ecosystem_id, :sighting_state_id, :sighting_state_code, :description, :location_name, :coordinates)
+  end
+
+  def update_params
+    params.permit(:sighting_state_id, :sighting_state_code)
   end
 
 
