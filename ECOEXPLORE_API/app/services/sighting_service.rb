@@ -30,6 +30,28 @@ class SightingService
     Result.new(success: false, error: e.message)
   end
 
+  # Update sighting state (admin-only)
+  def self.update_state(user:, sighting_id:, params:)
+    return Result.new(success: false, error: 'Unauthorized') unless user&.role == 'admin'
+
+    ActiveRecord::Base.transaction do
+      sighting = Sighting.find(sighting_id)
+      new_state = resolve_state(params)
+
+      sighting.update!(sighting_state: new_state)
+
+      Result.new(success: true, sighting: sighting)
+    end
+  rescue ActiveRecord::RecordNotFound => e
+    Result.new(success: false, error: e.message)
+  rescue ActiveRecord::RecordInvalid => e
+    Result.new(success: false, error: e.record.errors.full_messages.join(", "))
+  rescue ArgumentError => e
+    Result.new(success: false, error: e.message)
+  rescue StandardError => e
+    Result.new(success: false, error: e.message)
+  end
+
   def self.resolve_state(params)
     if params[:sighting_state_id].present?
       SightingState.find(params[:sighting_state_id])
