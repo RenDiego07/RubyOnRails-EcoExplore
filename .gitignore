@@ -49,7 +49,7 @@ ECOEXPLORE_API/app/assets/builds/*
 !ECOEXPLORE_API/app/assets/builds/.keep
 
 
-ECOEXPLORE_API/tmp/
+ECOEXPLORE_API/tmp/**
 !ECOEXPLORE_API/tmp/.keep
 !ECOEXPLORE_API/tmp/pids/
 !ECOEXPLORE_API/tmp/pids/.keep
