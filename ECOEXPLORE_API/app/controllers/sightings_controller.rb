@@ -1,4 +1,9 @@
 class SightingsController < ApplicationController
+  # GET /sightings
+  def index
+    sightings = Sighting.includes(:sighting_state, :location).order(created_at: :desc)
+    render json: sightings.map { |s| sighting_response(s) }
+  end
 
 
   # POST /sightings
