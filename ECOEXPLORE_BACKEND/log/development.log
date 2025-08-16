@@ -654,3 +654,5 @@ Completed 201 Created in 421ms (Views: 0.8ms | ActiveRecord: 7.5ms (3 queries, 0
 [dotenv] Loaded [33m.env[0m
 [dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m

@@ -1,0 +1,72 @@
+# --- Sistema / OS ---
+.DS_Store
+
+# --- Entornos / Secrets ---
+.env
+.env.*
+.envrc
+
+# --- IDE / Editores ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Ruby / Rails ---
+.bundle/
+vendor/bundle/
+
+# Logs
+log/*
+log/development.log
+!log/.keep
+
+# Archivos temporales
+tmp/*
+!tmp/.keep
+tmp/pids/*
+!tmp/pids/
+!tmp/pids/.keep
+tmp/cache/*
+tmp/sockets/*
+tmp/storage/*
+
+# Active Storage
+storage/*
+!storage/.keep
+
+# Subidas y assets compilados
+public/system/*
+public/uploads/*
+public/assets
+public/packs
+public/packs-test
+public/builds
+app/assets/builds/*
+!app/assets/builds/.keep
+
+# Node (por si se añade tooling JS)
+node_modules/
+yarn-error.log
+yarn-debug.log*
+npm-debug.log*
+
+# Depuración / cobertura
+.byebug_history
+.pry_history
+coverage/
+
+# Credenciales
+config/master.key
+config/credentials/*.key
+
+# SQLite (si se usara localmente)
+db/*.sqlite3
+db/*.sqlite3-journal
+
+# Otros
+*.rbc
+capybara-*.html
+.rspec_status
+spec/examples.txt
+
