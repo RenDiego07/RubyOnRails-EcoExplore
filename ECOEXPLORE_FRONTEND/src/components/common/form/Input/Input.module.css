@@ -1,0 +1,27 @@
+.input {
+  width: 100%;
+  color: var(--neutral-500-color);
+  background-color: var(--surface-color);
+  border: var(--stroke-100);
+  padding: var(--spacing-100) var(--spacing-100);
+  transition: border-color 0.2s ease;
+  min-height: 2.5rem;
+}
+
+.input::placeholder {
+  color: var(--neutral-400-color);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-100-color);
+}
+
+.input:disabled {
+  background-color: var(--neutral-50-color);
+  cursor: not-allowed;
+}
+
+.input:disabled::placeholder {
+  color: var(--neutral-400-color);
+}

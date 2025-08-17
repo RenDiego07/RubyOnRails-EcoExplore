@@ -1,0 +1,27 @@
+.dropdownSearchInput {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  min-height: 1.5rem;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: var(--spacing-50) var(--spacing-100);
+  margin: 0;
+  font-size: var(--f-medium-size);
+  font-family: inherit;
+  color: var(--neutral-500-color);
+  font-weight: var(--font-weight-regular);
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.dropdownSearchInput::placeholder {
+  color: var(--neutral-400-color);
+  font-weight: var(--font-weight-regular);
+  opacity: 1;
+}
+
+.dropdownSearchInput:focus {
+  outline: none;
+}

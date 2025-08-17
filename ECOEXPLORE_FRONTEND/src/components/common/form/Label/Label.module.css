@@ -1,0 +1,9 @@
+.label {
+  color: var(--accent-100-color);
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.label__asterisk {
+  color: var(--secondary-100-color);
+}

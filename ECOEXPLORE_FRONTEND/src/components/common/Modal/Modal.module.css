@@ -1,0 +1,124 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(47, 38, 35, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-200);
+}
+
+.dialog {
+  background: var(--surface-color);
+  border-radius: var(--rounded-100);
+  box-shadow: var(--elevation-2);
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: var(--stroke-200);
+}
+
+.dialog.small {
+  max-width: 400px;
+}
+
+.dialog.medium {
+  max-width: 600px;
+}
+
+.dialog.large {
+  max-width: 800px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--spacing-300);
+  border-bottom: var(--stroke-200);
+}
+
+.titleContainer {
+  flex: 1;
+}
+
+.title {
+  color: var(--text);
+  margin: 0;
+  font-size: var(--h4-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.subtitle {
+  color: var(--text-soft);
+  margin: var(--spacing-50) 0 0 0;
+  font-size: var(--f-medium-size);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  cursor: pointer;
+  padding: var(--spacing-50);
+  border-radius: var(--rounded-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.body {
+  padding: var(--spacing-300);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-200);
+  padding: var(--spacing-300);
+  border-top: var(--stroke-200);
+}
+
+.btn {
+  padding: var(--spacing-100) var(--spacing-300);
+  border-radius: var(--rounded-50);
+  border: none;
+  font-size: var(--f-medium-size);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background-color: var(--primary-600);
+}
+
+.btnSecondary {
+  background-color: transparent;
+  color: var(--text);
+  border: var(--stroke-200);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  background-color: var(--surface-2);
+}

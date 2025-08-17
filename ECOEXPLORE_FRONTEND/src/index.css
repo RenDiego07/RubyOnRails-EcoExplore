@@ -1,68 +1,212 @@
+/* Importar Figtree desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* COLORS */
+  --sand-0: #faf7f3;
+  --sand-1: #f0e4d3;
+  --sand-2: #dcc5b2;
+  --rose-1: #d9a299;
+  --rose-2: #c47e74;
+  --rose-3: #a85f56;
+  --ink: #2f2623;
+  --muted: #6f5d57;
+  --success: #2f7a53;
+  --warning: #a05a2c;
+  --danger: #b5483f;
+  --info: #6c7aa1;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --bg: var(--sand-0);
+  --surface: #f7f1ea;
+  --surface-2: #efe1d6;
+  --surface-3: #e6d4c7;
+  --text: var(--ink);
+  --text-soft: #6e5b55;
+  --border: #e1d3c5;
+  --primary: var(--rose-1);
+  --primary-600: var(--rose-2);
+  --primary-700: var(--rose-3);
+  --focus: rgba(168, 95, 86, 0.35);
+  --ring: rgba(217, 162, 153, 0.45);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Utility Colors */
+  --surface-color: #ffffff;
+  --green-100-color: #ceeb2c;
+  --blue-100-color: #00bff1;
+
+  /* Status Colors */
+  --error-100-color: #e97b7b; /* Error Light */
+  --error-200-color: #e4295b; /* Error Dark */
+  --error-300-color: #e4295b; /* Error Darkest */
+
+  --warning-100-color: #ebb661; /* Warning */
+  --warning-200-color: #ffb300; /* Warning Dark */
+  --warning-300-color: #ff9500; /* Warning Darkest */
+
+  --info-100-color: #00bff1; /* Info */
+  --info-200-color: #0095d9; /* Info Dark */
+  --info-300-color: #007bb8; /* Info Darkest */
+
+  --success-100-color: #4caf50; /* Success */
+  --success-200-color: #43a047; /* Success Dark */
+  --success-300-color: #388e3c; /* Success Darkest */
+
+  /* Avatar Colors */
+  --avatar-red: #e74c3c;
+  --avatar-orange: #e67e22;
+  --avatar-amber: #f39c12;
+  --avatar-yellow: #f1c40f;
+  --avatar-lime: #b6e01e;
+  --avatar-green: #27ae60;
+  --avatar-emerald: #2ecc71;
+  --avatar-teal: #1abc9c;
+  --avatar-cyan: #00bcd4;
+  --avatar-sky: #3498db;
+  --avatar-blue: #2980b9;
+  --avatar-indigo: #6c5ce7;
+  --avatar-violet: #8e44ad;
+  --avatar-purple: #9b59b6;
+  --avatar-fuchsia: #e84393;
+  --avatar-pink: #fd79a8;
+  --avatar-rose: #ff7675;
+  --avatar-slate: #636e72;
+  --avatar-stone: #b2bec3;
+  --avatar-zinc: #636e72;
+  --avatar-neutral: #b2bec3;
+  --avatar-gray: #95a5a6;
+
+  /* Typography */
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-black: 900;
+
+  /* Headings */
+  --h1-size: 2.986rem; /* 47.78px */
+  --h2-size: 2.488rem; /* 39.81px */
+  --h3-size: 2.074rem; /* 33.18px */
+  --h4-size: 1.728rem; /* 27.65px */
+  --h5-size: 1.44rem; /* 23.04px */
+  --h6-size: 1.2rem; /* 19.2px */
+
+  /* Body Text */
+  --f-large-size: 1.2rem; /* 19.2px */
+  --f-medium-size: 1rem; /* 16px */
+  --f-small-size: 0.833rem; /* 13.33px */
+
+  font-size: clamp(8px, 4.04px + min(0.7vw, 1.15vh), 24px);
+  font-family: 'Figtree', sans-serif;
+  font-weight: var(--font-weight-regular);
+  color: var(--neutral-500-color);
+
+  /* Spacing System */
+  --spacing-0: 0rem; /* 0px */
+  --spacing-25: 0.125rem; /* 2px */
+  --spacing-50: 0.25rem; /* 4px */
+  --spacing-75: 0.375rem; /* 6px */
+  --spacing-100: 0.5rem; /* 8px */
+  --spacing-200: 1rem; /* 16px */
+  --spacing-300: 1.5rem; /* 24px */
+  --spacing-400: 2rem; /* 32px */
+  --spacing-500: 2.5rem; /* 40px */
+  --spacing-600: 3rem; /* 48px */
+
+  /* Elevation */
+  --elevation-1: 0px 2px 4px 0px rgba(205, 195, 211, 0.25);
+  --elevation-2: 0px 4px 4px 0px rgba(205, 195, 211, 0.25);
+  --elevation-1-start: -2px 2px 4px 0px rgba(205, 195, 211, 0.25);
+  --elevation-2-start: -4px 4px 4px 0px rgba(205, 195, 211, 0.25);
+  --elevation-1-end: 4px 4px 8px 0px rgba(205, 195, 211, 0.25);
+  --elevation-2-end: 8px 8px 16px 0px rgba(205, 195, 211, 0.25);
+
+  /* Stroke widths */
+  --stroke-width-50: 0.015rem; /* 0.25px */
+  --stroke-width-100: 0.031rem; /* 0.5px */
+  --stroke-width-200: 0.062rem; /* 1px */
+
+  /* Strokes */
+  --stroke-50: var(--stroke-width-50) solid var(--neutral-300-color);
+  --stroke-100: var(--stroke-width-100) solid var(--neutral-300-color);
+  --stroke-200: var(--stroke-width-200) solid var(--neutral-300-color);
+
+  --stroke-light-50: var(--stroke-width-50) solid var(--neutral-100-color);
+  --stroke-light-100: var(--stroke-width-100) solid var(--neutral-100-color);
+  --stroke-light-200: var(--stroke-width-200) solid var(--neutral-100-color);
+
+  /* Border Radius */
+  --rounded-50: 0.25rem; /* 4px */
+  --rounded-100: 0.5rem; /* 8px */
+  --rounded-200: 1rem; /* 16px */
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/** Custom GENERAL Classes **/
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-size: clamp(--f-medium-size);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--h1-size);
+}
+h2 {
+  font-size: var(--h2-size);
+}
+h3 {
+  font-size: var(--h3-size);
+}
+h4 {
+  font-size: var(--h4-size);
+}
+h5 {
+  font-size: var(--h5-size);
+}
+h6 {
+  font-size: var(--h6-size);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Font Styles */
+.f-regular {
+  font-weight: var(--font-weight-regular);
 }
-button:hover {
-  border-color: #646cff;
+.f-semibold {
+  font-weight: var(--font-weight-semibold);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.f-black {
+  font-weight: var(--font-weight-black);
+}
+.f-italic {
+  font-style: italic;
+}
+.f-underline {
+  text-decoration: underline;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Elevations */
+.elevation-1 {
+  box-shadow: var(--elevation-1);
+}
+.elevation-2 {
+  box-shadow: var(--elevation-2);
+}
+.elevation-1-start {
+  box-shadow: var(--elevation-1-start);
+}
+.elevation-2-start {
+  box-shadow: var(--elevation-2-start);
+}
+.elevation-1-end {
+  box-shadow: var(--elevation-1-end);
+}
+.elevation-2-end {
+  box-shadow: var(--elevation-2-end);
+}
+
+/* Rounded */
+
+.rounded-50 {
+  border-radius: var(--rounded-50); /* 4px */
+}
+.rounded-100 {
+  border-radius: var(--rounded-100); /* 8px */
+}
+.rounded-200 {
+  border-radius: var(--rounded-200); /* 16px */
 }

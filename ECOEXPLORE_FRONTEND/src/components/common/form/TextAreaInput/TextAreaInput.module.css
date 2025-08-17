@@ -1,0 +1,81 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  font-size: var(--f-medium-size);
+  color: var(--neutral-500-color);
+  background-color: var(--surface-color);
+  border: var(--stroke-100);
+  padding: var(--spacing-100);
+  transition: all 0.2s ease;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-100-color);
+}
+
+.charCount {
+  position: absolute;
+  bottom: var(--spacing-50);
+  right: var(--spacing-50);
+  font-size: var(--f-small-size);
+  color: var(--neutral-400-color);
+  background-color: var(--surface-color);
+  padding: 2px 6px;
+  border-radius: var(--rounded-50);
+  border: var(--stroke-light-100);
+  z-index: 1;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 6rem;
+  color: var(--neutral-500-color);
+  background-color: var(--surface-color);
+  border: var(--stroke-100);
+  padding: var(--spacing-100) var(--spacing-100);
+  transition: border-color 0.2s ease;
+  resize: vertical;
+}
+
+.textarea::placeholder {
+  color: var(--neutral-400-color);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--accent-100-color);
+}
+
+.textarea:disabled {
+  background-color: var(--neutral-50-color);
+  cursor: not-allowed;
+}
+
+.textarea:disabled::placeholder {
+  color: var(--neutral-400-color);
+}
+
+.textareaError {
+  border-color: var(--error);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--neutral-500-color);
+}
+
+.errorText {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--error);
+}

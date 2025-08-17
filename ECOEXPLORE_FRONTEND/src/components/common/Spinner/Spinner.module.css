@@ -1,0 +1,47 @@
+.spinner {
+  display: inline-block;
+  position: relative;
+}
+
+.circle {
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.small .circle {
+  width: 16px;
+  height: 16px;
+}
+
+.medium .circle {
+  width: 24px;
+  height: 24px;
+}
+
+.large .circle {
+  width: 32px;
+  height: 32px;
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.secondary {
+  color: var(--text-soft);
+}
+
+.white {
+  color: white;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

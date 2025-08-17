@@ -1,0 +1,112 @@
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--spacing-200);
+  border-radius: var(--rounded-100);
+  border: var(--stroke-200);
+  margin-bottom: var(--spacing-200);
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-200);
+  flex: 1;
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: var(--spacing-25);
+}
+
+.text {
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 var(--spacing-50) 0;
+  font-size: var(--f-medium-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.message {
+  margin: 0;
+  font-size: var(--f-medium-size);
+  line-height: 1.5;
+}
+
+.dismissButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-25);
+  border-radius: var(--rounded-50);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.dismissButton:hover {
+  opacity: 1;
+}
+
+/* Success variant */
+.success {
+  background-color: rgba(47, 122, 83, 0.1);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.success .title {
+  color: var(--success);
+}
+
+.success .message {
+  color: var(--text);
+}
+
+/* Error variant */
+.error {
+  background-color: rgba(181, 72, 63, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.error .title {
+  color: var(--danger);
+}
+
+.error .message {
+  color: var(--text);
+}
+
+/* Warning variant */
+.warning {
+  background-color: rgba(160, 90, 44, 0.1);
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.warning .title {
+  color: var(--warning);
+}
+
+.warning .message {
+  color: var(--text);
+}
+
+/* Info variant */
+.info {
+  background-color: rgba(108, 122, 161, 0.1);
+  border-color: var(--info);
+  color: var(--info);
+}
+
+.info .title {
+  color: var(--info);
+}
+
+.info .message {
+  color: var(--text);
+}

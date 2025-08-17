@@ -1,0 +1,71 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.5rem;
+  cursor: pointer;
+  color: var(--neutral-500-color);
+  border: var(--stroke-100);
+  border-radius: var(--rounded-100);
+}
+
+.trigger:focus-within,
+.menu:focus-within {
+  outline: none;
+  border: var(--accent-100-color) 1px solid;
+  transition: border-color 0.5s ease;
+}
+
+.placeholder {
+  color: var(--neutral-400-color);
+}
+
+/* Para selectores de texto */
+.trigger_selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.5rem;
+  cursor: pointer;
+  color: var(--neutral-500-color);
+}
+
+.trigger_text_selector:focus-within {
+  border: none;
+  outline: var(--accent-100-color) 1px solid;
+  transition: border-color 0.5s ease;
+  border-radius: var(--rounded-100);
+}
+
+.trigger_text_selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.5rem;
+  cursor: pointer;
+  color: var(--neutral-500-color);
+  border: none;
+}
+
+.trigger_content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  width: 100%;
+}
+
+.trigger_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trigger_label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

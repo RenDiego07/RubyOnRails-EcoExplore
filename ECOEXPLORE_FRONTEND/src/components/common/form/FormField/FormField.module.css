@@ -1,0 +1,19 @@
+.form_field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-50);
+  position: relative;
+  align-items: left;
+}
+
+.error_message {
+  font-size: var(--f-small-size);
+  position: absolute;
+  top: 105%;
+  width: inherit;
+  text-overflow: ellipsis;
+  color: var(--secondary-100-color);
+  line-height: 1;
+  font-style: italic;
+}
