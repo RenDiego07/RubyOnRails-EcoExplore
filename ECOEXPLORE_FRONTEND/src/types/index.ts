@@ -1,1 +1,2 @@
-export type { LandingPageProps } from './LandingPage.types';
+export * from './LandingPage.types';
+export * from './User.types';

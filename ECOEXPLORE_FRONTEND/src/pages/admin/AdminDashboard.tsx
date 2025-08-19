@@ -1,13 +1,18 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/common';
 import styles from './Dashboard.module.css';
 
 export default function AdminDashboard() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
+  };
+
+  const navigateToUsers = () => {
+    navigate('/admin/users');
   };
 
   return (
@@ -24,9 +29,10 @@ export default function AdminDashboard() {
 
       <main className={styles.main}>
         <div className={styles.grid}>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.clickableCard}`} onClick={navigateToUsers}>
             <h2>Gestión de Usuarios</h2>
             <p>Administra los usuarios del sistema</p>
+            <span className={styles.cardArrow}>→</span>
           </div>
 
           <div className={styles.card}>
