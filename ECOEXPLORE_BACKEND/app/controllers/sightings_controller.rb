@@ -1,10 +1,6 @@
 class SightingsController < ApplicationController
-  # GET /sightings
-  def index
-    sightings = Sighting.includes(:sighting_state, :location).order(created_at: :desc)
-    render json: sightings.map { |s| sighting_response(s) }
-  end
-
+  before_action :authorize_request
+  before_action :authorize_admin!, only: :mark_invasive
 
   # GET /sightings
   def index
@@ -32,6 +28,43 @@ class SightingsController < ApplicationController
       status = result.error.to_s.downcase == 'unauthorized' ? :unauthorized : :unprocessable_entity
       render json: { error: result.error }, status: status
     end
+  end
+
+  # PUT /sightings/:id/mark_invasive
+  def mark_invasive
+    zone = params.require(:invasive_zone).to_s.strip
+    return render json: { error: "invasive_zone is required" }, status: :bad_request if zone.blank?
+
+    s = Sighting.find(params[:id])
+    s.update!(is_invasive: true, invasive_zone: zone)
+
+    render json: {
+      message: "Species marked as invasive",
+      sighting: { id: s.id, is_invasive: s.is_invasive, invasive_zone: s.invasive_zone }
+    }, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "Sighting not found" }, status: :not_found
+  end
+
+  # GET /sightings/invasive
+  def invasive
+    data = Sighting.includes(:ecosystem, :location).where(is_invasive: true).map { |s|
+      {
+        id: s.id,
+        description: s.description,
+        invasive_zone: s.invasive_zone,
+        ecosystem: s.ecosystem&.name,
+        location:  s.location&.name,
+        reported_at: s.created_at
+      }
+    }
+    render json: { count: data.size, data: data }, status: :ok
+  end
+
+  private
+
+  def authorize_admin!
+    render(json: { error: "Unauthorized" }, status: :unauthorized) unless @current_user&.role == "admin"
   end
 
   private
