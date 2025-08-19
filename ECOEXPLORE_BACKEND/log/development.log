@@ -656,3 +656,41 @@ Completed 201 Created in 421ms (Views: 0.8ms | ActiveRecord: 7.5ms (3 queries, 0
 [dotenv] Loaded [33m.env[0m
 [dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6037356068423077650) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='EcoexploreApi'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6037356068423077650) /*application='EcoexploreApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+Started OPTIONS "/auth/login" for ::1 at 2025-08-18 20:41:52 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/auth/login"):
+  
+Started OPTIONS "/auth/login" for ::1 at 2025-08-18 20:41:54 -0500
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/auth/login"):
+  
+Started OPTIONS "/auth/register" for ::1 at 2025-08-18 20:43:59 -0500
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/auth/register"):
+  
+Started OPTIONS "/auth/register" for ::1 at 2025-08-18 20:44:02 -0500
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/auth/register"):
+  
+Started POST "/auth/login" for ::1 at 2025-08-18 20:46:17 -0500
+Processing by AuthController#login as */*
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]", "auth" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alexvizuetep@gmail.com' LIMIT 1 /*action='login',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/services/AuthService.rb:5:in 'AuthService.authenticate'
+Completed 200 OK in 340ms (Views: 0.2ms | ActiveRecord: 15.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started OPTIONS "/auth/register" for ::1 at 2025-08-18 20:47:07 -0500
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/auth/register"):
+  
