@@ -14,10 +14,6 @@ interface ErrorResponse {
   };
   message?: string;
 }
-
-/**
- * Extrae el mensaje de éxito de una respuesta del backend
- */
 export const getSuccessMessage = (
   response: unknown,
   defaultMessage: string = 'Operación exitosa'
@@ -31,13 +27,6 @@ export const getSuccessMessage = (
   return defaultMessage;
 };
 
-/**
- * Extrae el mensaje de error de una respuesta del backend
- * Maneja diferentes estructuras de error que puede devolver Rails:
- * - Errores de validación (422): { errors: { field: ["message1", "message2"] } }
- * - Errores de servidor (500): { error: "message" }
- * - Errores de autenticación (401): { message: "Unauthorized" }
- */
 export const getErrorMessage = (
   error: unknown,
   defaultMessage: string = 'Ha ocurrido un error inesperado'
@@ -54,8 +43,6 @@ export const getErrorMessage = (
     console.log('🔍 getErrorMessage - status:', status);
 
     if (responseData) {
-      // Caso 1: Errores de validación (similar a Spring Boot)
-      // Rails devuelve: { errors: { email: ["ya está en uso"], password: ["es muy corta"] } }
       if (responseData.errors && typeof responseData.errors === 'object') {
         const errors = responseData.errors as Record<string, string[]>;
         const errorMessages = Object.entries(errors)
@@ -69,27 +56,18 @@ export const getErrorMessage = (
           return errorMessages;
         }
       }
-
-      // Caso 2: Errores de validación como array simple
-      // Rails puede devolver: { errors: ["Email ya está en uso"] }
       if (responseData.errors && Array.isArray(responseData.errors)) {
         return responseData.errors.join(', ');
       }
 
-      // Caso 3: Error simple con campo 'error'
-      // Rails devuelve: { error: "Usuario no encontrado" }
       if (responseData.error && typeof responseData.error === 'string') {
         return responseData.error;
       }
-
-      // Caso 4: Mensaje en campo 'message'
-      // Rails devuelve: { message: "No autorizado" }
       if (responseData.message && typeof responseData.message === 'string') {
         return responseData.message;
       }
     }
 
-    // Caso 5: Errores HTTP específicos sin data
     switch (status) {
       case 401:
         return 'No autorizado. Por favor, inicia sesión nuevamente.';
@@ -110,7 +88,6 @@ export const getErrorMessage = (
     }
   }
 
-  // Caso 6: Error de red o conexión
   if (error && typeof error === 'object' && 'message' in error) {
     const message = (error as { message: string }).message;
     if (message.includes('Network Error') || message.includes('ERR_NETWORK')) {
@@ -119,7 +96,6 @@ export const getErrorMessage = (
     return message;
   }
 
-  // Caso 7: Error como string simple
   if (typeof error === 'string') {
     return error;
   }
@@ -127,9 +103,6 @@ export const getErrorMessage = (
   return defaultMessage;
 };
 
-/**
- * Traduce nombres de campos del inglés al español para errores de validación
- */
 const translateFieldName = (field: string): string => {
   const translations: Record<string, string> = {
     email: 'Email',
@@ -142,15 +115,11 @@ const translateFieldName = (field: string): string => {
     identification: 'Identificación',
     gender: 'Sexo',
     birth_date: 'Fecha de nacimiento',
-    // Agrega más traducciones según necesites
   };
 
   return translations[field] || field.charAt(0).toUpperCase() + field.slice(1);
 };
 
-/**
- * Verifica si una respuesta indica éxito
- */
 export const isSuccessResponse = (response: unknown): boolean => {
   if (response && typeof response === 'object' && 'success' in response) {
     return Boolean((response as BackendResponse).success);
@@ -158,9 +127,6 @@ export const isSuccessResponse = (response: unknown): boolean => {
   return false;
 };
 
-/**
- * Extrae datos de usuario de una respuesta exitosa
- */
 export const extractUserData = (response: unknown) => {
   if (response && typeof response === 'object' && 'user' in response) {
     return (response as BackendResponse).user;
@@ -168,9 +134,6 @@ export const extractUserData = (response: unknown) => {
   return null;
 };
 
-/**
- * Extrae token de una respuesta exitosa
- */
 export const extractToken = (response: unknown): string | null => {
   if (response && typeof response === 'object' && 'token' in response) {
     const token = (response as BackendResponse).token;
