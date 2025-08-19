@@ -16,6 +16,7 @@ class AuthService
     payload = {
       user_id: user_id,
       role: user.role,
+      name: user.name,
       exp: 24.hours.from_now.to_i
     }
     JWT.encode(payload, SECRET_KEY, 'HS256')
