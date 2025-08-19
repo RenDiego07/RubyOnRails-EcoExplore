@@ -44,7 +44,6 @@ export default function RegisterPage() {
         name: data.name,
         email: data.email,
         password: data.password,
-        password_confirmation: data.confirmPassword,
       };
 
       console.log('🔵 RegisterPage: Enviando datos de registro:', userData);

@@ -1,5 +1,6 @@
 class AuthController < ApplicationController
   skip_before_action :authenticate_request
+  wrap_parameters false
   
   def register
     user = User.new(user_params)
@@ -45,7 +46,7 @@ class AuthController < ApplicationController
   private
   
   def user_params
-    params.permit(:name, :email, :password, :role)
+  params.permit(:name, :email, :password, :role)
   end
   
   def user_response(user)

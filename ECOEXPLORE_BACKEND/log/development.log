@@ -1043,3 +1043,64 @@ Processing by AuthController#register as HTML
 Completed 201 Created in 236ms (Views: 0.1ms | ActiveRecord: 7.8ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/auth/register" for 127.0.0.1 at 2025-08-18 20:57:57 -0500
+Processing by AuthController#register as HTML
+  Parameters: {"name" => "alex", "email" => "[FILTERED]", "password" => "[FILTERED]", "auth" => {"name" => "alex", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :auth. Context: { controller: AuthController, action: register, request: #<ActionDispatch::Request:0x000000015cd7b600>, params: {"name" => "alex", "email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "auth", "action" => "register", "auth" => {"name" => "alex", "email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Exists? (3.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alex@gmail.com' LIMIT 1 /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at", "points", "role", "password_digest", "name", "active") VALUES ('alex@gmail.com', '2025-08-19 01:57:57.792503', '2025-08-19 01:57:57.792503', NULL, 'member', '$2a$12$oLr5VhgUmQetRQGQogS0YuGWQ67Q7Rm3d1On8ebWaGKCOmzV9chCi', 'alex', TRUE) RETURNING "id" /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+Completed 201 Created in 333ms (Views: 0.2ms | ActiveRecord: 17.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/register" for 127.0.0.1 at 2025-08-18 20:58:52 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+Processing by AuthController#register as HTML
+  Parameters: {"name" => "Diego", "email" => "[FILTERED]", "password" => "[FILTERED]", "auth" => {"name" => "Diego", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+[31mUnpermitted parameter: :auth. Context: { controller: AuthController, action: register, request: #<ActionDispatch::Request:0x000000011fef2a98>, params: {"name" => "Diego", "email" => "[FILTERED]", "password" => "[FILTERED]", "controller" => "auth", "action" => "register", "auth" => {"name" => "Diego", "email" => "[FILTERED]", "password" => "[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Exists? (11.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'diegop@gmail.com' LIMIT 1 /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at", "points", "role", "password_digest", "name", "active") VALUES ('diegop@gmail.com', '2025-08-19 01:58:52.762376', '2025-08-19 01:58:52.762376', NULL, 'member', '$2a$12$fzA1OsCdMfkOe6N0gIxFfuH/4n/f7HRdHtncadQhfoFrLPBkZu7y6', 'Diego', TRUE) RETURNING "id" /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+Completed 201 Created in 344ms (Views: 0.2ms | ActiveRecord: 25.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/register" for 127.0.0.1 at 2025-08-18 21:04:43 -0500
+Processing by AuthController#register as HTML
+  Parameters: {"name" => "do", "email" => "[FILTERED]", "password" => "[FILTERED]", "auth" => {"name" => "do", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'do@gmail.com' LIMIT 1 /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at", "points", "role", "password_digest", "name", "active") VALUES ('do@gmail.com', '2025-08-19 02:04:44.180497', '2025-08-19 02:04:44.180497', NULL, 'member', '$2a$12$GFQXKW2JIXndgYQ0Oyi/YOVo1ils3PuPmRw6Il8IDGMww0T302Vs2', 'do', TRUE) RETURNING "id" /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:8:in 'AuthController#register'
+Completed 201 Created in 280ms (Views: 0.2ms | ActiveRecord: 14.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/register" for 127.0.0.1 at 2025-08-18 21:07:46 -0500
+Processing by AuthController#register as HTML
+  Parameters: {"name" => "Re", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:9:in 'AuthController#register'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 're@gmail.com' LIMIT 1 /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:9:in 'AuthController#register'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at", "points", "role", "password_digest", "name", "active") VALUES ('re@gmail.com', '2025-08-19 02:07:46.817321', '2025-08-19 02:07:46.817321', NULL, 'member', '$2a$12$Xb533/.mOUAHZc/K14bc.OTxZGfuDTeDH5vsW.WaYrpaBi2vf9AEy', 'Re', TRUE) RETURNING "id" /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:9:in 'AuthController#register'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='register',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:9:in 'AuthController#register'
+Completed 201 Created in 249ms (Views: 0.1ms | ActiveRecord: 10.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
