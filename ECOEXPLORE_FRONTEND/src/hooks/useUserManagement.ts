@@ -11,8 +11,10 @@ export function useUserManagement() {
   const loadUsers = async (filters?: UserFilters) => {
     try {
       setLoading(true);
-      const data = await UserService.getUsers(filters);
-      setUsers(data);
+      const data = await UserService.getUsers();
+      if (data) {
+        setUsers(data);
+      }
     } catch (error) {
       console.error('Error loading users:', error);
       throw error;
@@ -21,60 +23,14 @@ export function useUserManagement() {
     }
   };
 
-  const createUser = async (userData: UserFormData): Promise<User> => {
+  const deleteUser = async (userId: string) => {
     try {
       setActionLoading(true);
-      const newUser = await UserService.createUser(userData);
-      setUsers(prev => [...prev, newUser]);
-      return newUser;
+      await UserService.deleteUser(userId);
+      setUsers(users.filter(user => user.id !== userId));
+      console.log('Usuario eliminado exitosamente');
     } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  const updateUser = async (id: string, userData: UserFormData): Promise<User> => {
-    try {
-      setActionLoading(true);
-      const updatedUser = await UserService.updateUser(id, userData);
-      setUsers(prev => prev.map(user => 
-        user.id === id ? updatedUser : user
-      ));
-      return updatedUser;
-    } catch (error) {
-      console.error('Error updating user:', error);
-      throw error;
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  const deleteUser = async (id: string): Promise<void> => {
-    try {
-      setActionLoading(true);
-      await UserService.deleteUser(id);
-      setUsers(prev => prev.filter(user => user.id !== id));
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      throw error;
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  const toggleUserStatus = async (id: string): Promise<User> => {
-    try {
-      setActionLoading(true);
-      const updatedUser = await UserService.toggleUserStatus(id);
-      setUsers(prev => prev.map(user => 
-        user.id === id ? updatedUser : user
-      ));
-      return updatedUser;
-    } catch (error) {
-      console.error('Error toggling user status:', error);
-      throw error;
+      console.error('Error al eliminar el usuario:', error);
     } finally {
       setActionLoading(false);
     }
@@ -89,9 +45,6 @@ export function useUserManagement() {
     loading,
     actionLoading,
     loadUsers,
-    createUser,
-    updateUser,
-    deleteUser,
-    toggleUserStatus
+    deleteUser
   };
 }

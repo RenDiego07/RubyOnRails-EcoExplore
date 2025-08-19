@@ -23,8 +23,8 @@ import styles from './UserManagement.module.css';
 
 export default function UserManagement() {
   const { logout } = useAuth();
-  const { users, loading, actionLoading, createUser, updateUser, deleteUser } = useUserManagement();
-  
+  const { users, loading, actionLoading, deleteUser } = useUserManagement();
+
   const [filters, setFilters] = useState<UserFilters>({
     role: 'all',
     status: 'all',
@@ -194,39 +194,15 @@ export default function UserManagement() {
   };
 
   const handleCreateUser = async (formData: UserFormData) => {
-    try {
-      await createUser(formData);
-      setShowCreateModal(false);
-      console.log('Usuario creado exitosamente');
-    } catch (error) {
-      console.error('Error al crear el usuario:', error);
-    }
+
   };
 
   const handleEditUser = async (formData: UserFormData) => {
-    if (!selectedUser) return;
-    
-    try {
-      await updateUser(selectedUser.id, formData);
-      setShowEditModal(false);
-      setSelectedUser(null);
-      console.log('Usuario actualizado exitosamente');
-    } catch (error) {
-      console.error('Error al actualizar el usuario:', error);
-    }
+
   };
 
   const handleDeleteUser = async () => {
-    if (!selectedUser) return;
-    
-    try {
-      await deleteUser(selectedUser.id);
-      setShowDeleteModal(false);
-      setSelectedUser(null);
-      console.log('Usuario eliminado exitosamente');
-    } catch (error) {
-      console.error('Error al eliminar el usuario:', error);
-    }
+    deleteUser(selectedUser!.id);
   };
 
   return (

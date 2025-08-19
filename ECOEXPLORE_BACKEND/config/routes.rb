@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/user/getUsers"
+  delete "/user/deleteUser/:id", to: "user#deleteUser"
   # Authentication routes
   post '/auth/register', to: 'auth#register'
   post '/auth/login', to: 'auth#login'
