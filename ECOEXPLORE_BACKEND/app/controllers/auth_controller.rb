@@ -6,14 +6,16 @@ class AuthController < ApplicationController
     user.role = 'member' unless user.role.present?
     
     if user.save
-      result = AuthService.authenticate(user.email, params[:password])
       render json: {
+        success: true,
         message: "User created successfully",
-        token: result[:token],
         user: user_response(user)
       }, status: :created
     else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      render json: { 
+        success: false,
+        errors: user.errors.full_messages 
+      }, status: :unprocessable_entity
     end
   end
   
@@ -22,12 +24,16 @@ class AuthController < ApplicationController
     
     if result[:success]
       render json: {
+        success: true,
         message: "Login successful",
         token: result[:token],
         user: user_response(result[:user])
       }, status: :ok
     else
-      render json: { error: result[:error] }, status: :unauthorized
+      render json: { 
+        success: false,
+        error: result[:error] 
+      }, status: :unauthorized
     end
   end
   
