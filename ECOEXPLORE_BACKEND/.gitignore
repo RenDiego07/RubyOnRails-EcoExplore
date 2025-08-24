@@ -28,6 +28,8 @@ tmp/pids/*
 !tmp/pids/
 !tmp/pids/.keep
 tmp/cache/*
+tmp/cache/bootsnap/
+tmp/cache/bootsnap/*
 tmp/sockets/*
 tmp/storage/*
 

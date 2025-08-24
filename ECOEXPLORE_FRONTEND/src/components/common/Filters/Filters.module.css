@@ -1,0 +1,86 @@
+.filtersContainer {
+  background: var(--surface-color);
+  border: var(--stroke-200);
+  border-radius: var(--rounded-100);
+  padding: var(--spacing-400);
+  margin-bottom: var(--spacing-400);
+  box-shadow: var(--elevation-1);
+}
+
+.filtersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-400);
+  margin-bottom: var(--spacing-400);
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.filterLabel {
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  font-weight: var(--font-weight-medium);
+}
+
+.filterInput,
+.filterSelect {
+  padding: var(--spacing-300);
+  border: var(--stroke-200);
+  border-radius: var(--rounded-50);
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  transition: border-color 0.2s ease;
+}
+
+.filterInput:focus,
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.filterInput::placeholder {
+  color: var(--text-soft);
+}
+
+.filtersActions {
+  display: flex;
+  gap: var(--spacing-300);
+  justify-content: flex-end;
+}
+
+.resetButton {
+  padding: var(--spacing-200) var(--spacing-400);
+  border: var(--stroke-200);
+  border-radius: var(--rounded-50);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: var(--f-medium-size);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .filtersGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-300);
+  }
+  
+  .filtersActions {
+    justify-content: stretch;
+  }
+  
+  .resetButton {
+    flex: 1;
+  }
+}

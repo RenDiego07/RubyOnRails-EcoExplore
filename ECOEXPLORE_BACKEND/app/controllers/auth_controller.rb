@@ -4,6 +4,7 @@ class AuthController < ApplicationController
   
   def register
     user = User.new(user_params)
+    user.points = 0
     user.role = 'member' unless user.role.present?
     
     if user.save

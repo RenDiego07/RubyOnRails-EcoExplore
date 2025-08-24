@@ -1,0 +1,75 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+  padding: var(--spacing-400);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-400);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.formField.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  font-weight: var(--font-weight-medium);
+}
+
+.input,
+.select {
+  padding: var(--spacing-300);
+  border: var(--stroke-200);
+  border-radius: var(--rounded-50);
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-300);
+  justify-content: flex-end;
+  padding-top: var(--spacing-300);
+  border-top: var(--stroke-100);
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+}

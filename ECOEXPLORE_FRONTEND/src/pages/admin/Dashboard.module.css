@@ -46,10 +46,40 @@
   padding: var(--spacing-500);
   box-shadow: var(--elevation-1);
   transition: box-shadow 0.2s ease;
+  position: relative;
 }
 
 .card:hover {
   box-shadow: var(--elevation-2);
+}
+
+.clickableCard {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.clickableCard:hover {
+  box-shadow: var(--elevation-3);
+  transform: translateY(-2px);
+}
+
+.clickableCard:active {
+  transform: translateY(0);
+}
+
+.cardArrow {
+  position: absolute;
+  top: var(--spacing-400);
+  right: var(--spacing-400);
+  font-size: var(--h4-size);
+  color: var(--text-soft);
+  transition: all 0.2s ease;
+}
+
+.clickableCard:hover .cardArrow {
+  color: var(--primary);
+  transform: translateX(4px);
 }
 
 .card h2 {

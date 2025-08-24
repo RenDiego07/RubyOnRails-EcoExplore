@@ -5,6 +5,7 @@ import { LandingPage } from '@/components/LandingPage';
 import LoginPage from '@/pages/auth/LoginPage';
 import RegisterPage from '@/pages/auth/RegisterPage';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
+import { UserManagement } from '@/pages/admin/UserManagement';
 import MemberDashboard from '@/pages/member/MemberDashboard';
 import Sightings from '@/pages/member/Sightings';
 import { MemberLayout } from '@/layouts';
@@ -45,6 +46,7 @@ export default function RootRoutes() {
         </Route>
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<UserManagement />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={['member']} />}>

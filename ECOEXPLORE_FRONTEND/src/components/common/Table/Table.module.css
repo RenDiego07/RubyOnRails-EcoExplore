@@ -1,0 +1,167 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface-color);
+  border-radius: var(--rounded-100);
+  overflow: hidden;
+  box-shadow: var(--elevation-1);
+}
+
+.tableHeader {
+  background: var(--bg-soft);
+  border-bottom: var(--stroke-200);
+}
+
+.headerCell {
+  padding: var(--spacing-400);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.headerCell:hover {
+  background: var(--bg-hover);
+}
+
+.sortable {
+  position: relative;
+}
+
+.sortable::after {
+  content: '↕';
+  position: absolute;
+  right: var(--spacing-200);
+  opacity: 0.5;
+}
+
+.sortable.asc::after {
+  content: '↑';
+  opacity: 1;
+}
+
+.sortable.desc::after {
+  content: '↓';
+  opacity: 1;
+}
+
+.tableRow {
+  border-bottom: var(--stroke-100);
+  transition: background-color 0.2s ease;
+}
+
+.tableRow:hover {
+  background: var(--bg-hover);
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableCell {
+  padding: var(--spacing-400);
+  color: var(--text);
+  font-size: var(--f-medium-size);
+  vertical-align: middle;
+}
+
+.actionsCell {
+  padding: var(--spacing-300);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+.actionButton {
+  padding: var(--spacing-100) var(--spacing-200);
+  border: none;
+  border-radius: var(--rounded-50);
+  cursor: pointer;
+  font-size: var(--f-small-size);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.actionButton.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.actionButton.primary:hover {
+  background: var(--primary-hover);
+}
+
+.actionButton.secondary {
+  background: var(--secondary);
+  color: white;
+}
+
+.actionButton.secondary:hover {
+  background: var(--secondary-hover);
+}
+
+.actionButton.danger {
+  background: var(--danger);
+  color: white;
+}
+
+.actionButton.danger:hover {
+  background: var(--danger-hover);
+}
+
+.actionButton.tertiary {
+  background: transparent;
+  color: var(--text-soft);
+  border: var(--stroke-100);
+}
+
+.actionButton.tertiary:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.loadingContainer {
+  padding: var(--spacing-600);
+  text-align: center;
+}
+
+.emptyContainer {
+  padding: var(--spacing-600);
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.emptyMessage {
+  font-size: var(--f-large-size);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: var(--f-small-size);
+  }
+  
+  .headerCell,
+  .tableCell {
+    padding: var(--spacing-300);
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: var(--spacing-100);
+  }
+  
+  .actionButton {
+    padding: var(--spacing-100);
+    font-size: var(--f-tiny-size);
+  }
+}
