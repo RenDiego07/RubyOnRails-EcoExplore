@@ -14,4 +14,16 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true
   end
+
+  # Permitir Firebase Storage URLs
+  allow do
+    origins "https://firebasestorage.googleapis.com", 
+            "https://*.firebasestorage.app",
+            "https://ecoexplore-595a4.firebasestorage.app"
+    
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: false
+  end
 end

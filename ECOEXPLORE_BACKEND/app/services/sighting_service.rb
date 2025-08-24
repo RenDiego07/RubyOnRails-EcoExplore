@@ -2,6 +2,8 @@ class SightingService
   Result = Struct.new(:success, :sighting, :error, keyword_init: true)
 
   def self.create(user:, params:)
+    Rails.logger.info "🔍 SightingService.create params: #{params.inspect}"
+    
     ActiveRecord::Base.transaction do
       sighting_state = resolve_state(params)
       ecosystem = Ecosystem.find(params[:ecosystem_id])
@@ -15,18 +17,26 @@ class SightingService
         ecosystem: ecosystem,
         location: location,
         sighting_state: sighting_state,
-        description: params[:description]
+        description: params[:description],
+        image_path: params[:image_path],
+        specie: params[:specie]
       )
+      
+      Rails.logger.info "🔍 Sighting antes de guardar: #{sighting.attributes.inspect}"
 
       if sighting.save
+        Rails.logger.info "✅ Sighting guardado exitosamente con ID: #{sighting.id}"
         return Result.new(success: true, sighting: sighting)
       else
-        raise ActiveRecord::Rollback, sighting.errors.full_messages.join(", ")
+        Rails.logger.error "❌ Error al guardar sighting: #{sighting.errors.full_messages}"
+        return Result.new(success: false, error: sighting.errors.full_messages.join(", "))
       end
     end
   rescue ActiveRecord::RecordNotFound => e
+    Rails.logger.error "❌ RecordNotFound: #{e.message}"
     Result.new(success: false, error: e.message)
   rescue StandardError => e
+    Rails.logger.error "❌ StandardError: #{e.message}"
     Result.new(success: false, error: e.message)
   end
 

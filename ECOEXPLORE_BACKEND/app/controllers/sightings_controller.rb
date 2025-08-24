@@ -38,7 +38,7 @@ class SightingsController < ApplicationController
   private
 
   def creation_params
-    params.permit(:ecosystem_id, :description, :location_name, :coordinates)
+    params.permit(:ecosystem_id, :description, :location_name, :coordinates, :image_path, :specie)
   end
 
   def update_params
@@ -57,6 +57,8 @@ class SightingsController < ApplicationController
       sighting_location: sighting.location.name,
       sighting_location_coordinates: sighting.location.coordinates,
       description: sighting.description,
+      image_path: sighting.image_path,
+      specie: sighting.specie,
       created_at: sighting.created_at
     }
   end
