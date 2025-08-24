@@ -76,7 +76,7 @@ class SightingService
 
   def self.find_or_create_location(name:, coordinates:)
     raise ArgumentError, "location_name is required" if name.blank?
-    
+    ##
     # Las coordenadas son opcionales
     coords = coordinates.present? ? coordinates : nil
     Location.find_or_create_by!(name: name, coordinates: coords)
