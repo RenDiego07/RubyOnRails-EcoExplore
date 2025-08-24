@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button, Alert } from '@/components/common';
 import { Form, FormField, Input, TextAreaInput, Selector } from '@/components/common/form';
 import ImageUploader from '@/components/common/ImageUploader';
+import DisplayPictureModal from '@/components/common/Modals/DisplayPictureModal';
 import { createSighting, getSightings } from '@/services/CRUD/sightings/POST/sightingsPost';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
 import type { SelectorOption } from '@/components/common/form/Selector/Selector.types';
@@ -13,6 +14,7 @@ interface SightingData {
   location_name: string;
   coordinates: string;
   image_path: string;
+  specie: string;
 }
 
 interface Sighting {
@@ -22,6 +24,7 @@ interface Sighting {
   sighting_location_coordinates?: string;
   sighting_state_name: string;
   image_path?: string;
+  specie?: string;
   created_at: string;
 }
 
@@ -40,6 +43,7 @@ const initialFormData: SightingData = {
   location_name: '',
   coordinates: '',
   image_path: '',
+  specie: '',
 };
 
 export default function Sightings() {
@@ -50,6 +54,10 @@ export default function Sightings() {
   const [ecosystems, setEcosystems] = useState<Ecosystem[]>([]);
   const [isLoadingEcosystems, setIsLoadingEcosystems] = useState(true);
   const [selectedEcosystem, setSelectedEcosystem] = useState<SelectorOption | null>(null);
+
+  // Estados para el modal de imagen
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string>('');
 
   useEffect(() => {
     fetchSightings();
@@ -103,10 +111,26 @@ export default function Sightings() {
     }));
   };
 
+  // Funciones para manejar el modal de imagen
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImageUrl(imageUrl);
+    setIsImageModalOpen(true);
+  };
+
+  const handleCloseImageModal = () => {
+    setIsImageModalOpen(false);
+    setSelectedImageUrl('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.ecosystem_id || !formData.description || !formData.location_name) {
+    if (
+      !formData.ecosystem_id ||
+      !formData.description ||
+      !formData.location_name ||
+      !formData.specie
+    ) {
       setAlert({ type: 'error', message: 'Por favor completa todos los campos obligatorios' });
       return;
     }
@@ -121,6 +145,7 @@ export default function Sightings() {
         location_name: formData.location_name,
         coordinates: formData.coordinates || undefined,
         image_path: formData.image_path || undefined,
+        specie: formData.specie,
       });
 
       setAlert({ type: 'success', message: 'Avistamiento registrado exitosamente' });
@@ -188,7 +213,7 @@ export default function Sightings() {
                 type="text"
                 value={formData.location_name}
                 onChange={(e) => handleInputChange('location_name', e.target.value)}
-                placeholder="Ej: Parque Nacional Yasuní"
+                placeholder="Ej: Parque Nacional "
                 disabled={isLoading}
               />
             </FormField>
@@ -201,6 +226,18 @@ export default function Sightings() {
                 onChange={(e) => handleInputChange('coordinates', e.target.value)}
                 placeholder="Ej: -0.6753, -76.3942"
                 disabled={isLoading}
+              />
+            </FormField>
+
+            <FormField label="Especie" required>
+              <Input
+                id="specie"
+                type="text"
+                value={formData.specie}
+                onChange={(e) => handleInputChange('specie', e.target.value)}
+                placeholder="Ej: Iguana"
+                disabled={isLoading}
+                maxLength={50}
               />
             </FormField>
 
@@ -247,7 +284,13 @@ export default function Sightings() {
                 <div key={sighting.id} className={styles.sightingCard}>
                   {sighting.image_path && (
                     <div className={styles.sightingImage}>
-                      <img src={sighting.image_path} alt="Avistamiento" className={styles.image} />
+                      <Button
+                        variant="secondary"
+                        size="small"
+                        onClick={() => handleImageClick(sighting.image_path!)}
+                      >
+                        Ver Imagen
+                      </Button>
                     </div>
                   )}
                   <div className={styles.sightingContent}>
@@ -262,6 +305,11 @@ export default function Sightings() {
                     <p>
                       <strong>Estado:</strong> {sighting.sighting_state_name}
                     </p>
+                    {sighting.specie && (
+                      <p>
+                        <strong>Especie:</strong> {sighting.specie}
+                      </p>
+                    )}
                     <p>
                       <strong>Descripción:</strong> {sighting.description}
                     </p>
@@ -277,6 +325,15 @@ export default function Sightings() {
           )}
         </div>
       </div>
+
+      {/* Modal para mostrar imagen */}
+      <DisplayPictureModal
+        isOpen={isImageModalOpen}
+        onClose={handleCloseImageModal}
+        imageUrl={selectedImageUrl}
+        imageAlt="Imagen del avistamiento"
+        title="Imagen del Avistamiento"
+      />
     </div>
   );
 }

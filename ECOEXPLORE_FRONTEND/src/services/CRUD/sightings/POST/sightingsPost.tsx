@@ -6,6 +6,7 @@ interface CreateSightingParams {
   location_name: string;
   coordinates?: string;
   image_path?: string;
+  specie: string;
 }
 
 interface SightingResponse {
@@ -19,6 +20,7 @@ interface SightingResponse {
   sighting_location_coordinates: string;
   description: string;
   image_path?: string;
+  specie?: string;
   created_at: string;
 }
 

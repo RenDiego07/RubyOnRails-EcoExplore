@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { getAnalytics } from 'firebase/analytics';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,7 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-const analytics = getAnalytics(app);
 
 export class FirebaseService {
   /**
@@ -27,21 +25,61 @@ export class FirebaseService {
    */
   static async uploadImage(file: File, folder: string = 'sightings'): Promise<string> {
     try {
+      console.log('🔄 Iniciando subida de imagen...', file.name);
+
       // Generar nombre único para el archivo
       const timestamp = Date.now();
       const randomString = Math.random().toString(36).substring(2);
       const fileName = `${timestamp}_${randomString}_${file.name}`;
+
       // Crear referencia al archivo en Storage
       const storageRef = ref(storage, `${folder}/${fileName}`);
-      // Subir archivo
-      const snapshot = await uploadBytes(storageRef, file);
+
+      console.log('📁 Referencia creada:', storageRef.toString());
+
+      // Subir archivo con metadatos adicionales
+      const metadata = {
+        contentType: file.type,
+        cacheControl: 'public,max-age=3600',
+        customMetadata: {
+          uploadedAt: new Date().toISOString(),
+          originalName: file.name,
+        },
+      };
+
+      const snapshot = await uploadBytes(storageRef, file, metadata);
+      console.log('✅ Archivo subido:', snapshot.ref.fullPath);
+
       // Obtener URL de descarga
       const downloadURL = await getDownloadURL(snapshot.ref);
-      console.log('✅ Imagen subida exitosamente:', downloadURL);
+      console.log('✅ URL obtenida:', downloadURL);
+
       return downloadURL;
-    } catch (error) {
-      console.error('❌ Error al subir imagen:', error);
-      throw new Error('Error al subir la imagen. Intenta nuevamente.');
+    } catch (error: unknown) {
+      console.error('❌ Error detallado al subir imagen:', error);
+
+      // Manejar errores específicos de CORS
+      if (
+        error instanceof Error &&
+        (error.message?.includes('CORS') || error.message?.includes('Cross-Origin'))
+      ) {
+        throw new Error('Error de configuración CORS. Por favor contacta al administrador.');
+      }
+
+      // Manejar otros errores comunes de Firebase
+      const firebaseError = error as { code?: string; message?: string };
+
+      if (firebaseError.code === 'storage/unauthorized') {
+        throw new Error('No tienes permisos para subir archivos.');
+      }
+
+      if (firebaseError.code === 'storage/quota-exceeded') {
+        throw new Error('Se ha excedido el límite de almacenamiento.');
+      }
+
+      const errorMessage =
+        firebaseError.message || (error instanceof Error ? error.message : 'Error desconocido');
+      throw new Error(`Error al subir la imagen: ${errorMessage}`);
     }
   }
 
@@ -153,5 +191,5 @@ export class FirebaseService {
   }
 }
 
-export { storage, analytics };
+export { storage };
 export default FirebaseService;
