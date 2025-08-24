@@ -61,7 +61,7 @@ export default function DisplayPictureModal({
       </div>
     );
   };
-
+  //dwedijij
   return (
     <Modal
       title={title}
