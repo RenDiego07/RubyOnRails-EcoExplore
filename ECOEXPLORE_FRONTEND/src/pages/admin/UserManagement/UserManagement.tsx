@@ -1,23 +1,10 @@
 import { useState, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useUserManagement } from '@/hooks/useUserManagement';
-import { 
-  Button, 
-  Table, 
-  Filters, 
-  PageHeader, 
-  Modal 
-} from '@/components/common';
+import { Button, Table, Filters, PageHeader, Modal } from '@/components/common';
 import { UserForm } from '@/components/forms';
-import type { 
-  User,
-  UserFilters
-} from '@/types';
-import type { 
-  TableColumn, 
-  TableAction,
-  FilterField 
-} from '@/components/common';
+import type { User, UserFilters } from '@/types';
+import type { TableColumn, TableAction, FilterField } from '@/components/common';
 import type { UserFormData } from '@/components/forms';
 import styles from './UserManagement.module.css';
 
@@ -28,7 +15,7 @@ export default function UserManagement() {
   const [filters, setFilters] = useState<UserFilters>({
     role: 'all',
     status: 'all',
-    search: ''
+    search: '',
   });
   const [sortKey, setSortKey] = useState<string>('name');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -43,7 +30,7 @@ export default function UserManagement() {
       key: 'search',
       label: 'Buscar',
       type: 'search',
-      placeholder: 'Buscar por nombre o email...'
+      placeholder: 'Buscar por nombre o email...',
     },
     {
       key: 'role',
@@ -53,8 +40,8 @@ export default function UserManagement() {
       options: [
         { value: 'all', label: 'Todos los roles' },
         { value: 'admin', label: 'Administrador' },
-        { value: 'member', label: 'Miembro' }
-      ]
+        { value: 'member', label: 'Miembro' },
+      ],
     },
     {
       key: 'status',
@@ -64,9 +51,9 @@ export default function UserManagement() {
       options: [
         { value: 'all', label: 'Todos los estados' },
         { value: 'active', label: 'Activo' },
-        { value: 'inactive', label: 'Inactivo' }
-      ]
-    }
+        { value: 'inactive', label: 'Inactivo' },
+      ],
+    },
   ];
 
   // Table columns configuration
@@ -75,13 +62,13 @@ export default function UserManagement() {
       key: 'name',
       label: 'Nombre',
       sortable: true,
-      width: '200px'
+      width: '200px',
     },
     {
       key: 'email',
       label: 'Email',
       sortable: true,
-      width: '250px'
+      width: '250px',
     },
     {
       key: 'role',
@@ -91,16 +78,14 @@ export default function UserManagement() {
           {value === 'admin' ? 'Administrador' : 'Miembro'}
         </span>
       ),
-      width: '120px'
+      width: '120px',
     },
     {
       key: 'points',
       label: 'Puntos',
-      render: (value: number) => (
-        <span className={styles.pointsBadge}>{value}</span>
-      ),
+      render: (value: number) => <span className={styles.pointsBadge}>{value}</span>,
       sortable: true,
-      width: '100px'
+      width: '100px',
     },
     {
       key: 'isActive',
@@ -110,15 +95,15 @@ export default function UserManagement() {
           {value ? 'Activo' : 'Inactivo'}
         </span>
       ),
-      width: '120px'
+      width: '120px',
     },
     {
       key: 'createdAt',
       label: 'Fecha de Registro',
       render: (value: string) => new Date(value).toLocaleDateString('es-ES'),
       sortable: true,
-      width: '150px'
-    }
+      width: '150px',
+    },
   ];
 
   // Table actions configuration
@@ -129,7 +114,7 @@ export default function UserManagement() {
         setSelectedUser(user);
         setShowEditModal(true);
       },
-      variant: 'primary'
+      variant: 'primary',
     },
     {
       label: 'Eliminar',
@@ -137,20 +122,22 @@ export default function UserManagement() {
         setSelectedUser(user);
         setShowDeleteModal(true);
       },
-      variant: 'danger'
-    }
+      variant: 'danger',
+    },
   ];
 
   // Filtered and sorted users
   const filteredUsers = useMemo(() => {
-    let filtered = users.filter(user => {
-      const matchesSearch = !filters.search || 
+    const filtered = users.filter((user) => {
+      const matchesSearch =
+        !filters.search ||
         user.name.toLowerCase().includes(filters.search.toLowerCase()) ||
         user.email.toLowerCase().includes(filters.search.toLowerCase());
-      
+
       const matchesRole = filters.role === 'all' || user.role === filters.role;
-      
-      const matchesStatus = filters.status === 'all' || 
+
+      const matchesStatus =
+        filters.status === 'all' ||
         (filters.status === 'active' && user.isActive) ||
         (filters.status === 'inactive' && !user.isActive);
 
@@ -159,28 +146,28 @@ export default function UserManagement() {
 
     // Sort users
     filtered.sort((a, b) => {
-      const aValue = (a as any)[sortKey];
-      const bValue = (b as any)[sortKey];
-      
+      const aValue = String((a as unknown as Record<string, unknown>)[sortKey] || '');
+      const bValue = String((b as unknown as Record<string, unknown>)[sortKey] || '');
+
       if (sortDirection === 'asc') {
-        return aValue > bValue ? 1 : -1;
+        return aValue.localeCompare(bValue);
       } else {
-        return aValue < bValue ? 1 : -1;
+        return bValue.localeCompare(aValue);
       }
     });
 
     return filtered;
   }, [users, filters, sortKey, sortDirection]);
 
-  const handleFilterChange = (key: string, value: any) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+  const handleFilterChange = (key: string, value: unknown) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleFilterReset = () => {
     setFilters({
       role: 'all',
       status: 'all',
-      search: ''
+      search: '',
     });
   };
 
@@ -193,12 +180,14 @@ export default function UserManagement() {
     logout();
   };
 
-  const handleCreateUser = async (formData: UserFormData) => {
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleCreateUser = async (_formData: UserFormData) => {
+    // TODO: Implement user creation
   };
 
-  const handleEditUser = async (formData: UserFormData) => {
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleEditUser = async (_formData: UserFormData) => {
+    // TODO: Implement user editing
   };
 
   const handleDeleteUser = async () => {
@@ -212,7 +201,7 @@ export default function UserManagement() {
         subtitle="Administra y modera los usuarios del sistema"
         breadcrumbs={[
           { label: 'Dashboard', href: '/admin/dashboard' },
-          { label: 'Gestión de Usuarios' }
+          { label: 'Gestión de Usuarios' },
         ]}
         actions={
           <>
@@ -250,10 +239,7 @@ export default function UserManagement() {
 
       {/* Create Modal */}
       {showCreateModal && (
-        <Modal
-          onClose={() => setShowCreateModal(false)}
-          title="Crear Nuevo Usuario"
-        >
+        <Modal onClose={() => setShowCreateModal(false)} title="Crear Nuevo Usuario">
           <UserForm
             onSubmit={handleCreateUser}
             onCancel={() => setShowCreateModal(false)}
@@ -275,7 +261,7 @@ export default function UserManagement() {
               email: selectedUser.email,
               role: selectedUser.role,
               points: selectedUser.points,
-              isActive: selectedUser.isActive
+              isActive: selectedUser.isActive,
             }}
             onSubmit={handleEditUser}
             onCancel={() => setShowEditModal(false)}
@@ -287,25 +273,20 @@ export default function UserManagement() {
 
       {/* Delete Modal */}
       {showDeleteModal && selectedUser && (
-        <Modal
-          onClose={() => setShowDeleteModal(false)}
-          title="Confirmar Eliminación"
-        >
+        <Modal onClose={() => setShowDeleteModal(false)} title="Confirmar Eliminación">
           <div style={{ padding: '20px' }}>
-            <p>¿Estás seguro de que deseas eliminar al usuario <strong>{selectedUser.name}</strong>?</p>
+            <p>
+              ¿Estás seguro de que deseas eliminar al usuario <strong>{selectedUser.name}</strong>?
+            </p>
             <p style={{ color: 'var(--danger)', fontSize: '14px' }}>
               Esta acción no se puede deshacer.
             </p>
             <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-              <Button 
-                variant="destructive" 
-                onClick={handleDeleteUser}
-                loading={actionLoading}
-              >
+              <Button variant="destructive" onClick={handleDeleteUser} loading={actionLoading}>
                 Eliminar Usuario
               </Button>
-              <Button 
-                variant="tertiary" 
+              <Button
+                variant="tertiary"
                 onClick={() => setShowDeleteModal(false)}
                 disabled={actionLoading}
               >

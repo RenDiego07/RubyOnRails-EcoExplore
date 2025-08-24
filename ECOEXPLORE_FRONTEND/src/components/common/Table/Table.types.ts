@@ -1,7 +1,7 @@
 export interface TableColumn<T> {
   key: string;
   label: string;
-  render?: (value: any, item: T) => React.ReactNode;
+  render?: (value: unknown, item: T) => React.ReactNode;
   sortable?: boolean;
   width?: string;
 }

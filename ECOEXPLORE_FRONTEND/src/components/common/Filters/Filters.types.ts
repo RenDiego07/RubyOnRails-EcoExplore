@@ -13,7 +13,7 @@ export interface FilterField {
 
 export interface FiltersProps {
   fields: FilterField[];
-  values: Record<string, any>;
-  onChange: (key: string, value: any) => void;
+  values: Record<string, unknown>;
+  onChange: (key: string, value: unknown) => void;
   onReset: () => void;
 }

@@ -1,4 +1,4 @@
-import { FiltersProps } from './Filters.types';
+import { FiltersProps, FilterField, FilterOption } from './Filters.types';
 import styles from './Filters.module.css';
 
 export default function Filters({ fields, values, onChange, onReset }: FiltersProps) {
@@ -6,9 +6,9 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
     onChange(key, value);
   };
 
-  const renderField = (field: any) => {
+  const renderField = (field: FilterField) => {
     const value = values[field.key] || '';
-    
+
     switch (field.type) {
       case 'select':
         return (
@@ -18,14 +18,14 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
             onChange={(e) => handleInputChange(field.key, e.target.value)}
           >
             <option value="">{field.placeholder || 'Seleccionar...'}</option>
-            {field.options?.map((option: any) => (
+            {field.options?.map((option: FilterOption) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
           </select>
         );
-      
+
       case 'search':
         return (
           <input
@@ -36,7 +36,7 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
             onChange={(e) => handleInputChange(field.key, e.target.value)}
           />
         );
-      
+
       case 'date':
         return (
           <input
@@ -46,7 +46,7 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
             onChange={(e) => handleInputChange(field.key, e.target.value)}
           />
         );
-      
+
       default:
         return null;
     }
@@ -62,7 +62,7 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
           </div>
         ))}
       </div>
-      
+
       <div className={styles.filtersActions}>
         <button className={styles.resetButton} onClick={onReset}>
           Limpiar Filtros
