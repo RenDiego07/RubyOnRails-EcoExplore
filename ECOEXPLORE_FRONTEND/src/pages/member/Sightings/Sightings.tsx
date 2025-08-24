@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button, Alert } from '@/components/common';
 import { Form, FormField, Input, TextAreaInput, Selector } from '@/components/common/form';
 import ImageUploader from '@/components/common/ImageUploader';
+import MapPicker from '@/components/common/Map';
 import DisplayPictureModal from '@/components/common/Modals/DisplayPictureModal';
 import { createSighting, getSightings } from '@/services/CRUD/sightings/POST/sightingsPost';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
@@ -58,6 +59,11 @@ export default function Sightings() {
   // Estados para el modal de imagen
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string>('');
+
+  // Estados para el mapa
+  const [selectedMapCoordinates, setSelectedMapCoordinates] = useState<[number, number] | null>(
+    null
+  );
 
   useEffect(() => {
     fetchSightings();
@@ -122,6 +128,16 @@ export default function Sightings() {
     setSelectedImageUrl('');
   };
 
+  // Funciones para manejar el mapa
+  const handleLocationSelect = (lat: number, lng: number) => {
+    const coordinates: [number, number] = [lat, lng];
+    setSelectedMapCoordinates(coordinates);
+    setFormData((prev) => ({
+      ...prev,
+      coordinates: `${lat}, ${lng}`,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -151,6 +167,7 @@ export default function Sightings() {
       setAlert({ type: 'success', message: 'Avistamiento registrado exitosamente' });
       setFormData(initialFormData);
       setSelectedEcosystem(null);
+      setSelectedMapCoordinates(null);
       await fetchSightings();
     } catch (error: unknown) {
       console.error('Error creating sighting:', error);
@@ -218,13 +235,22 @@ export default function Sightings() {
               />
             </FormField>
 
-            <FormField label="Coordenadas (Opcional)">
+            <FormField label="Ubicación en el Mapa">
+              <MapPicker
+                onLocationSelect={handleLocationSelect}
+                currentPosition={selectedMapCoordinates}
+                disabled={isLoading}
+                height="350px"
+              />
+            </FormField>
+
+            <FormField label="Coordenadas (Manual - Opcional)">
               <Input
                 id="coordinates"
                 type="text"
                 value={formData.coordinates}
                 onChange={(e) => handleInputChange('coordinates', e.target.value)}
-                placeholder="Ej: -0.6753, -76.3942"
+                placeholder="Ej: -0.6753, -76.3942 (o usa el mapa arriba)"
                 disabled={isLoading}
               />
             </FormField>
