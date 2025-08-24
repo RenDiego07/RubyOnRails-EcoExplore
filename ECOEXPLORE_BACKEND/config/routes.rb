@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  get "type_specie/index"
   get "/species/getSpecies"
   delete "/species/deleteSpecies/:id", to: "species#deleteSpecies"
-  post "/species/update"
+  post "/species/updateSpecies", to: "species#updateSpecies"
   get "/user/getUsers"
   delete "/user/deleteUser/:id", to: "user#deleteUser"
   # Authentication routes

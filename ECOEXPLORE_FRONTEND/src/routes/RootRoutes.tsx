@@ -6,6 +6,8 @@ import LoginPage from '@/pages/auth/LoginPage';
 import RegisterPage from '@/pages/auth/RegisterPage';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import { UserManagement } from '@/pages/admin/UserManagement';
+import { SpeciesManagement } from '@/pages/admin/SpeciesManagement';
+import { EcosystemManagement } from '@/pages/admin/EcosystemManagement';
 import MemberDashboard from '@/pages/member/MemberDashboard';
 
 function AuthNavigationHandler() {
@@ -45,6 +47,8 @@ export default function RootRoutes() {
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/species" element={<SpeciesManagement />} />
+          <Route path="/admin/ecosystems" element={<EcosystemManagement />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={['member']} />}>

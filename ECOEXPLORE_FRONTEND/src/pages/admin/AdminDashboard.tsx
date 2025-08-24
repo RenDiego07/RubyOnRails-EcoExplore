@@ -15,6 +15,14 @@ export default function AdminDashboard() {
     navigate('/admin/users');
   };
 
+  const navigateToSpecies = () => {
+    navigate('/admin/species');
+  };
+
+  const navigateToEcosystems = () => {
+    navigate('/admin/ecosystems');
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -35,19 +43,16 @@ export default function AdminDashboard() {
             <span className={styles.cardArrow}>→</span>
           </div>
 
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.clickableCard}`} onClick={navigateToSpecies}>
             <h2>Gestión de Especies</h2>
             <p>Modera y administra las especies registradas</p>
+            <span className={styles.cardArrow}>→</span>
           </div>
 
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.clickableCard}`} onClick={navigateToEcosystems}>
             <h2>Ecosistemas</h2>
             <p>Configura y gestiona los ecosistemas</p>
-          </div>
-
-          <div className={styles.card}>
-            <h2>Reportes</h2>
-            <p>Visualiza estadísticas y reportes del sistema</p>
+            <span className={styles.cardArrow}>→</span>
           </div>
         </div>
       </main>

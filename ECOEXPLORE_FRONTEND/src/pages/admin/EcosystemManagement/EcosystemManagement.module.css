@@ -1,0 +1,58 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.content {
+  padding: 0 var(--spacing-600) var(--spacing-600);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tableContainer {
+  background: var(--surface-color);
+  border-radius: var(--rounded-100);
+  padding: var(--spacing-400);
+  box-shadow: var(--elevation-1);
+}
+
+.statusBadge {
+  padding: var(--spacing-100) var(--spacing-200);
+  border-radius: var(--rounded-50);
+  font-size: var(--f-small-size);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  min-width: 70px;
+}
+
+.statusBadge.active {
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+
+.statusBadge.inactive {
+  background: var(--danger-light);
+  color: var(--danger-dark);
+}
+
+.textTruncate {
+  display: block;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0 var(--spacing-400) var(--spacing-400);
+  }
+  
+  .tableContainer {
+    padding: var(--spacing-300);
+  }
+  
+  .textTruncate {
+    max-width: 150px;
+  }
+}
