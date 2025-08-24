@@ -1754,3 +1754,278 @@ Processing by EcosystemsController#index as HTML
 Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/login" for 127.0.0.1 at 2025-08-24 11:12:30 -0500
+  
+ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+Caused by: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+
+Information for: ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:69:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in 'Class#new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.0) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.1) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.1) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.1) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+pg-1.6.1-arm64 (darwin) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.1-arm64 (darwin) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.1-arm64 (darwin) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.1-arm64 (darwin) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.1-arm64 (darwin) lib/pg.rb:67:in 'PG.connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in 'Class#new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.0) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.0) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.2) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.6.1) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.1) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.1) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/auth/login" for 127.0.0.1 at 2025-08-24 11:14:08 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+Processing by AuthController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'fer@gmail.com' LIMIT 1 /*action='login',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/services/AuthService.rb:5:in 'AuthService.authenticate'
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='login',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/services/AuthService.rb:15:in 'AuthService.generate_token'
+Completed 200 OK in 372ms (Views: 0.1ms | ActiveRecord: 45.7ms (2 queries, 0 cached) | GC: 6.8ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-24 11:14:12 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-24 11:14:12 -0500
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (2.5ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (2.3ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.3ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 104ms (Views: 4.6ms | ActiveRecord: 25.7ms (6 queries, 0 cached) | GC: 6.9ms)
+
+
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.4ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.6ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 122ms (Views: 0.7ms | ActiveRecord: 29.0ms (6 queries, 0 cached) | GC: 11.3ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-24 11:14:12 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-24 11:14:12 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.8ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-24 11:16:36 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 3, "description" => "wdewded", "location_name" => "Parque las iguanas ", "coordinates" => "0.543, 5.543"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:62:in 'SightingService.resolve_state'
+  [1m[36mSightingState Load (7.2ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."code" = 'PENDING' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:62:in 'SightingService.resolve_state'
+  [1m[36mEcosystem Load (0.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 3 LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:7:in 'block in SightingService.create'
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Parque las iguanas ' AND "locations"."coordinates" = '0.543, 5.543' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mLocation Create (5.1ms)[0m  [1m[32mINSERT INTO "locations" ("name", "coordinates", "created_at", "updated_at") VALUES ('Parque las iguanas ', '0.543, 5.543', '2025-08-24 16:16:36.679222', '2025-08-24 16:16:36.679222') RETURNING "id" /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mSighting Create (4.4ms)[0m  [1m[32mINSERT INTO "sightings" ("user_id", "ecosystem_id", "location_id", "sighting_state_id", "description", "created_at", "updated_at") VALUES ('c681692a-07a1-4b1f-b50b-10a1634cbd83', 3, 4, 1, 'wdewded', '2025-08-24 16:16:36.708607', '2025-08-24 16:16:36.708607') RETURNING "id" /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:21:in 'block in SightingService.create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:5:in 'SightingService.create'
+Completed 201 Created in 81ms (Views: 0.2ms | ActiveRecord: 19.9ms (6 queries, 0 cached) | GC: 15.4ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-24 11:16:36 -0500
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.3ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.4ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3, 4) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.3ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 2.1ms (6 queries, 0 cached) | GC: 0.0ms)
+
+

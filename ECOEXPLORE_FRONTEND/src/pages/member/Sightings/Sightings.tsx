@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Alert } from '@/components/common';
-import { Form, FormField, Input, Label, TextAreaInput, Selector } from '@/components/common/form';
+import { Form, FormField, Input, TextAreaInput, Selector } from '@/components/common/form';
 import { createSighting, getSightings } from '@/services/CRUD/sightings/POST/sightingsPost';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
 import type { SelectorOption } from '@/components/common/form/Selector/Selector.types';
@@ -81,11 +81,14 @@ export default function Sightings() {
     }));
   };
 
-  const handleEcosystemSelect = (option: SelectorOption | null) => {
-    setSelectedEcosystem(option);
+  const handleEcosystemSelect = (option: SelectorOption | SelectorOption[] | null) => {
+    // Si es un array, tomar solo el primer elemento (para selectores múltiples)
+    const selectedOption = Array.isArray(option) ? option[0] || null : option;
+
+    setSelectedEcosystem(selectedOption);
     setFormData((prev) => ({
       ...prev,
-      ecosystem_id: option ? Number(option.value) : null,
+      ecosystem_id: selectedOption ? Number(selectedOption.value) : null,
     }));
   };
 
@@ -145,12 +148,16 @@ export default function Sightings() {
           <h2>Registrar Nuevo Avistamiento</h2>
 
           {alert && (
-            <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />
+            <Alert
+              type={alert.type}
+              message={alert.message}
+              dismissible
+              onDismiss={() => setAlert(null)}
+            />
           )}
 
           <Form onSubmit={handleSubmit}>
-            <FormField>
-              <Label htmlFor="ecosystem_id">Ecosistema *</Label>
+            <FormField label="Ecosistema" required>
               <Selector
                 value={selectedEcosystem}
                 options={ecosystemOptions}
@@ -163,8 +170,7 @@ export default function Sightings() {
               />
             </FormField>
 
-            <FormField>
-              <Label htmlFor="location_name">Nombre de la Ubicación *</Label>
+            <FormField label="Nombre de la Ubicación" required>
               <Input
                 id="location_name"
                 type="text"
@@ -175,8 +181,7 @@ export default function Sightings() {
               />
             </FormField>
 
-            <FormField>
-              <Label htmlFor="coordinates">Coordenadas (Opcional)</Label>
+            <FormField label="Coordenadas (Opcional)">
               <Input
                 id="coordinates"
                 type="text"
@@ -187,8 +192,7 @@ export default function Sightings() {
               />
             </FormField>
 
-            <FormField>
-              <Label htmlFor="description">Descripción *</Label>
+            <FormField label="Descripción" required>
               <TextAreaInput
                 id="description"
                 value={formData.description}
