@@ -1,0 +1,87 @@
+.displayPictureModal {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 70vh;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--color-text-secondary);
+}
+
+.loadingSpinner {
+  font-size: 2rem;
+  animation: spin 1s linear infinite;
+}
+
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--color-error);
+}
+
+.errorIcon {
+  font-size: 2rem;
+}
+
+.errorText {
+  text-align: center;
+  margin: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .displayPictureModal {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .image {
+    max-height: 60vh;
+  }
+  
+  .modalContent {
+    padding: 0;
+  }
+}

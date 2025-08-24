@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 import { EnvConfig } from '@/env.config';
 
@@ -45,5 +44,3 @@ APIClient.interceptors.response.use(
 );
 
 export default APIClient;
-
-/* eslint-enable */

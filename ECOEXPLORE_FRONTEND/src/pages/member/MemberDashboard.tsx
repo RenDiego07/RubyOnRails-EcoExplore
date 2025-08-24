@@ -1,50 +1,34 @@
-import React from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import { Button } from '@/components/common';
+import DashboardCard from '@/components/common/DashboardCard';
 import styles from './Dashboard.module.css';
 
 export default function MemberDashboard() {
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-  };
-
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>EcoExplore - Explorador</h1>
-        <div className={styles.userInfo}>
-          <span>Bienvenido, {user?.name}</span>
-          <Button variant="tertiary" onClick={handleLogout}>
-            Cerrar Sesión
-          </Button>
-        </div>
-      </header>
+      <div className={styles.grid}>
+        <DashboardCard
+          title="Mis Avistamientos"
+          description="Registra nuevos avistamientos de especies"
+          path="/member/sightings"
+        />
 
-      <main className={styles.main}>
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <h2>Mis Avistamientos</h2>
-            <p>Registra nuevos avistamientos de especies</p>
-          </div>
+        <DashboardCard
+          title="Explorar Ecosistemas"
+          description="Descubre especies en diferentes ecosistemas"
+          onClick={() => console.log('Explorar Ecosistemas - En desarrollo')}
+        />
 
-          <div className={styles.card}>
-            <h2>Explorar Ecosistemas</h2>
-            <p>Descubre especies en diferentes ecosistemas</p>
-          </div>
+        <DashboardCard
+          title="Mi Perfil"
+          description="Gestiona tu información personal"
+          onClick={() => console.log('Mi Perfil - En desarrollo')}
+        />
 
-          <div className={styles.card}>
-            <h2>Mi Perfil</h2>
-            <p>Gestiona tu información personal</p>
-          </div>
-
-          <div className={styles.card}>
-            <h2>Historial</h2>
-            <p>Revisa tu actividad en la plataforma</p>
-          </div>
-        </div>
-      </main>
+        <DashboardCard
+          title="Historial"
+          description="Revisa tu actividad en la plataforma"
+          onClick={() => console.log('Historial - En desarrollo')}
+        />
+      </div>
     </div>
   );
 }

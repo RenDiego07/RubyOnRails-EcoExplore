@@ -3,19 +3,19 @@ import { Button } from '@/components/common';
 import { UserFormProps, UserFormData } from './UserForm.types';
 import styles from './UserForm.module.css';
 
-export default function UserForm({ 
-  initialData, 
-  onSubmit, 
-  onCancel, 
+export default function UserForm({
+  initialData,
+  onSubmit,
+  onCancel,
   loading = false,
-  mode = 'create'
+  mode = 'create',
 }: UserFormProps) {
   const [formData, setFormData] = useState<UserFormData>({
     name: '',
     email: '',
     role: 'member',
     points: 0,
-    isActive: true
+    isActive: true,
   });
 
   const [errors, setErrors] = useState<Partial<UserFormData>>({});
@@ -27,7 +27,7 @@ export default function UserForm({
         email: initialData.email || '',
         role: initialData.role || 'member',
         points: initialData.points || 0,
-        isActive: initialData.isActive ?? true
+        isActive: initialData.isActive ?? true,
       });
     }
   }, [initialData]);
@@ -36,17 +36,17 @@ export default function UserForm({
     const newErrors: Partial<UserFormData> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'El nombre es requerido' as any;
+      newErrors.name = 'El nombre es requerido';
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'El email es requerido' as any;
+      newErrors.email = 'El email es requerido';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'El email no es válido' as any;
+      newErrors.email = 'El email no es válido';
     }
 
     if (formData.points < 0) {
-      newErrors.points = 'Los puntos no pueden ser negativos' as any;
+      (newErrors as Record<string, string>).points = 'Los puntos no pueden ser negativos';
     }
 
     setErrors(newErrors);
@@ -55,23 +55,23 @@ export default function UserForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       onSubmit(formData);
     }
   };
 
-  const handleInputChange = (field: keyof UserFormData, value: any) => {
-    setFormData(prev => ({
+  const handleInputChange = (field: keyof UserFormData, value: string | number | boolean) => {
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
 
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [field]: undefined
+        [field]: undefined,
       }));
     }
   };
@@ -92,9 +92,7 @@ export default function UserForm({
             placeholder="Ingrese el nombre completo"
           />
           {errors.name && (
-            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>
-              {errors.name}
-            </span>
+            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>{errors.name}</span>
           )}
         </div>
 
@@ -111,9 +109,7 @@ export default function UserForm({
             placeholder="usuario@ejemplo.com"
           />
           {errors.email && (
-            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>
-              {errors.email}
-            </span>
+            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>{errors.email}</span>
           )}
         </div>
 
@@ -146,9 +142,7 @@ export default function UserForm({
             placeholder="0"
           />
           {errors.points && (
-            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>
-              {errors.points}
-            </span>
+            <span style={{ color: 'var(--danger)', fontSize: '14px' }}>{errors.points}</span>
           )}
         </div>
 
@@ -169,19 +163,10 @@ export default function UserForm({
       </div>
 
       <div className={styles.actions}>
-        <Button 
-          type="button" 
-          variant="tertiary" 
-          onClick={onCancel}
-          disabled={loading}
-        >
+        <Button type="button" variant="tertiary" onClick={onCancel} disabled={loading}>
           Cancelar
         </Button>
-        <Button 
-          type="submit" 
-          variant="primary" 
-          loading={loading}
-        >
+        <Button type="submit" variant="primary" loading={loading}>
           {mode === 'create' ? 'Crear Usuario' : 'Guardar Cambios'}
         </Button>
       </div>

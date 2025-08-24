@@ -10,11 +10,11 @@ export default function Table<T>({
   emptyMessage = 'No hay datos disponibles',
   onSort,
   sortKey,
-  sortDirection
+  sortDirection,
 }: TableProps<T>) {
   const handleSort = (key: string) => {
     if (!onSort) return;
-    
+
     const newDirection = sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc';
     onSort(key, newDirection);
   };
@@ -56,9 +56,7 @@ export default function Table<T>({
               {column.label}
             </th>
           ))}
-          {actions.length > 0 && (
-            <th className={styles.headerCell}>Acciones</th>
-          )}
+          {actions.length > 0 && <th className={styles.headerCell}>Acciones</th>}
         </tr>
       </thead>
       <tbody>
@@ -66,10 +64,9 @@ export default function Table<T>({
           <tr key={index} className={styles.tableRow}>
             {columns.map((column) => (
               <td key={column.key} className={styles.tableCell}>
-                {column.render 
-                  ? column.render((item as any)[column.key], item)
-                  : (item as any)[column.key]
-                }
+                {column.render
+                  ? column.render((item as Record<string, unknown>)[column.key], item)
+                  : String((item as Record<string, unknown>)[column.key] || '')}
               </td>
             ))}
             {actions.length > 0 && (

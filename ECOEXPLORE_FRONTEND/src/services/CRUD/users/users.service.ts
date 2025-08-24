@@ -1,4 +1,4 @@
-import { User, UserFilters } from '@/types';
+import { User } from '@/types';
 import APIClient from '../apiClient';
 
 // Mock API service - Replace with real API calls

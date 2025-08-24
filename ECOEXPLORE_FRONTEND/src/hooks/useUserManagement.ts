@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User, UserFilters } from '@/types';
-import { UserFormData } from '@/components/forms';
+import { User } from '@/types';
 import { UserService } from '@/services/CRUD/users/users.service';
 
 export function useUserManagement() {
@@ -8,7 +7,7 @@ export function useUserManagement() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
 
-  const loadUsers = async (filters?: UserFilters) => {
+  const loadUsers = async () => {
     try {
       setLoading(true);
       const data = await UserService.getUsers();
@@ -27,7 +26,7 @@ export function useUserManagement() {
     try {
       setActionLoading(true);
       await UserService.deleteUser(userId);
-      setUsers(users.filter(user => user.id !== userId));
+      setUsers(users.filter((user) => user.id !== userId));
       console.log('Usuario eliminado exitosamente');
     } catch (error) {
       console.error('Error al eliminar el usuario:', error);
@@ -45,6 +44,6 @@ export function useUserManagement() {
     loading,
     actionLoading,
     loadUsers,
-    deleteUser
+    deleteUser,
   };
 }

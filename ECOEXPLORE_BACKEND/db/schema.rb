@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_11_204914) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_24_180000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,6 +45,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_11_204914) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_path"
+    t.string "specie", limit: 50
     t.index ["ecosystem_id"], name: "index_sightings_on_ecosystem_id"
     t.index ["location_id"], name: "index_sightings_on_location_id"
     t.index ["sighting_state_id"], name: "index_sightings_on_sighting_state_id"
