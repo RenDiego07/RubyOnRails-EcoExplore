@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   delete '/auth/logout', to: 'auth#logout'
 
   # Recursos en raíz
-  resources :sightings
+  resources :sightings do
+    collection do
+      get :my_sightings
+    end
+  end
   resources :ecosystems
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

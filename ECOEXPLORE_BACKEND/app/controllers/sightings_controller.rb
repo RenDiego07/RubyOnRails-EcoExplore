@@ -1,16 +1,24 @@
 class SightingsController < ApplicationController
   wrap_parameters false
-  # GET /sightings
+  
+  # GET /sightings - Todos los sightings (admin)
   def index
-    sightings = Sighting.includes(:sighting_state, :location).order(created_at: :desc)
-    render json: sightings.map { |s| sighting_response(s) }
+    result = SightingService.get_all
+    if result.success
+      render json: result.sightings.map { |s| sighting_response(s) }, status: :ok
+    else
+      render json: { error: result.error }, status: :internal_server_error
+    end
   end
 
-
-  # GET /sightings
-  def index
-    sightings = Sighting.includes(:sighting_state, :location, :ecosystem, :user).all
-    render json: sightings.map { |s| sighting_response(s) }, status: :ok
+  # GET /sightings/my_sightings - Sightings del usuario actual
+  def my_sightings
+    result = SightingService.get_user_sightings(user: current_user)
+    if result.success
+      render json: result.sightings.map { |s| sighting_response(s) }, status: :ok
+    else
+      render json: { error: result.error }, status: :internal_server_error
+    end
   end
   
   
@@ -44,7 +52,6 @@ class SightingsController < ApplicationController
   def update_params
     params.permit(:sighting_state_id, :sighting_state_code)
   end
-
 
   def sighting_response(sighting)
     {

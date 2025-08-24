@@ -4,39 +4,11 @@ import { Form, FormField, Input, TextAreaInput, Selector } from '@/components/co
 import ImageUploader from '@/components/common/ImageUploader';
 import MapPicker from '@/components/common/Map';
 import DisplayPictureModal from '@/components/common/Modals/DisplayPictureModal';
-import { createSighting, getSightings } from '@/services/CRUD/sightings/POST/sightingsPost';
+import { CRUDSightings } from '@/services/CRUD/sightings';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
 import type { SelectorOption } from '@/components/common/form/Selector/Selector.types';
+import type { SightingData, Sighting, AxiosError } from '@/interfaces';
 import styles from './Sightings.module.css';
-
-interface SightingData {
-  ecosystem_id: number | null;
-  description: string;
-  location_name: string;
-  coordinates: string;
-  image_path: string;
-  specie: string;
-}
-
-interface Sighting {
-  id: number;
-  description: string;
-  sighting_location: string;
-  sighting_location_coordinates?: string;
-  sighting_state_name: string;
-  image_path?: string;
-  specie?: string;
-  created_at: string;
-}
-
-interface AxiosError {
-  response?: {
-    data?: {
-      error?: string;
-      errors?: string[];
-    };
-  };
-}
 
 const initialFormData: SightingData = {
   ecosystem_id: null,
@@ -85,7 +57,7 @@ export default function Sightings() {
 
   const fetchSightings = async () => {
     try {
-      const data = await getSightings();
+      const data = await CRUDSightings.getMySightings();
       setSightings(data);
     } catch (error) {
       console.error('Error fetching sightings:', error);
@@ -155,7 +127,7 @@ export default function Sightings() {
     setAlert(null);
 
     try {
-      await createSighting({
+      await CRUDSightings.create({
         ecosystem_id: formData.ecosystem_id!,
         description: formData.description,
         location_name: formData.location_name,

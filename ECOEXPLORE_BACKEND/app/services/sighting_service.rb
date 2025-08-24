@@ -1,5 +1,5 @@
 class SightingService
-  Result = Struct.new(:success, :sighting, :error, keyword_init: true)
+  Result = Struct.new(:success, :sighting, :sightings, :error, keyword_init: true)
 
   def self.create(user:, params:)
     Rails.logger.info "🔍 SightingService.create params: #{params.inspect}"
@@ -38,6 +38,30 @@ class SightingService
   rescue StandardError => e
     Rails.logger.error "❌ StandardError: #{e.message}"
     Result.new(success: false, error: e.message)
+  end
+
+  # Get all sightings (admin)
+  def self.get_all
+    Rails.logger.info "🔍 SightingService.get_all"
+    begin
+      sightings = Sighting.includes(:sighting_state, :location, :ecosystem, :user).order(created_at: :desc)
+      Result.new(success: true, sightings: sightings)
+    rescue StandardError => e
+      Rails.logger.error "❌ Error getting all sightings: #{e.message}"
+      Result.new(success: false, error: e.message)
+    end
+  end
+
+  # Get user's sightings
+  def self.get_user_sightings(user:)
+    Rails.logger.info "🔍 SightingService.get_user_sightings for user_id: #{user.id}"
+    begin
+      sightings = user.sightings.includes(:sighting_state, :location, :ecosystem).order(created_at: :desc)
+      Result.new(success: true, sightings: sightings)
+    rescue StandardError => e
+      Rails.logger.error "❌ Error getting user sightings: #{e.message}"
+      Result.new(success: false, error: e.message)
+    end
   end
 
   # Update sighting state (admin-only)

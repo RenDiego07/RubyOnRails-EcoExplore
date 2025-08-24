@@ -1,28 +1,5 @@
-import APIClient from '../../apiClient';
-
-interface CreateSightingParams {
-  ecosystem_id: number;
-  description: string;
-  location_name: string;
-  coordinates?: string;
-  image_path?: string;
-  specie: string;
-}
-
-interface SightingResponse {
-  id: number;
-  user_id: number;
-  ecosystem_id: number;
-  location_id: number;
-  sighting_state_id: number;
-  sighting_state_name: string;
-  sighting_location: string;
-  sighting_location_coordinates: string;
-  description: string;
-  image_path?: string;
-  specie?: string;
-  created_at: string;
-}
+import APIClient from '@/services/CRUD/apiClient';
+import { SightingResponse, CreateSightingParams } from '@/interfaces';
 
 export const createSighting = async (params: CreateSightingParams): Promise<SightingResponse> => {
   try {

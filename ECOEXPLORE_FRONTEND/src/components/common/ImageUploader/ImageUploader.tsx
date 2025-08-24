@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Button } from '@/components/common';
-import FirebaseService from '@/services/firebase.service';
+import FirebaseService from '@/services/CRUD/firebase/firebase.service';
 import styles from './ImageUploader.module.css';
 
 interface ImageUploaderProps {
