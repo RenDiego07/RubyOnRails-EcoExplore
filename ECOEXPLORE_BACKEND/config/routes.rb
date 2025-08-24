@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "/species/getSpecies"
+  delete "/species/deleteSpecies/:id", to: "species#deleteSpecies"
+  post "/species/update"
   get "/user/getUsers"
   delete "/user/deleteUser/:id", to: "user#deleteUser"
   # Authentication routes
