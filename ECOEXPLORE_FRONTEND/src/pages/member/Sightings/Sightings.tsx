@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Alert } from '@/components/common';
 import { Form, FormField, Input, TextAreaInput, Selector } from '@/components/common/form';
+import ImageUploader from '@/components/common/ImageUploader';
 import { createSighting, getSightings } from '@/services/CRUD/sightings/POST/sightingsPost';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
 import type { SelectorOption } from '@/components/common/form/Selector/Selector.types';
@@ -11,6 +12,7 @@ interface SightingData {
   description: string;
   location_name: string;
   coordinates: string;
+  image_path: string;
 }
 
 interface Sighting {
@@ -19,6 +21,7 @@ interface Sighting {
   sighting_location: string;
   sighting_location_coordinates?: string;
   sighting_state_name: string;
+  image_path?: string;
   created_at: string;
 }
 
@@ -36,6 +39,7 @@ const initialFormData: SightingData = {
   description: '',
   location_name: '',
   coordinates: '',
+  image_path: '',
 };
 
 export default function Sightings() {
@@ -81,6 +85,13 @@ export default function Sightings() {
     }));
   };
 
+  const handleImageUploaded = (imageUrl: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      image_path: imageUrl,
+    }));
+  };
+
   const handleEcosystemSelect = (option: SelectorOption | SelectorOption[] | null) => {
     // Si es un array, tomar solo el primer elemento (para selectores múltiples)
     const selectedOption = Array.isArray(option) ? option[0] || null : option;
@@ -109,6 +120,7 @@ export default function Sightings() {
         description: formData.description,
         location_name: formData.location_name,
         coordinates: formData.coordinates || undefined,
+        image_path: formData.image_path || undefined,
       });
 
       setAlert({ type: 'success', message: 'Avistamiento registrado exitosamente' });
@@ -203,6 +215,14 @@ export default function Sightings() {
               />
             </FormField>
 
+            <FormField label="Imagen del Avistamiento">
+              <ImageUploader
+                onImageUploaded={handleImageUploaded}
+                currentImage={formData.image_path}
+                disabled={isLoading}
+              />
+            </FormField>
+
             <Button
               type="submit"
               variant="primary"
@@ -225,25 +245,32 @@ export default function Sightings() {
             <div className={styles.sightingsList}>
               {sightings.map((sighting) => (
                 <div key={sighting.id} className={styles.sightingCard}>
-                  <div className={styles.sightingHeader}>
-                    <span className={styles.date}>
-                      {new Date(sighting.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p>
-                    <strong>Ubicación:</strong> {sighting.sighting_location}
-                  </p>
-                  <p>
-                    <strong>Estado:</strong> {sighting.sighting_state_name}
-                  </p>
-                  <p>
-                    <strong>Descripción:</strong> {sighting.description}
-                  </p>
-                  {sighting.sighting_location_coordinates && (
-                    <p>
-                      <strong>Coordenadas:</strong> {sighting.sighting_location_coordinates}
-                    </p>
+                  {sighting.image_path && (
+                    <div className={styles.sightingImage}>
+                      <img src={sighting.image_path} alt="Avistamiento" className={styles.image} />
+                    </div>
                   )}
+                  <div className={styles.sightingContent}>
+                    <div className={styles.sightingHeader}>
+                      <span className={styles.date}>
+                        {new Date(sighting.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <p>
+                      <strong>Ubicación:</strong> {sighting.sighting_location}
+                    </p>
+                    <p>
+                      <strong>Estado:</strong> {sighting.sighting_state_name}
+                    </p>
+                    <p>
+                      <strong>Descripción:</strong> {sighting.description}
+                    </p>
+                    {sighting.sighting_location_coordinates && (
+                      <p>
+                        <strong>Coordenadas:</strong> {sighting.sighting_location_coordinates}
+                      </p>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
