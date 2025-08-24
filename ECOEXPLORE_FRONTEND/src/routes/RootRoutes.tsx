@@ -6,6 +6,8 @@ import LoginPage from '@/pages/auth/LoginPage';
 import RegisterPage from '@/pages/auth/RegisterPage';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import MemberDashboard from '@/pages/member/MemberDashboard';
+import Sightings from '@/pages/member/Sightings';
+import { MemberLayout } from '@/layouts';
 
 function AuthNavigationHandler() {
   const navigate = useNavigate();
@@ -46,7 +48,10 @@ export default function RootRoutes() {
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={['member']} />}>
-          <Route path="/member/dashboard" element={<MemberDashboard />} />
+          <Route element={<MemberLayout />}>
+            <Route path="/member/dashboard" element={<MemberDashboard />} />
+            <Route path="/member/sightings" element={<Sightings />} />
+          </Route>
         </Route>
 
         <Route element={<ProtectedRoute />}>

@@ -58,16 +58,18 @@ class SightingService
     elsif params[:sighting_state_code].present?
       SightingState.find_by!(code: params[:sighting_state_code].to_s.upcase)
     else
-      raise ArgumentError, "Missing sighting_state_id or sighting_state_code"
+      # Asignar automáticamente el estado "pending" por defecto
+      SightingState.find_by!(code: 'PENDING')
     end
   end
   private_class_method :resolve_state
 
   def self.find_or_create_location(name:, coordinates:)
     raise ArgumentError, "location_name is required" if name.blank?
-    raise ArgumentError, "coordinates are required" if coordinates.blank?
-
-    Location.find_or_create_by!(name: name, coordinates: coordinates)
+    
+    # Las coordenadas son opcionales
+    coords = coordinates.present? ? coordinates : nil
+    Location.find_or_create_by!(name: name, coordinates: coords)
   end
   private_class_method :find_or_create_location
 end

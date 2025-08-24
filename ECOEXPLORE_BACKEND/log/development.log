@@ -1127,3 +1127,630 @@ Processing by AuthController#login as HTML
 Completed 200 OK in 328ms (Views: 0.2ms | ActiveRecord: 28.7ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mDATABASE_PASSWORD[0m, [36mDATABASE_USERNAME[0m, and [36mDATABASE_PORT[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:36:54 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:36:54 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EcoexploreApi'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/sightings"):
+  
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (2.2ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mSightingState Load (2.9ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 253ms (Views: 4.5ms | ActiveRecord: 157.7ms (6 queries, 0 cached) | GC: 29.2ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:50:40 -0500
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.2ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mSightingState Load (1.7ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (2.8ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.1ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 245ms (Views: 1.5ms | ActiveRecord: 25.6ms (6 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:52:37 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:52:37 -0500
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.6ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.7ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 34ms (Views: 0.2ms | ActiveRecord: 7.6ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.0ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mSightingState Load (1.9ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (2.9ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 135ms (Views: 0.2ms | ActiveRecord: 16.2ms (6 queries, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:52:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ecosystems"):
+  
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:52:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ecosystems"):
+  
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:52:40 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:52:40 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:52:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ecosystems"):
+  
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.1ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Processing by SightingsController#index as HTML
+  [1m[36mSightingState Load (2.8ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (1.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (2.8ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mSighting Load (2.7ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mSightingState Load (2.8ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 44ms (Views: 0.2ms | ActiveRecord: 15.9ms (6 queries, 0 cached) | GC: 17.2ms)
+
+
+  [1m[36mLocation Load (4.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 49ms (Views: 0.1ms | ActiveRecord: 17.1ms (6 queries, 0 cached) | GC: 14.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:52:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ecosystems"):
+  
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:57:19 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:57:19 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 22:57:19 -0500
+Processing by EcosystemsController#index as HTML
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.6ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (2.5ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 88ms (Views: 0.4ms | ActiveRecord: 48.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSightingState Load (0.4ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 119ms (Views: 0.4ms | ActiveRecord: 53.2ms (6 queries, 0 cached) | GC: 5.0ms)
+
+
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.3ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mSightingState Load (1.8ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.3ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 201ms (Views: 0.3ms | ActiveRecord: 192.3ms (6 queries, 0 cached) | GC: 6.7ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 22:57:19 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (4.9ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 5.6ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-18 23:01:37 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 7, "description" => "Encontré varios perros a los alrededores en estas coordenadas.", "location_name" => "Parque nacional", "coordinates" => "5.034, 4.250", "sighting" => {"ecosystem_id" => 7, "description" => "Encontré varios perros a los alrededores en estas coordenadas."}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+[31mUnpermitted parameter: :sighting. Context: { controller: SightingsController, action: create, request: #<ActionDispatch::Request:0x0000000135e58ae0>, params: {"ecosystem_id" => 7, "description" => "Encontré varios perros a los alrededores en estas coordenadas.", "location_name" => "Parque nacional", "coordinates" => "5.034, 4.250", "controller" => "sightings", "action" => "create", "sighting" => {"ecosystem_id" => 7, "description" => "Encontré varios perros a los alrededores en estas coordenadas."}} }[0m
+Completed 422 Unprocessable Content in 19ms (Views: 0.6ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-18 23:04:10 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 7, "description" => "Encontré varios perros a los alrededores en estas coordenadas.", "location_name" => "Parque nacional", "coordinates" => "5.034, 4.250"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+Completed 422 Unprocessable Content in 38ms (Views: 0.1ms | ActiveRecord: 16.7ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:04:42 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:04:42 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:04:42 -0500
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.5ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Processing by SightingsController#index as HTML
+Processing by EcosystemsController#index as HTML
+  [1m[36mSightingState Load (0.4ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 58ms (Views: 0.2ms | ActiveRecord: 17.8ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.6ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (3.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 184ms (Views: 0.2ms | ActiveRecord: 17.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSightingState Load (2.7ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (1.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.2ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 207ms (Views: 1.1ms | ActiveRecord: 20.9ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:04:42 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (1.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 1.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-18 23:05:07 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 7, "description" => "Nada", "location_name" => "Playa", "coordinates" => "5.3423, 4.4203"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+Completed 422 Unprocessable Content in 5ms (Views: 0.4ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-18 23:05:50 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 7, "description" => "Nada", "location_name" => "Playa", "coordinates" => "5.3423, 4.4203"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+Completed 422 Unprocessable Content in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:10:01 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:10:01 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:10:01 -0500
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.4ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.4ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 95ms (Views: 0.2ms | ActiveRecord: 42.9ms (6 queries, 0 cached) | GC: 8.5ms)
+
+
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (1.5ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.2ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 97ms (Views: 0.1ms | ActiveRecord: 11.8ms (2 queries, 0 cached) | GC: 11.0ms)
+
+
+  [1m[36mSightingState Load (2.0ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 6 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = '095016ef-acb4-4753-b70f-6a970ed3aa1e' /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 110ms (Views: 0.1ms | ActiveRecord: 111.5ms (6 queries, 0 cached) | GC: 11.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:10:01 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.9ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sightings" for 127.0.0.1 at 2025-08-18 23:10:41 -0500
+Processing by SightingsController#create as HTML
+  Parameters: {"ecosystem_id" => 3, "description" => "Encontré perros a los alrededores del lago", "location_name" => "Lago", "coordinates" => "5.5435,6.5406"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:62:in 'SightingService.resolve_state'
+  [1m[36mSightingState Load (2.9ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."code" = 'PENDING' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:62:in 'SightingService.resolve_state'
+  [1m[36mEcosystem Load (0.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" = 3 LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:7:in 'block in SightingService.create'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Lago' AND "locations"."coordinates" = '5.5435,6.5406' LIMIT 1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mLocation Create (5.3ms)[0m  [1m[32mINSERT INTO "locations" ("name", "coordinates", "created_at", "updated_at") VALUES ('Lago', '5.5435,6.5406', '2025-08-19 04:10:42.024099', '2025-08-19 04:10:42.024099') RETURNING "id" /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1 /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:72:in 'SightingService.find_or_create_location'
+  [1m[36mSighting Create (4.7ms)[0m  [1m[32mINSERT INTO "sightings" ("user_id", "ecosystem_id", "location_id", "sighting_state_id", "description", "created_at", "updated_at") VALUES ('c681692a-07a1-4b1f-b50b-10a1634cbd83', 3, 3, 1, 'Encontré perros a los alrededores del lago', '2025-08-19 04:10:42.065243', '2025-08-19 04:10:42.065243') RETURNING "id" /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:21:in 'block in SightingService.create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*action='create',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/sighting_service.rb:5:in 'SightingService.create'
+Completed 201 Created in 87ms (Views: 0.1ms | ActiveRecord: 18.7ms (6 queries, 0 cached) | GC: 1.9ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:10:42 -0500
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (0.7ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.3ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 2.4ms (6 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:22:07 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:22:07 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:22:07 -0500
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (2.4ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mSighting Load (3.1ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (4.7ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 117ms (Views: 0.6ms | ActiveRecord: 20.3ms (2 queries, 0 cached) | GC: 1.7ms)
+
+
+  [1m[36mSightingState Load (9.5ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mSightingState Load (9.2ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mEcosystem Load (2.5ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 133ms (Views: 0.1ms | ActiveRecord: 35.1ms (6 queries, 0 cached) | GC: 3.6ms)
+
+
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 138ms (Views: 0.1ms | ActiveRecord: 30.1ms (6 queries, 0 cached) | GC: 3.6ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:22:07 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (1.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2025-08-18 23:23:58 -0500
+Processing by AuthController#login as HTML
+  Parameters: {"email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'fer@gmail.com' LIMIT 1 /*action='login',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/services/AuthService.rb:5:in 'AuthService.authenticate'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='login',application='EcoexploreApi',controller='auth'*/[0m
+  ↳ app/services/AuthService.rb:15:in 'AuthService.generate_token'
+Completed 200 OK in 220ms (Views: 0.3ms | ActiveRecord: 3.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:23:59 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:23:59 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:23:59 -0500
+Processing by EcosystemsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (10.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+Processing by SightingsController#index as HTML
+  [1m[36mEcosystem Load (0.9ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+Completed 200 OK in 23ms (Views: 7.7ms | ActiveRecord: 11.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (13.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (4.3ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.3ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSighting Load (2.2ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 32ms (Views: 2.3ms | ActiveRecord: 7.6ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSightingState Load (4.6ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (1.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.3ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 40ms (Views: 0.1ms | ActiveRecord: 22.8ms (6 queries, 0 cached) | GC: 9.9ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:23:59 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:25:57 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:25:57 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:25:57 -0500
+Processing by EcosystemsController#index as HTML
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (2.5ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 5.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSighting Load (2.7ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSighting Load (4.2ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.7ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (1.0ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.7ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.6ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 10.6ms (6 queries, 0 cached) | GC: 3.0ms)
+
+
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 22ms (Views: 0.0ms | ActiveRecord: 13.2ms (6 queries, 0 cached) | GC: 3.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:25:57 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (1.0ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 14ms (Views: 0.6ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:26:25 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:26:25 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:26:25 -0500
+Processing by EcosystemsController#index as HTML
+Processing by SightingsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (2.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  [1m[36mSighting Load (2.1ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 4.4ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+  [1m[36mSighting Load (1.3ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (0.5ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSightingState Load (1.0ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (1.4ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.5ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 6.6ms (6 queries, 0 cached) | GC: 2.3ms)
+
+
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 15ms (Views: 0.0ms | ActiveRecord: 8.0ms (6 queries, 0 cached) | GC: 2.3ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:26:25 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.5ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:33:44 -0500
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:33:44 -0500
+Started GET "/sightings" for 127.0.0.1 at 2025-08-18 23:33:44 -0500
+Processing by SightingsController#index as HTML
+Processing by EcosystemsController#index as HTML
+Processing by SightingsController#index as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mSighting Load (2.2ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mSighting Load (2.4ms)[0m  [1m[34mSELECT "sightings".* FROM "sightings" /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (3.2ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 230ms (Views: 0.5ms | ActiveRecord: 20.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSightingState Load (3.3ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  [1m[36mSightingState Load (2.6ms)[0m  [1m[34mSELECT "sighting_states".* FROM "sighting_states" WHERE "sighting_states"."id" IN (1, 2) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mLocation Load (0.9ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.8ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mEcosystem Load (0.9ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" WHERE "ecosystems"."id" IN (6, 3) /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 236ms (Views: 0.1ms | ActiveRecord: 22.5ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ('095016ef-acb4-4753-b70f-6a970ed3aa1e', 'c681692a-07a1-4b1f-b50b-10a1634cbd83') /*action='index',application='EcoexploreApi',controller='sightings'*/[0m
+  ↳ app/controllers/sightings_controller.rb:13:in 'Enumerable#map'
+Completed 200 OK in 246ms (Views: 0.1ms | ActiveRecord: 23.8ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/ecosystems" for 127.0.0.1 at 2025-08-18 23:33:45 -0500
+Processing by EcosystemsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 'c681692a-07a1-4b1f-b50b-10a1634cbd83' LIMIT 1 /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/services/AuthService.rb:36:in 'AuthService.current_user'
+  [1m[36mEcosystem Load (0.8ms)[0m  [1m[34mSELECT "ecosystems".* FROM "ecosystems" ORDER BY "ecosystems"."name" ASC /*action='index',application='EcoexploreApi',controller='ecosystems'*/[0m
+  ↳ app/controllers/ecosystems_controller.rb:7:in 'Enumerable#map'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+

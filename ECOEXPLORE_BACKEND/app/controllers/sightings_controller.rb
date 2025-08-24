@@ -1,4 +1,5 @@
 class SightingsController < ApplicationController
+  wrap_parameters false
   # GET /sightings
   def index
     sightings = Sighting.includes(:sighting_state, :location).order(created_at: :desc)
@@ -37,7 +38,7 @@ class SightingsController < ApplicationController
   private
 
   def creation_params
-    params.permit(:ecosystem_id, :sighting_state_id, :sighting_state_code, :description, :location_name, :coordinates)
+    params.permit(:ecosystem_id, :description, :location_name, :coordinates)
   end
 
   def update_params
