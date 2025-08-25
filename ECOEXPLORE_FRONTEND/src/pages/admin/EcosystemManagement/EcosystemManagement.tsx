@@ -1,32 +1,19 @@
 import { useState, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useEcosystemManagement } from '@/hooks/useEcosystemManagement';
-import { 
-  Button, 
-  Table, 
-  Filters, 
-  PageHeader, 
-  Modal 
-} from '@/components/common';
+import { Button, Table, Filters, PageHeader, Modal } from '@/components/common';
 import { EcosystemForm } from '@/components/forms';
-import type { 
-  Ecosystem,
-  EcosystemFilters
-} from '@/types';
-import type { 
-  TableColumn, 
-  TableAction,
-  FilterField 
-} from '@/components/common';
+import type { Ecosystem, EcosystemFilters } from '@/types';
+import type { TableColumn, TableAction, FilterField } from '@/components/common';
 import type { EcosystemFormData } from '@/types';
 import styles from './EcosystemManagement.module.css';
 
 export default function EcosystemManagement() {
   const { logout } = useAuth();
-  const { ecosystems, loading, actionLoading, createEcosystem, updateEcosystem, deleteEcosystem } = useEcosystemManagement();
-  
+  const { ecosystems, loading, actionLoading, createEcosystem, updateEcosystem, deleteEcosystem } =
+    useEcosystemManagement();
   const [filters, setFilters] = useState<EcosystemFilters>({
-    search: ''
+    search: '',
   });
   const [sortKey, setSortKey] = useState<string>('name');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -231,10 +218,7 @@ export default function EcosystemManagement() {
 
       {/* Create Modal */}
       {showCreateModal && (
-        <Modal
-          onClose={() => setShowCreateModal(false)}
-          title="Crear Nuevo Ecosistema"
-        >
+        <Modal onClose={() => setShowCreateModal(false)} title="Crear Nuevo Ecosistema">
           <EcosystemForm
             onSubmit={handleCreateEcosystem}
             onCancel={() => setShowCreateModal(false)}
@@ -265,24 +249,20 @@ export default function EcosystemManagement() {
 
       {/* Delete Modal */}
       {showDeleteModal && selectedEcosystem && (
-        <Modal
-          onClose={() => setShowDeleteModal(false)}
-          title="Confirmar Eliminación"
-        >
+        <Modal onClose={() => setShowDeleteModal(false)} title="Confirmar Eliminación">
           <div style={{ padding: '20px' }}>
-            <p>¿Estás seguro de que deseas eliminar el ecosistema <strong>{selectedEcosystem.name}</strong>?</p>
+            <p>
+              ¿Estás seguro de que deseas eliminar el ecosistema{' '}
+              <strong>{selectedEcosystem.name}</strong>?
+            </p>
             <p style={{ color: 'var(--danger)', fontSize: '14px' }}>
               Esta acción no se puede deshacer.
             </p>
             <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-              <Button 
-                variant="destructive" 
-                onClick={handleDeleteEcosystem}
-                loading={actionLoading}
-              >
+              <Button variant="destructive" onClick={handleDeleteEcosystem} loading={actionLoading}>
                 Eliminar Ecosistema
               </Button>
-              <Button 
+              <Button
                 variant="tertiary" 
                 onClick={() => setShowDeleteModal(false)}
                 disabled={actionLoading}

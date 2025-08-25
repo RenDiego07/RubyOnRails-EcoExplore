@@ -2,15 +2,12 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PublicRoute, ProtectedRoute } from '@/utils/routes';
 import { LandingPage } from '@/components/LandingPage';
-import LoginPage from '@/pages/auth/LoginPage';
-import RegisterPage from '@/pages/auth/RegisterPage';
+import LoginPage from '@/pages/auth/Login/LoginPage';
+import RegisterPage from '@/pages/auth/Register/RegisterPage';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
-import { UserManagement } from '@/pages/admin/UserManagement';
-import { SpeciesManagement } from '@/pages/admin/SpeciesManagement';
-import { EcosystemManagement } from '@/pages/admin/EcosystemManagement';
-import MemberDashboard from '@/pages/member/MemberDashboard';
-import Sightings from '@/pages/member/Sightings';
-import { UserProfilePage } from '@/pages/UserProfilePage';
+import { UserManagement, SpeciesManagement, EcosystemManagement } from '@/pages/admin';
+import { MemberDashboard, Sightings, History } from '@/pages/member';
+import UserProfilePage from '@/pages/UserProfilePage';
 import { MemberLayout } from '@/layouts';
 
 function AuthNavigationHandler() {
@@ -59,6 +56,7 @@ export default function RootRoutes() {
             <Route path="/member/dashboard" element={<MemberDashboard />} />
             <Route path="/member/sightings" element={<Sightings />} />
             <Route path="/member/profile" element={<UserProfilePage />} />
+            <Route path="/member/history" element={<History />} />
           </Route>
         </Route>
 

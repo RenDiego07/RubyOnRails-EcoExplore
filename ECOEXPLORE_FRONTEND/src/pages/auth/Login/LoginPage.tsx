@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { Button, Spinner, Alert } from '@/components/common';
 import { Input, PasswordInput, FormField, Form } from '@/components/common/form';
-import styles from './AuthPage.module.css';
+import styles from '../AuthPage.module.css';
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);

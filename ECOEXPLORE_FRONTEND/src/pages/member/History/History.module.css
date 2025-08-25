@@ -1,0 +1,87 @@
+.historyContainer {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.viewToggle {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.toggleButton {
+  min-width: 200px;
+  font-weight: 500;
+}
+
+.tableContainer {
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.locationCell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.locationCell span {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.noImage {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .historyContainer {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .viewToggle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .toggleButton {
+    min-width: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .locationCell {
+    gap: 4px;
+  }
+}

@@ -10,7 +10,7 @@ import {
   isSuccessResponse,
   extractToken,
 } from '@/utils/ResponseHandler';
-import styles from './AuthPage.module.css';
+import styles from '../AuthPage.module.css';
 
 interface RegisterFormData {
   name: string;
