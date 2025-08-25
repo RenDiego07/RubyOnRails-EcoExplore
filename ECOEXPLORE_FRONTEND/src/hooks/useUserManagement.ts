@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { User } from '@/types';
+import { User, UserUpdateAdmin } from '@/types';
 import { UserService } from '@/services/CRUD/users/users.service';
+import { UserFormData } from '@/components/forms';
 
 export function useUserManagement() {
   const [users, setUsers] = useState<User[]>([]);
@@ -35,6 +36,19 @@ export function useUserManagement() {
     }
   };
 
+  const updateUser = async (userData: UserUpdateAdmin) => {
+    try {
+      setActionLoading(true);
+      const updatedUser = await UserService.updateUser(userData);
+      setUsers(users.map((user) => (user.id === updatedUser.id ? updatedUser : user)));
+      console.log('Usuario actualizado exitosamente');
+    } catch (error) {
+      console.error('Error al actualizar el usuario:', error);
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   useEffect(() => {
     loadUsers();
   }, []);
@@ -45,5 +59,6 @@ export function useUserManagement() {
     actionLoading,
     loadUsers,
     deleteUser,
+    updateUser
   };
 }

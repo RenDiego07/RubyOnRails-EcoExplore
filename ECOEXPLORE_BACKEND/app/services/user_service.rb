@@ -16,6 +16,30 @@ class UserService
     end
   end
 
+  def self.update_user(user:, params:)
+    return Result.new(success: false, error: 'Unauthorized') unless user&.role == 'admin'
+
+    Rails.logger.info "UserService.update_user for user_id: #{user.id}"
+    Rails.logger.info "Update params: #{params.inspect}"
+
+    begin
+      user = User.find(params[:id])
+      if user.update(params)
+        Rails.logger.info "User updated successfully"
+        Result.new(success: true, user: user)
+      else
+        Rails.logger.error "Error updating user: #{user.errors.full_messages}"
+        Result.new(success: false, error: user.errors.full_messages.join(", "))
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      Rails.logger.error "RecordNotFound: #{e.message}"
+      Result.new(success: false, error: 'User not found')
+    rescue StandardError => e
+      Rails.logger.error "StandardError: #{e.message}"
+      Result.new(success: false, error: e.message)
+    end
+  end
+
   def self.get_profile(user:)
     Rails.logger.info "UserService.get_profile for user_id: #{user.id}"
     begin

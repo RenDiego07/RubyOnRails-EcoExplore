@@ -1,4 +1,4 @@
-import { User } from '@/types';
+import { User, UserUpdateAdmin } from '@/types';
 import APIClient from '../apiClient';
 
 export interface UpdateProfileData {
@@ -34,6 +34,11 @@ export class UserService {
 
   static async deleteUser(userId: string): Promise<void> {
     await APIClient.delete(`/user/deleteUser/${userId}`);
+  }
+
+  static async updateUser(userData: UserUpdateAdmin): Promise<User> {
+    const response = await APIClient.put<User>('/user/updateUser', userData);
+    return response.data;
   }
 
   /**

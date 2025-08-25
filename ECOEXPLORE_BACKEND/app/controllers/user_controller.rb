@@ -1,4 +1,14 @@
 class UserController < ApplicationController
+
+  def updateUser
+    result = UserService.update_user(user: current_user, params: update_user_params)
+    if result.success
+      render json: user_response(result.user), status: :ok
+    else
+      render json: { error: result.error }, status: :unprocessable_entity
+    end
+  end
+
   def getUsers
     users = User.all
     render json: users
@@ -63,5 +73,9 @@ class UserController < ApplicationController
       created_at: user.created_at,
       updated_at: user.updated_at
     }
+  end
+
+  def update_user_params
+    params.permit(:id, :name, :email, :role, :active, :points)
   end
 end

@@ -22,3 +22,12 @@ export interface UserActions {
   onToggleStatus: (user: User) => void;
   onViewDetails: (user: User) => void;
 }
+
+export interface UserUpdateAdmin {
+  id: string,
+  name: string,
+  email: string,
+  role: 'admin' | 'member',
+  points: number,
+  active: boolean
+}

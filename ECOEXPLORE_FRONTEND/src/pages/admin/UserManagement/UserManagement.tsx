@@ -10,7 +10,7 @@ import styles from './UserManagement.module.css';
 
 export default function UserManagement() {
   const { logout } = useAuth();
-  const { users, loading, actionLoading, deleteUser } = useUserManagement();
+  const { users, loading, actionLoading, deleteUser, updateUser } = useUserManagement();
 
   const [filters, setFilters] = useState<UserFilters>({
     role: 'all',
@@ -187,7 +187,15 @@ export default function UserManagement() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleEditUser = async (_formData: UserFormData) => {
-    // TODO: Implement user editing
+    updateUser({ 
+      id: selectedUser!.id,
+      name: _formData.name,
+      email: _formData.email,
+      role: _formData.role,
+      points: _formData.points,
+      active: _formData.isActive
+     });
+     setShowEditModal(false);
   };
 
   const handleDeleteUser = async () => {

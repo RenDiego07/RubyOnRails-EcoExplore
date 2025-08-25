@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/species/updateSpecies", to: "species#updateSpecies"
   get "/user/getUsers"
   delete "/user/deleteUser/:id", to: "user#deleteUser"
+  put "/user/updateUser", to: "user#updateUser"
 
   post "/sightings/updateState"
 
