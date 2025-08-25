@@ -38,7 +38,7 @@ export default function EcosystemManagement() {
 
   const handleEditEcosystem = async (formData: EcosystemFormData) => {
     if (!selectedEcosystem) return;
-    
+
     try {
       await updateEcosystem(selectedEcosystem.id, formData);
       setShowEditModal(false);
@@ -51,7 +51,6 @@ export default function EcosystemManagement() {
 
   const handleDeleteEcosystem = async () => {
     if (!selectedEcosystem) return;
-    
     try {
       await deleteEcosystem(selectedEcosystem.id);
       setShowDeleteModal(false);
@@ -68,8 +67,8 @@ export default function EcosystemManagement() {
       key: 'search',
       label: 'Buscar',
       type: 'search',
-      placeholder: 'Buscar por nombre o descripción...'
-    }
+      placeholder: 'Buscar por nombre o descripción...',
+    },
   ];
 
   // Table columns configuration
@@ -78,37 +77,35 @@ export default function EcosystemManagement() {
       key: 'name',
       label: 'Nombre',
       sortable: true,
-      width: '20%'
+      width: '20%',
     },
     {
       key: 'description',
       label: 'Descripción',
       render: (value) => (
-        <span className={styles.textTruncate} title={value}>
-          {value}
+        <span className={styles.textTruncate} title={String(value)}>
+          {String(value)}
         </span>
       ),
-      width: '30%'
+      width: '30%',
     },
     {
       key: 'characteristics',
       label: 'Características',
       render: (value) => (
-        <span className={styles.textTruncate} title={value}>
-          {value}
+        <span className={styles.textTruncate} title={String(value)}>
+          {String(value)}
         </span>
       ),
-      width: '30%'
+      width: '30%',
     },
     {
       key: 'created_at',
       label: 'Fecha de Creación',
       sortable: true,
-      render: (value) => (
-        <span>{new Date(value as string).toLocaleDateString()}</span>
-      ),
-      width: '15%'
-    }
+      render: (value) => <span>{new Date(value as string).toLocaleDateString()}</span>,
+      width: '15%',
+    },
   ];
 
   // Table actions configuration
@@ -119,7 +116,7 @@ export default function EcosystemManagement() {
       onClick: (ecosystem: Ecosystem) => {
         setSelectedEcosystem(ecosystem);
         setShowEditModal(true);
-      }
+      },
     },
     {
       label: 'Eliminar',
@@ -127,8 +124,8 @@ export default function EcosystemManagement() {
       onClick: (ecosystem: Ecosystem) => {
         setSelectedEcosystem(ecosystem);
         setShowDeleteModal(true);
-      }
-    }
+      },
+    },
   ];
 
   // Filter and sort data
@@ -137,17 +134,18 @@ export default function EcosystemManagement() {
 
     // Apply filters
     if (filters.search) {
-      filtered = filtered.filter(e => 
-        e.name.toLowerCase().includes(filters.search!.toLowerCase()) ||
-        e.description.toLowerCase().includes(filters.search!.toLowerCase())
+      filtered = filtered.filter(
+        (e) =>
+          e.name.toLowerCase().includes(filters.search!.toLowerCase()) ||
+          e.description.toLowerCase().includes(filters.search!.toLowerCase())
       );
     }
 
     // Apply sorting
     filtered.sort((a, b) => {
-      const aValue = (a as any)[sortKey];
-      const bValue = (b as any)[sortKey];
-      
+      const aValue = a[sortKey as keyof Ecosystem];
+      const bValue = b[sortKey as keyof Ecosystem];
+
       if (sortDirection === 'asc') {
         return aValue > bValue ? 1 : -1;
       } else {
@@ -158,13 +156,13 @@ export default function EcosystemManagement() {
     return filtered;
   }, [ecosystems, filters, sortKey, sortDirection]);
 
-  const handleFilterChange = (key: string, value: any) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+  const handleFilterChange = (key: string, value: unknown) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleFilterReset = () => {
     setFilters({
-      search: ''
+      search: '',
     });
   };
 
@@ -180,7 +178,7 @@ export default function EcosystemManagement() {
         subtitle="Configura y gestiona los ecosistemas del sistema"
         breadcrumbs={[
           { label: 'Dashboard', href: '/admin/dashboard' },
-          { label: 'Gestión de Ecosistemas' }
+          { label: 'Gestión de Ecosistemas' },
         ]}
         actions={
           <>
@@ -197,7 +195,7 @@ export default function EcosystemManagement() {
       <div className={styles.content}>
         <Filters
           fields={filterFields}
-          values={filters}
+          values={filters as Record<string, unknown>}
           onChange={handleFilterChange}
           onReset={handleFilterReset}
         />
@@ -237,7 +235,7 @@ export default function EcosystemManagement() {
           <EcosystemForm
             initialData={{
               name: selectedEcosystem.name,
-              description: selectedEcosystem.description
+              description: selectedEcosystem.description,
             }}
             onSubmit={handleEditEcosystem}
             onCancel={() => setShowEditModal(false)}
@@ -263,7 +261,7 @@ export default function EcosystemManagement() {
                 Eliminar Ecosistema
               </Button>
               <Button
-                variant="tertiary" 
+                variant="tertiary"
                 onClick={() => setShowDeleteModal(false)}
                 disabled={actionLoading}
               >
