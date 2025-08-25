@@ -69,7 +69,7 @@ EcoExplore es una aplicación web para el registro y monitoreo de avistamientos 
    npm install
    ```
 
-3. **⚠️ IMPORTANTE - Configurar variables de entorno:**
+3. **IMPORTANTE - Configurar variables de entorno:**
    Crear archivo `.env` en la raíz del directorio frontend con el siguiente contenido:
    
    ```env
@@ -90,7 +90,7 @@ EcoExplore es una aplicación web para el registro y monitoreo de avistamientos 
    ```
    El frontend estará disponible en `http://localhost:5173`
 
-## 🧪 Pasos para Probar el Demo
+## Pasos para Probar el Demo
 
 ### 1. Configuración Inicial
 - Asegurar que tanto el backend como el frontend estén ejecutándose
@@ -158,7 +158,84 @@ RubyOnRails-EcoExplore/
 - `npm run lint` - Linter de código
 - `npm run format` - Formatear código
 
-## 🌟 Características Principales
+## Documentación de la API
+
+### Base URL
+```
+http://localhost:3000
+```
+
+### Autenticación
+La API utiliza JWT tokens. Incluir el token en el header de autorización:
+```
+Authorization: Bearer {token}
+```
+
+### Endpoints Disponibles
+
+#### **Autenticación**
+- `POST /auth/register` - Registro de usuario
+  - **Body:** `{ name, email, password, role? }`
+  - **Response:** `{ success, message, user, token? }`
+
+- `POST /auth/login` - Inicio de sesión
+  - **Body:** `{ email, password }`
+  - **Response:** `{ success, message, token, user }`
+
+- `DELETE /auth/logout` - Cerrar sesión
+  - **Response:** `{ message }`
+
+#### 👤 **Usuarios**
+- `GET /user/getUsers` - Obtener todos los usuarios (Admin)
+- `DELETE /user/deleteUser/:id` - Eliminar usuario (Admin)
+- `PUT /user/updateUser` - Actualizar usuario (Admin)
+- `GET /user/profile` - Obtener perfil del usuario actual
+- `PATCH /user/profile` - Actualizar perfil del usuario
+- `PATCH /user/profile_photo` - Actualizar foto de perfil
+
+#### 🦋 **Especies**
+- `GET /species/getSpecies` - Obtener todas las especies
+- `POST /species/create` - Crear nueva especie
+- `POST /species` - Crear nueva especie (alternativo)
+- `DELETE /species/deleteSpecies/:id` - Eliminar especie
+- `POST /species/updateSpecies` - Actualizar especie
+
+#### **Avistamientos**
+- `GET /sightings` - Obtener todos los avistamientos
+- `GET /sightings/my_sightings` - Obtener avistamientos del usuario
+- `POST /sightings` - Crear nuevo avistamiento
+- `PUT /sightings/:id` - Actualizar avistamiento
+- `POST /sightings/updateState` - Actualizar estado de avistamiento (Admin)
+
+#### **Ecosistemas**
+- `GET /ecosystems` - Obtener todos los ecosistemas
+- `GET /ecosystems/:id` - Obtener ecosistema específico
+- `POST /ecosystems` - Crear nuevo ecosistema
+- `PUT /ecosystems/:id` - Actualizar ecosistema
+- `DELETE /ecosystems/:id` - Eliminar ecosistema
+
+#### **Tipos de Especies**
+- `GET /type_specie/index` - Obtener todos los tipos de especies
+
+#### **Especies de Usuario**
+- `GET /user_species/my_contributed_species` - Especies contribuidas por el usuario
+- `GET /user_species/all_contributed_species` - Todas las especies contribuidas (Admin)
+- `GET /user_species/explore_species` - Explorar todas las especies disponibles
+
+#### **Sistema**
+- `GET /up` - Health check del servidor
+
+### Códigos de Respuesta HTTP
+- `200` - Operación exitosa
+- `201` - Recurso creado exitosamente
+- `204` - Operación exitosa sin contenido
+- `400` - Solicitud incorrecta
+- `401` - No autorizado
+- `404` - Recurso no encontrado
+- `422` - Entidad no procesable (errores de validación)
+- `500` - Error interno del servidor
+
+## Características Principales
 
 - **Sistema de autenticación** con JWT
 - **Roles de usuario** (Usuario/Administrador)
