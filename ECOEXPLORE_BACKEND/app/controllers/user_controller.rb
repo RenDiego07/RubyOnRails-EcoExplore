@@ -10,8 +10,6 @@ class UserController < ApplicationController
     user.destroy
     head :no_content
   end
-
-  # Nuevos métodos para perfil de usuario
   
   # GET /user/profile - Obtener perfil del usuario actual
   def profile
