@@ -6,6 +6,7 @@ import MapPicker from '@/components/common/Map';
 import DisplayPictureModal from '@/components/common/Modals/DisplayPictureModal';
 import { CRUDSightings } from '@/services/CRUD/sightings';
 import { CRUDEcosystems, Ecosystem } from '@/services/CRUD/ecosystems';
+import { transformSightingResponsesToSightings } from '@/utils/sightingResponseTransformers';
 import type { SelectorOption } from '@/components/common/form/Selector/Selector.types';
 import type { SightingData, Sighting, AxiosError } from '@/interfaces';
 import styles from './Sightings.module.css';
@@ -58,7 +59,8 @@ export default function Sightings() {
   const fetchSightings = async () => {
     try {
       const data = await CRUDSightings.getMySightings();
-      setSightings(data);
+      const transformedSightings = transformSightingResponsesToSightings(data);
+      setSightings(transformedSightings);
     } catch (error) {
       console.error('Error fetching sightings:', error);
     }
