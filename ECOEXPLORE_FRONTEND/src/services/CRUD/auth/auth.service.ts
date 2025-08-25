@@ -1,14 +1,7 @@
 import APIClient from '@/services/CRUD/apiClient';
 import { EnvConfig } from '@/env.config';
 import axios from 'axios';
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  role: 'admin' | 'member';
-  active: boolean;
-}
+import type { User } from '@/types/User.types';
 export interface LoginFields {
   email: string;
   password: string;

@@ -18,11 +18,33 @@
 .userInfo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-200);
+  gap: var(--spacing-300, 1rem);
 }
 
-.userInfo span {
-  font-weight: var(--font-weight-regular);
-  color: var(--text-soft);
-  font-size: var(--f-medium-size);
+.avatar {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+}
+
+.welcome {
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text, #333);
+  font-size: var(--f-medium-size, 0.875rem);
+}
+
+.points {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--primary, #007bff);
+  font-size: 0.75rem;
 }

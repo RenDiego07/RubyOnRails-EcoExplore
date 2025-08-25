@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import type { User } from '@/services/CRUD/auth/auth.service';
+import type { User } from '@/types/User.types';
+import { UserService } from '@/services/CRUD/users/users.service';
 
 interface AuthContextType {
   user: User | null;
@@ -12,6 +13,7 @@ interface AuthContextType {
   handleToken: (jwtToken: string) => void;
   isAuthenticated: boolean;
   hasRole: (role: string) => boolean;
+  updateUser: (updatedUser: Partial<User>) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +22,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  const fetchUserProfile = async (userId: string): Promise<User | null> => {
+    try {
+      console.log('AuthProvider: Fetching complete user profile for:', userId);
+      const completeUser = await UserService.getProfile();
+      console.log('AuthProvider: Complete user profile fetched:', completeUser);
+      return completeUser;
+    } catch (error) {
+      console.error('AuthProvider: Error fetching user profile:', error);
+      return null;
+    }
+  };
 
   const clearSession = () => {
     console.log('🧹 AuthProvider: Clearing session');
@@ -83,11 +97,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             name: payload.name || '',
             role: payload.role === 'admin' || payload.role === 'member' ? payload.role : 'member',
             active: true,
+            points: 0, // Default value, should be updated from API
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
           };
-          setUser((prevUser) => {
+          setUser((prevUser: User | null) => {
             if (!prevUser || prevUser.id !== userFromToken.id) {
               console.log('AuthProvider: Updating user state');
-              return userFromToken;
+              // Fetch complete user profile from API to get profile_photo_url and other missing data
+              fetchUserProfile(payload.user_id).then((completeUser) => {
+                if (completeUser) {
+                  setUser(completeUser);
+                }
+              });
+              return userFromToken; // Return basic user first, then update with complete profile
             }
             return prevUser;
           });
@@ -149,6 +172,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return user?.role === role;
   };
 
+  const updateUser = (updatedUser: Partial<User>) => {
+    setUser((prevUser: User | null) => (prevUser ? { ...prevUser, ...updatedUser } : null));
+  };
+
   const value: AuthContextType = {
     user,
     setUser,
@@ -159,6 +186,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     handleToken,
     isAuthenticated,
     hasRole,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

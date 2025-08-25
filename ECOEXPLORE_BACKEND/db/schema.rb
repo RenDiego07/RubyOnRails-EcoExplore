@@ -89,6 +89,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_25_005922) do
     t.string "password_digest"
     t.string "name", null: false
     t.boolean "active", default: true
+    t.string "profile_photo_url"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

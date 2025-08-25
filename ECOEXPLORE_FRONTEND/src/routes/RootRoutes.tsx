@@ -11,6 +11,7 @@ import { EcosystemManagement } from '@/pages/admin/EcosystemManagement';
 import SightingManagement from '@/pages/admin/SightingManagement';
 import MemberDashboard from '@/pages/member/MemberDashboard';
 import Sightings from '@/pages/member/Sightings';
+import { UserProfilePage } from '@/pages/UserProfilePage';
 import { MemberLayout } from '@/layouts';
 
 function AuthNavigationHandler() {
@@ -59,6 +60,7 @@ export default function RootRoutes() {
           <Route element={<MemberLayout />}>
             <Route path="/member/dashboard" element={<MemberDashboard />} />
             <Route path="/member/sightings" element={<Sightings />} />
+            <Route path="/member/profile" element={<UserProfilePage />} />
           </Route>
         </Route>
 
