@@ -138,8 +138,8 @@ export default function UserManagement() {
 
       const matchesStatus =
         filters.status === 'all' ||
-        (filters.status === 'active' && user.isActive) ||
-        (filters.status === 'inactive' && !user.isActive);
+        (filters.status === 'active' && user.active) ||
+        (filters.status === 'inactive' && !user.active);
 
       return matchesSearch && matchesRole && matchesStatus;
     });
@@ -261,7 +261,7 @@ export default function UserManagement() {
               email: selectedUser.email,
               role: selectedUser.role,
               points: selectedUser.points,
-              isActive: selectedUser.isActive,
+              isActive: selectedUser.active,
             }}
             onSubmit={handleEditUser}
             onCancel={() => setShowEditModal(false)}

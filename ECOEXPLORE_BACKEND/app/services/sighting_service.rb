@@ -77,6 +77,17 @@ class SightingService
       if params[:specie_id].present? && params[:specie_id] != ''
         record = Record.new(sighting_id: sighting.id, specie_id: params[:specie_id].to_i)
         record.save!
+
+        user = User.find(params[:user_id]) if params[:user_id].present? && params[:user_id] != ''
+
+        specie = Specie.find(params[:specie_id])
+
+        if specie.type_specie.code == 'NATIVE'
+          user.grant_points(100)
+        elsif specie.type_specie.code == 'INVASE'
+          user.grant_points(150)
+        end
+
       end
 
       Result.new(success: true, sighting: sighting)

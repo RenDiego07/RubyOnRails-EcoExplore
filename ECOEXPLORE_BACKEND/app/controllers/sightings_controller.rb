@@ -44,7 +44,7 @@ class SightingsController < ApplicationController
   end
 
   def updateState
-    result = SightingService.update_state(user: current_user, sighting_id: params[:id], params: { sighting_state_code: params[:sighting_state_code], specie_id: params[:specie_id] })
+    result = SightingService.update_state(user: current_user, sighting_id: params[:id], params: { sighting_state_code: params[:sighting_state_code], specie_id: params[:specie_id], user_id: params[:user_id] })
     if result.success
       render json: sighting_response(result.sighting), status: :ok
     else
@@ -64,7 +64,7 @@ class SightingsController < ApplicationController
   end
 
   def updateState_params
-    params.permit(:sighting_state_code, :specie_id)
+    params.permit(:sighting_state_code, :specie_id, :user_id)
   end
 
   def sighting_response(sighting)

@@ -8,4 +8,9 @@ class User < ApplicationRecord
   validates :role, presence: true, inclusion: { in: %w[admin member] }
   
   scope :active, -> { where(active: true) }
+
+  def grant_points(points) 
+    self.points += points
+    save
+  end
 end

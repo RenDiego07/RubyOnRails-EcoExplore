@@ -164,7 +164,7 @@ export const useSightingManagement = (): UseSightingManagementReturn => {
       }
 
       // Approve the sighting (backend already has the specie field as text)
-      await changeSightingState(pendingSightingForApproval.id.toString(), 'ACCEPTED', specie_id);
+      await changeSightingState(pendingSightingForApproval.id.toString(), 'ACCEPTED', specie_id, pendingSightingForApproval.user_id);
 
       // Refresh data
       await loadSightings();

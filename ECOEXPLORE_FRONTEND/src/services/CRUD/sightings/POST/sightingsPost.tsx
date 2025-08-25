@@ -21,9 +21,9 @@ export const getSightings = async (): Promise<SightingResponse[]> => {
   }
 };
 
-export const changeSightingState = async (id: string, state_code: string, specie_id: string): Promise<SightingResponse> => {
+export const changeSightingState = async (id: string, state_code: string, specie_id: string, user_id?: string): Promise<SightingResponse> => {
   try {
-    const response = await APIClient.post(`/sightings/updateState`, { "id": id, "sighting_state_code": state_code, "specie_id": specie_id });
+    const response = await APIClient.post(`/sightings/updateState`, { "id": id, "sighting_state_code": state_code, "specie_id": specie_id, "user_id": user_id });
     return response.data;
   } catch (error) {
     console.error('Error changing sighting state:', error);
