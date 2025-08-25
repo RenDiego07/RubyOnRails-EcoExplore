@@ -77,7 +77,7 @@ export default function EcosystemManagement() {
       key: 'name',
       label: 'Nombre',
       sortable: true,
-      width: '20%',
+      width: '25%',
     },
     {
       key: 'description',
@@ -87,24 +87,14 @@ export default function EcosystemManagement() {
           {String(value)}
         </span>
       ),
-      width: '30%',
-    },
-    {
-      key: 'characteristics',
-      label: 'Características',
-      render: (value) => (
-        <span className={styles.textTruncate} title={String(value)}>
-          {String(value)}
-        </span>
-      ),
-      width: '30%',
+      width: '25%',
     },
     {
       key: 'created_at',
       label: 'Fecha de Creación',
       sortable: true,
       render: (value) => <span>{new Date(value as string).toLocaleDateString()}</span>,
-      width: '15%',
+      width: '25%',
     },
   ];
 
@@ -116,14 +106,6 @@ export default function EcosystemManagement() {
       onClick: (ecosystem: Ecosystem) => {
         setSelectedEcosystem(ecosystem);
         setShowEditModal(true);
-      },
-    },
-    {
-      label: 'Eliminar',
-      variant: 'danger',
-      onClick: (ecosystem: Ecosystem) => {
-        setSelectedEcosystem(ecosystem);
-        setShowDeleteModal(true);
       },
     },
   ];
@@ -242,33 +224,6 @@ export default function EcosystemManagement() {
             loading={actionLoading}
             mode="edit"
           />
-        </Modal>
-      )}
-
-      {/* Delete Modal */}
-      {showDeleteModal && selectedEcosystem && (
-        <Modal onClose={() => setShowDeleteModal(false)} title="Confirmar Eliminación">
-          <div style={{ padding: '20px' }}>
-            <p>
-              ¿Estás seguro de que deseas eliminar el ecosistema{' '}
-              <strong>{selectedEcosystem.name}</strong>?
-            </p>
-            <p style={{ color: 'var(--danger)', fontSize: '14px' }}>
-              Esta acción no se puede deshacer.
-            </p>
-            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-              <Button variant="destructive" onClick={handleDeleteEcosystem} loading={actionLoading}>
-                Eliminar Ecosistema
-              </Button>
-              <Button
-                variant="tertiary"
-                onClick={() => setShowDeleteModal(false)}
-                disabled={actionLoading}
-              >
-                Cancelar
-              </Button>
-            </div>
-          </div>
         </Modal>
       )}
     </div>

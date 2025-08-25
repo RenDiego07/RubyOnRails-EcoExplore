@@ -8,10 +8,10 @@ export function useEcosystemManagement() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
 
-  const loadEcosystems = async (filters?: EcosystemFilters) => {
+  const loadEcosystems = async () => {
     try {
       setLoading(true);
-      const data = await EcosystemService.getEcosystems(filters);
+      const data = await EcosystemService.getEcosystems();
       setEcosystems(data);
     } catch (error) {
       console.error('Error loading ecosystems:', error);
