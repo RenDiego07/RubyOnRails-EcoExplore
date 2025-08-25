@@ -14,7 +14,7 @@ export default function MemberDashboard() {
         <DashboardCard
           title="Explorar Ecosistemas"
           description="Descubre especies en diferentes ecosistemas"
-          onClick={() => console.log('Explorar Ecosistemas - En desarrollo')}
+          path="/member/explore-ecosystems"
         />
 
         <DashboardCard

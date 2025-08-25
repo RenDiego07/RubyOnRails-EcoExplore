@@ -25,6 +25,17 @@ class UserSpeciesController < ApplicationController
     end
   end
 
+  # GET /user_species/explore_species - Get all contributed species for public exploration
+  def explore_species
+    result = UserSpeciesService.get_all_species_with_sighting_details
+    
+    if result.success
+      render json: result.species.map { |data| contributed_species_response(data) }, status: :ok
+    else
+      render json: { error: result.error }, status: :internal_server_error
+    end
+  end
+
   private
 
   def contributed_species_response(species_data)

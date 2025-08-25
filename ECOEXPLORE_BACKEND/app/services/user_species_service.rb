@@ -72,4 +72,34 @@ class UserSpeciesService
       Result.new(success: false, error: e.message)
     end
   end
+
+  # Get all species with their sighting details for public exploration
+  def self.get_all_species_with_sighting_details
+    Rails.logger.info "🔍 UserSpeciesService.get_all_species_with_sighting_details"
+    
+    begin
+      # Get all records (approved sightings only) with species and sighting details
+      records = Record.joins(:specie, :sighting)
+                      .includes(:specie, sighting: [:location, :ecosystem, :user])
+
+      # Group by species and collect sighting information
+      species_data = records.group_by(&:specie).map do |specie, specie_records|
+        # Get the most recent sighting for this species
+        latest_sighting = specie_records.map(&:sighting).max_by(&:created_at)
+        
+        {
+          specie: specie,
+          sighting: latest_sighting,
+          total_sightings: specie_records.count
+        }
+      end
+
+      Rails.logger.info "✅ Found #{species_data.count} species with sighting details for public exploration"
+      Result.new(success: true, species: species_data)
+      
+    rescue StandardError => e
+      Rails.logger.error "❌ Error getting all species with sighting details: #{e.message}"
+      Result.new(success: false, error: e.message)
+    end
+  end
 end

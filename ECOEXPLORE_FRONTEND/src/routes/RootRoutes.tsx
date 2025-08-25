@@ -6,7 +6,7 @@ import LoginPage from '@/pages/auth/Login/LoginPage';
 import RegisterPage from '@/pages/auth/Register/RegisterPage';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import { UserManagement, SpeciesManagement, EcosystemManagement } from '@/pages/admin';
-import { MemberDashboard, Sightings, History } from '@/pages/member';
+import { MemberDashboard, Sightings, History, ExploreSpecies } from '@/pages/member';
 import UserProfilePage from '@/pages/UserProfilePage';
 import SightingManagement from '@/pages/admin/SightingManagement';
 import { MemberLayout } from '@/layouts';
@@ -59,6 +59,7 @@ export default function RootRoutes() {
             <Route path="/member/sightings" element={<Sightings />} />
             <Route path="/member/profile" element={<UserProfilePage />} />
             <Route path="/member/history" element={<History />} />
+            <Route path="/member/explore-ecosystems" element={<ExploreSpecies />} />
           </Route>
         </Route>
 
