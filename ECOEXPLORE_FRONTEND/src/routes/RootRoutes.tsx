@@ -8,6 +8,7 @@ import AdminDashboard from '@/pages/admin/AdminDashboard';
 import { UserManagement } from '@/pages/admin/UserManagement';
 import MemberDashboard from '@/pages/member/MemberDashboard';
 import Sightings from '@/pages/member/Sightings';
+import { UserProfilePage } from '@/pages/UserProfilePage';
 import { MemberLayout } from '@/layouts';
 
 function AuthNavigationHandler() {
@@ -53,6 +54,7 @@ export default function RootRoutes() {
           <Route element={<MemberLayout />}>
             <Route path="/member/dashboard" element={<MemberDashboard />} />
             <Route path="/member/sightings" element={<Sightings />} />
+            <Route path="/member/profile" element={<UserProfilePage />} />
           </Route>
         </Route>
 

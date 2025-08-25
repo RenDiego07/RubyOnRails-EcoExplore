@@ -56,7 +56,11 @@ class AuthController < ApplicationController
       name: user.name,
       email: user.email,
       role: user.role,
-      active: user.active
+      points: user.points,
+      profile_photo_url: user.profile_photo_url,
+      active: user.active,
+      created_at: user.created_at,
+      updated_at: user.updated_at
     }
   end
 end
