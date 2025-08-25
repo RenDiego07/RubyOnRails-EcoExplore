@@ -1,4 +1,4 @@
-import { Species, SpeciesFilters, SpeciesFormData, TypeSpecie } from '@/types';
+import { Species, SpeciesCreationData, SpeciesFilters, SpeciesFormData, TypeSpecie } from '@/types';
 import APIClient from '../apiClient';
 
 // Mock API service - Replace with real API calls
@@ -25,20 +25,13 @@ export class SpeciesService {
     return [];
   }
 
-  static async createSpecies(speciesData: SpeciesFormData): Promise<Species> {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newSpecies: Species = {
-          id: Date.now().toString(),
-          type_specie_id: speciesData.type_specie_id,
-          name: speciesData.name,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        };
-        resolve(newSpecies);
-      }, 500);
-    });
+  static async createSpecies(speciesData: SpeciesCreationData): Promise<Species> {
+    const response = await APIClient.post('/species/create', speciesData);
+    if (response.data) {
+      return response.data;
+    }
+
+    throw new Error('Error creating species');
   }
 
   static async updateSpecies(speciesData: SpeciesFormData): Promise<Species> {

@@ -22,4 +22,5 @@ export interface TableProps<T> {
   onSort?: (key: string, direction: 'asc' | 'desc') => void;
   sortKey?: string;
   sortDirection?: 'asc' | 'desc';
+  onRowClick?: (item: T) => void;
 }

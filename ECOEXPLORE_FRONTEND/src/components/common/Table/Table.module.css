@@ -61,6 +61,14 @@
   border-bottom: none;
 }
 
+.clickableRow {
+  cursor: pointer;
+}
+
+.clickableRow:hover {
+  background: var(--bg-hover) !important;
+}
+
 .tableCell {
   padding: var(--spacing-400);
   color: var(--text);

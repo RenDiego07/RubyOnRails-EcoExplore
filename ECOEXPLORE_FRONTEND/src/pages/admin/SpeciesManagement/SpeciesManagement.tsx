@@ -106,7 +106,7 @@ export default function SpeciesManagement() {
       sortable: true,
       render: (value) => (
         <div>
-          <div>{value}</div>
+          <div>{value as string}</div>
         </div>
       )
     },
@@ -220,7 +220,7 @@ export default function SpeciesManagement() {
       <div className={styles.content}>
         <Filters
           fields={filterFields}
-          values={filters}
+          values={filters as Record<string, unknown>}
           onChange={handleFilterChange}
           onReset={handleFilterReset}
         />

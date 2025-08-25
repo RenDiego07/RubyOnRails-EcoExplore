@@ -97,8 +97,8 @@ export default function EcosystemManagement() {
       key: 'description',
       label: 'Descripción',
       render: (value) => (
-        <span className={styles.textTruncate} title={value}>
-          {value}
+        <span className={styles.textTruncate} title={value as string}>
+          {value as string}
         </span>
       ),
       width: '30%'
@@ -107,8 +107,8 @@ export default function EcosystemManagement() {
       key: 'characteristics',
       label: 'Características',
       render: (value) => (
-        <span className={styles.textTruncate} title={value}>
-          {value}
+        <span className={styles.textTruncate} title={value as string}>
+          {value as string}
         </span>
       ),
       width: '30%'
@@ -210,7 +210,7 @@ export default function EcosystemManagement() {
       <div className={styles.content}>
         <Filters
           fields={filterFields}
-          values={filters}
+          values={filters as Record<string, unknown>}
           onChange={handleFilterChange}
           onReset={handleFilterReset}
         />

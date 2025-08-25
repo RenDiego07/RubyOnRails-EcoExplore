@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_24_180000) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_25_005922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_180000) do
     t.string "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "sighting_id", null: false
+    t.bigint "specie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sighting_id"], name: "index_records_on_sighting_id"
+    t.index ["specie_id"], name: "index_records_on_specie_id"
   end
 
   create_table "sighting_states", force: :cascade do |t|
@@ -83,6 +92,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_180000) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "records", "sightings"
+  add_foreign_key "records", "species", column: "specie_id"
   add_foreign_key "sightings", "ecosystems"
   add_foreign_key "sightings", "locations"
   add_foreign_key "sightings", "sighting_states"

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Species, SpeciesFilters, TypeSpecie } from '@/types';
+import { Species, SpeciesCreationData, SpeciesFilters, TypeSpecie } from '@/types';
 import { SpeciesFormData } from '@/types';
 import { SpeciesService } from '@/services/CRUD/species/species.service';
 import { set } from 'react-hook-form';
+import { S } from 'node_modules/framer-motion/dist/types.d-Cjd591yU';
 
 export function useSpeciesManagement() {
   const [species, setSpecies] = useState<Species[]>([]);
@@ -37,7 +38,7 @@ export function useSpeciesManagement() {
     }
   };
 
-  const createSpecies = async (speciesData: SpeciesFormData): Promise<Species> => {
+  const createSpecies = async (speciesData: SpeciesCreationData): Promise<Species> => {
     try {
       setActionLoading(true);
       const newSpecies = await SpeciesService.createSpecies(speciesData);

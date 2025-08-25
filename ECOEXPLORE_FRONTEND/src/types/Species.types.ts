@@ -25,3 +25,8 @@ export interface SpeciesFormData {
   name: string;
   type_specie_id: string;
 }
+
+export interface SpeciesCreationData {
+  name: string;
+  type_specie_id: string;
+}

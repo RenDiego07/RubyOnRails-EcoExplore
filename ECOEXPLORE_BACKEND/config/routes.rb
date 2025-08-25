@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   get "type_specie/index"
   get "/species/getSpecies"
+  post "/species/create", to: "species#create"
+  post "/species", to: "species#create"
   delete "/species/deleteSpecies/:id", to: "species#deleteSpecies"
   post "/species/updateSpecies", to: "species#updateSpecies"
   get "/user/getUsers"
   delete "/user/deleteUser/:id", to: "user#deleteUser"
+
+  post "/sightings/updateState"
+
   # Authentication routes
   post '/auth/register', to: 'auth#register'
   post '/auth/login', to: 'auth#login'

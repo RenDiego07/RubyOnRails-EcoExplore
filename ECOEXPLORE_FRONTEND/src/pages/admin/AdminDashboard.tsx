@@ -23,6 +23,10 @@ export default function AdminDashboard() {
     navigate('/admin/ecosystems');
   };
 
+  const navigateToSightings = () => {
+    navigate('/admin/sightings');
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -52,6 +56,12 @@ export default function AdminDashboard() {
           <div className={`${styles.card} ${styles.clickableCard}`} onClick={navigateToEcosystems}>
             <h2>Ecosistemas</h2>
             <p>Configura y gestiona los ecosistemas</p>
+            <span className={styles.cardArrow}>→</span>
+          </div>
+
+          <div className={`${styles.card} ${styles.clickableCard}`} onClick={navigateToSightings}>
+            <h2>Gestión de Avistamientos</h2>
+            <p>Modera y aprueba los avistamientos reportados</p>
             <span className={styles.cardArrow}>→</span>
           </div>
         </div>

@@ -1,8 +1,12 @@
 interface SightingResponse {
-  id: number;
-  user_id: number;
+  id: string;
+  user_id: string;
+  user_name: string;
+  user_email: string;
   ecosystem_id: number;
+  ecosystem_name: string;
   location_id: number;
+  location_name: string;
   sighting_state_id: number;
   sighting_state_name: string;
   sighting_location: string;

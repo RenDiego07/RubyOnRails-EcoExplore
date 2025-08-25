@@ -11,6 +11,7 @@ export default function Table<T>({
   onSort,
   sortKey,
   sortDirection,
+  onRowClick,
 }: TableProps<T>) {
   const handleSort = (key: string) => {
     if (!onSort) return;
@@ -61,7 +62,12 @@ export default function Table<T>({
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={index} className={styles.tableRow}>
+          <tr 
+            key={index} 
+            className={`${styles.tableRow} ${onRowClick ? styles.clickableRow : ''}`}
+            onClick={onRowClick ? () => onRowClick(item) : undefined}
+            style={onRowClick ? { cursor: 'pointer' } : undefined}
+          >
             {columns.map((column) => (
               <td key={column.key} className={styles.tableCell}>
                 {column.render
@@ -76,7 +82,10 @@ export default function Table<T>({
                     <button
                       key={actionIndex}
                       className={`${styles.actionButton} ${styles[action.variant || 'tertiary']}`}
-                      onClick={() => action.onClick(item)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent row click when clicking action
+                        action.onClick(item);
+                      }}
                     >
                       {action.icon}
                       {action.label}

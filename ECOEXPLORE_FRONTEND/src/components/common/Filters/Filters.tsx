@@ -7,7 +7,7 @@ export default function Filters({ fields, values, onChange, onReset }: FiltersPr
   };
 
   const renderField = (field: FilterField) => {
-    const value = values[field.key] || '';
+    const value = (values[field.key] as string) || '';
 
     switch (field.type) {
       case 'select':

@@ -73,9 +73,9 @@ export default function UserManagement() {
     {
       key: 'role',
       label: 'Rol',
-      render: (value: string) => (
-        <span className={`${styles.roleBadge} ${styles[value]}`}>
-          {value === 'admin' ? 'Administrador' : 'Miembro'}
+      render: (value: unknown) => (
+        <span className={`${styles.roleBadge} ${styles[value as string]}`}>
+          {(value as string) === 'admin' ? 'Administrador' : 'Miembro'}
         </span>
       ),
       width: '120px',
@@ -83,16 +83,16 @@ export default function UserManagement() {
     {
       key: 'points',
       label: 'Puntos',
-      render: (value: number) => <span className={styles.pointsBadge}>{value}</span>,
+      render: (value: unknown) => <span className={styles.pointsBadge}>{value as number}</span>,
       sortable: true,
       width: '100px',
     },
     {
       key: 'isActive',
       label: 'Estado',
-      render: (value: boolean) => (
-        <span className={`${styles.statusBadge} ${value ? styles.active : styles.inactive}`}>
-          {value ? 'Activo' : 'Inactivo'}
+      render: (value: unknown) => (
+        <span className={`${styles.statusBadge} ${(value as boolean) ? styles.active : styles.inactive}`}>
+          {(value as boolean) ? 'Activo' : 'Inactivo'}
         </span>
       ),
       width: '120px',
@@ -100,7 +100,7 @@ export default function UserManagement() {
     {
       key: 'createdAt',
       label: 'Fecha de Registro',
-      render: (value: string) => new Date(value).toLocaleDateString('es-ES'),
+      render: (value: unknown) => new Date(value as string).toLocaleDateString('es-ES'),
       sortable: true,
       width: '150px',
     },
@@ -218,7 +218,7 @@ export default function UserManagement() {
       <div className={styles.content}>
         <Filters
           fields={filterFields}
-          values={filters}
+          values={filters as Record<string, unknown>}
           onChange={handleFilterChange}
           onReset={handleFilterReset}
         />

@@ -43,6 +43,16 @@ class SightingsController < ApplicationController
     end
   end
 
+  def updateState
+    result = SightingService.update_state(user: current_user, sighting_id: params[:id], params: { sighting_state_code: params[:sighting_state_code], specie_id: params[:specie_id] })
+    if result.success
+      render json: sighting_response(result.sighting), status: :ok
+    else
+      status = result.error.to_s.downcase == 'unauthorized' ? :unauthorized : :unprocessable_entity
+      render json: { error: result.error }, status: status
+    end
+  end
+
   private
 
   def creation_params
@@ -53,12 +63,20 @@ class SightingsController < ApplicationController
     params.permit(:sighting_state_id, :sighting_state_code)
   end
 
+  def updateState_params
+    params.permit(:sighting_state_code, :specie_id)
+  end
+
   def sighting_response(sighting)
     {
       id: sighting.id,
       user_id: sighting.user_id,
+      user_name: sighting.user.name,
+      user_email: sighting.user.email,
       ecosystem_id: sighting.ecosystem_id,
+      ecosystem_name: sighting.ecosystem.name,
       location_id: sighting.location_id,
+      location_name: sighting.location.name,
       sighting_state_id: sighting.sighting_state_id,
       sighting_state_name: sighting.sighting_state.name,
       sighting_location: sighting.location.name,

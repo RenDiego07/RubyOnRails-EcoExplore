@@ -8,6 +8,7 @@ import AdminDashboard from '@/pages/admin/AdminDashboard';
 import { UserManagement } from '@/pages/admin/UserManagement';
 import { SpeciesManagement } from '@/pages/admin/SpeciesManagement';
 import { EcosystemManagement } from '@/pages/admin/EcosystemManagement';
+import SightingManagement from '@/pages/admin/SightingManagement';
 import MemberDashboard from '@/pages/member/MemberDashboard';
 import Sightings from '@/pages/member/Sightings';
 import { MemberLayout } from '@/layouts';
@@ -51,6 +52,7 @@ export default function RootRoutes() {
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/species" element={<SpeciesManagement />} />
           <Route path="/admin/ecosystems" element={<EcosystemManagement />} />
+          <Route path="/admin/sightings" element={<SightingManagement />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={['member']} />}>

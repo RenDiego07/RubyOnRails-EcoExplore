@@ -74,6 +74,11 @@ class SightingService
 
       sighting.update!(sighting_state: new_state)
 
+      if params[:specie_id].present? && params[:specie_id] != ''
+        record = Record.new(sighting_id: sighting.id, specie_id: params[:specie_id].to_i)
+        record.save!
+      end
+
       Result.new(success: true, sighting: sighting)
     end
   rescue ActiveRecord::RecordNotFound => e

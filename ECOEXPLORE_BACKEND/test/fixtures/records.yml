@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sighting: one
+  specie: one
+
+two:
+  sighting: two
+  specie: two
