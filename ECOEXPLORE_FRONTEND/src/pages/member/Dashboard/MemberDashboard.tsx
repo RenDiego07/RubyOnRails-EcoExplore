@@ -26,7 +26,7 @@ export default function MemberDashboard() {
         <DashboardCard
           title="Historial"
           description="Revisa tu actividad en la plataforma"
-          onClick={() => console.log('Historial - En desarrollo')}
+          path="/member/history"
         />
       </div>
     </div>

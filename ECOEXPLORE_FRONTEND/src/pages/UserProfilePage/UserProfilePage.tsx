@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/useToast';
 import { Form, FormField, Input, PasswordInput } from '@/components/common/form';
 import { Button, Avatar, Alert } from '@/components/common';
-import ProfilePhotoUpload from './components/ProfilePhotoUpload';
+import ProfilePhotoUpload from '@/components/ProfilePhotoUpload';
 import { UserService } from '@/services/CRUD/users/users.service';
 import styles from './UserProfilePage.module.css';
 

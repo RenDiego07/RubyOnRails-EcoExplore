@@ -1,1 +1,1 @@
-export { default as SpeciesManagement } from './SpeciesManagement';
+export { default } from './SpeciesManagement';

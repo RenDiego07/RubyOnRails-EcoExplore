@@ -1,32 +1,19 @@
 import { useState, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useEcosystemManagement } from '@/hooks/useEcosystemManagement';
-import { 
-  Button, 
-  Table, 
-  Filters, 
-  PageHeader, 
-  Modal 
-} from '@/components/common';
+import { Button, Table, Filters, PageHeader, Modal } from '@/components/common';
 import { EcosystemForm } from '@/components/forms';
-import type { 
-  Ecosystem,
-  EcosystemFilters
-} from '@/types';
-import type { 
-  TableColumn, 
-  TableAction,
-  FilterField 
-} from '@/components/common';
+import type { Ecosystem, EcosystemFilters } from '@/types';
+import type { TableColumn, TableAction, FilterField } from '@/components/common';
 import type { EcosystemFormData } from '@/types';
 import styles from './EcosystemManagement.module.css';
 
 export default function EcosystemManagement() {
   const { logout } = useAuth();
-  const { ecosystems, loading, actionLoading, createEcosystem, updateEcosystem, deleteEcosystem } = useEcosystemManagement();
-  
+  const { ecosystems, loading, actionLoading, createEcosystem, updateEcosystem, deleteEcosystem } =
+    useEcosystemManagement();
   const [filters, setFilters] = useState<EcosystemFilters>({
-    search: ''
+    search: '',
   });
   const [sortKey, setSortKey] = useState<string>('name');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -51,7 +38,7 @@ export default function EcosystemManagement() {
 
   const handleEditEcosystem = async (formData: EcosystemFormData) => {
     if (!selectedEcosystem) return;
-    
+
     try {
       await updateEcosystem(selectedEcosystem.id, formData);
       setShowEditModal(false);
@@ -64,7 +51,6 @@ export default function EcosystemManagement() {
 
   const handleDeleteEcosystem = async () => {
     if (!selectedEcosystem) return;
-    
     try {
       await deleteEcosystem(selectedEcosystem.id);
       setShowDeleteModal(false);
@@ -81,8 +67,8 @@ export default function EcosystemManagement() {
       key: 'search',
       label: 'Buscar',
       type: 'search',
-      placeholder: 'Buscar por nombre o descripción...'
-    }
+      placeholder: 'Buscar por nombre o descripción...',
+    },
   ];
 
   // Table columns configuration
@@ -91,37 +77,35 @@ export default function EcosystemManagement() {
       key: 'name',
       label: 'Nombre',
       sortable: true,
-      width: '20%'
+      width: '20%',
     },
     {
       key: 'description',
       label: 'Descripción',
       render: (value) => (
-        <span className={styles.textTruncate} title={value as string}>
-          {value as string}
+        <span className={styles.textTruncate} title={String(value)}>
+          {String(value)}
         </span>
       ),
-      width: '30%'
+      width: '30%',
     },
     {
       key: 'characteristics',
       label: 'Características',
       render: (value) => (
-        <span className={styles.textTruncate} title={value as string}>
-          {value as string}
+        <span className={styles.textTruncate} title={String(value)}>
+          {String(value)}
         </span>
       ),
-      width: '30%'
+      width: '30%',
     },
     {
       key: 'created_at',
       label: 'Fecha de Creación',
       sortable: true,
-      render: (value) => (
-        <span>{new Date(value as string).toLocaleDateString()}</span>
-      ),
-      width: '15%'
-    }
+      render: (value) => <span>{new Date(value as string).toLocaleDateString()}</span>,
+      width: '15%',
+    },
   ];
 
   // Table actions configuration
@@ -132,7 +116,7 @@ export default function EcosystemManagement() {
       onClick: (ecosystem: Ecosystem) => {
         setSelectedEcosystem(ecosystem);
         setShowEditModal(true);
-      }
+      },
     },
     {
       label: 'Eliminar',
@@ -140,8 +124,8 @@ export default function EcosystemManagement() {
       onClick: (ecosystem: Ecosystem) => {
         setSelectedEcosystem(ecosystem);
         setShowDeleteModal(true);
-      }
-    }
+      },
+    },
   ];
 
   // Filter and sort data
@@ -150,17 +134,18 @@ export default function EcosystemManagement() {
 
     // Apply filters
     if (filters.search) {
-      filtered = filtered.filter(e => 
-        e.name.toLowerCase().includes(filters.search!.toLowerCase()) ||
-        e.description.toLowerCase().includes(filters.search!.toLowerCase())
+      filtered = filtered.filter(
+        (e) =>
+          e.name.toLowerCase().includes(filters.search!.toLowerCase()) ||
+          e.description.toLowerCase().includes(filters.search!.toLowerCase())
       );
     }
 
     // Apply sorting
     filtered.sort((a, b) => {
-      const aValue = (a as any)[sortKey];
-      const bValue = (b as any)[sortKey];
-      
+      const aValue = a[sortKey as keyof Ecosystem];
+      const bValue = b[sortKey as keyof Ecosystem];
+
       if (sortDirection === 'asc') {
         return aValue > bValue ? 1 : -1;
       } else {
@@ -171,13 +156,13 @@ export default function EcosystemManagement() {
     return filtered;
   }, [ecosystems, filters, sortKey, sortDirection]);
 
-  const handleFilterChange = (key: string, value: any) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+  const handleFilterChange = (key: string, value: unknown) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleFilterReset = () => {
     setFilters({
-      search: ''
+      search: '',
     });
   };
 
@@ -193,7 +178,7 @@ export default function EcosystemManagement() {
         subtitle="Configura y gestiona los ecosistemas del sistema"
         breadcrumbs={[
           { label: 'Dashboard', href: '/admin/dashboard' },
-          { label: 'Gestión de Ecosistemas' }
+          { label: 'Gestión de Ecosistemas' },
         ]}
         actions={
           <>
@@ -231,10 +216,7 @@ export default function EcosystemManagement() {
 
       {/* Create Modal */}
       {showCreateModal && (
-        <Modal
-          onClose={() => setShowCreateModal(false)}
-          title="Crear Nuevo Ecosistema"
-        >
+        <Modal onClose={() => setShowCreateModal(false)} title="Crear Nuevo Ecosistema">
           <EcosystemForm
             onSubmit={handleCreateEcosystem}
             onCancel={() => setShowCreateModal(false)}
@@ -253,7 +235,7 @@ export default function EcosystemManagement() {
           <EcosystemForm
             initialData={{
               name: selectedEcosystem.name,
-              description: selectedEcosystem.description
+              description: selectedEcosystem.description,
             }}
             onSubmit={handleEditEcosystem}
             onCancel={() => setShowEditModal(false)}
@@ -265,25 +247,21 @@ export default function EcosystemManagement() {
 
       {/* Delete Modal */}
       {showDeleteModal && selectedEcosystem && (
-        <Modal
-          onClose={() => setShowDeleteModal(false)}
-          title="Confirmar Eliminación"
-        >
+        <Modal onClose={() => setShowDeleteModal(false)} title="Confirmar Eliminación">
           <div style={{ padding: '20px' }}>
-            <p>¿Estás seguro de que deseas eliminar el ecosistema <strong>{selectedEcosystem.name}</strong>?</p>
+            <p>
+              ¿Estás seguro de que deseas eliminar el ecosistema{' '}
+              <strong>{selectedEcosystem.name}</strong>?
+            </p>
             <p style={{ color: 'var(--danger)', fontSize: '14px' }}>
               Esta acción no se puede deshacer.
             </p>
             <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-              <Button 
-                variant="destructive" 
-                onClick={handleDeleteEcosystem}
-                loading={actionLoading}
-              >
+              <Button variant="destructive" onClick={handleDeleteEcosystem} loading={actionLoading}>
                 Eliminar Ecosistema
               </Button>
-              <Button 
-                variant="tertiary" 
+              <Button
+                variant="tertiary"
                 onClick={() => setShowDeleteModal(false)}
                 disabled={actionLoading}
               >
