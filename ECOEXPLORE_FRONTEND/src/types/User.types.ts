@@ -4,8 +4,10 @@ export interface User {
   email: string;
   role: 'admin' | 'member';
   points: number;
-  createdAt: string;
-  isActive: boolean;
+  profile_photo_url?: string;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface UserFilters {

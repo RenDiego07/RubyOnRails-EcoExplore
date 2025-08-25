@@ -20,7 +20,7 @@ export default function MemberDashboard() {
         <DashboardCard
           title="Mi Perfil"
           description="Gestiona tu información personal"
-          onClick={() => console.log('Mi Perfil - En desarrollo')}
+          path="/member/profile"
         />
 
         <DashboardCard

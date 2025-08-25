@@ -1,0 +1,26 @@
+.photoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.photoContainer.withBorder {
+  border: 2px solid var(--color-border);
+}
+
+.photoContainer.small {
+  width: 40px;
+  height: 40px;
+}
+
+.photoContainer.medium {
+  width: 64px;
+  height: 64px;
+}
+
+.photoContainer.large {
+  width: 120px;
+  height: 120px;
+}

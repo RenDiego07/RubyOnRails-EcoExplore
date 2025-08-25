@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   post "/species/updateSpecies", to: "species#updateSpecies"
   get "/user/getUsers"
   delete "/user/deleteUser/:id", to: "user#deleteUser"
+  
+  # User profile routes (nuevas)
+  get '/user/profile', to: 'user#profile'
+  patch '/user/profile', to: 'user#update_profile'
+  patch '/user/profile_photo', to: 'user#update_profile_photo'
+  
   # Authentication routes
   post '/auth/register', to: 'auth#register'
   post '/auth/login', to: 'auth#login'

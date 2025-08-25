@@ -2,11 +2,24 @@ class AuthService
   SECRET_KEY = Rails.application.credentials.secret_key_base || ENV['SECRET_KEY_BASE']
   
   def self.authenticate(email, password)
+    Rails.logger.info "🔍 AuthService.authenticate - Email: #{email}"
     user = User.find_by(email: email)
-    if user&.authenticate(password)
+    
+    if user.nil?
+      Rails.logger.error "❌ AuthService.authenticate - User not found for email: #{email}"
+      return { success: false, error: "Invalid email or password" }
+    end
+    
+    Rails.logger.info "✅ AuthService.authenticate - User found: #{user.id}"
+    Rails.logger.info "🔍 AuthService.authenticate - password_digest present: #{user.password_digest.present?}"
+    Rails.logger.info "🔍 AuthService.authenticate - password_digest length: #{user.password_digest&.length}"
+    
+    if user.authenticate(password)
+      Rails.logger.info "✅ AuthService.authenticate - Password authentication successful"
       token = generate_token(user.id)
       { success: true, token: token, user: user }
     else
+      Rails.logger.error "❌ AuthService.authenticate - Password authentication failed"
       { success: false, error: "Invalid email or password" }
     end
   end
