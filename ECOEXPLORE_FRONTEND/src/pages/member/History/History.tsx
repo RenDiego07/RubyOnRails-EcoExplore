@@ -2,26 +2,11 @@ import { useState } from 'react';
 import { Button, Table } from '@/components/common';
 import DisplayPictureModal from '@/components/common/Modals/DisplayPictureModal';
 import MapModal from '@/components/common/MapModal';
+import { useUserSightings } from '@/hooks/useUserSightings';
+import { useContributedSpecies } from '@/hooks/useContributedSpecies';
+import { transformSightingsToHistory, type HistorySighting } from '@/utils/sightingTransformers';
+import type { ContributedSpeciesData } from '@/interfaces';
 import styles from './History.module.css';
-
-interface Sighting {
-  id: string;
-  species_name: string;
-  location: string;
-  coordinates: { lat: number; lng: number };
-  description: string;
-  date: string;
-  image_url?: string;
-}
-
-interface Species {
-  id: string;
-  name: string;
-  description: string;
-  location: string;
-  coordinates: { lat: number; lng: number };
-  image_url: string;
-}
 
 type HistoryView = 'sightings' | 'species';
 
@@ -39,64 +24,22 @@ export default function History() {
     title: '',
   });
 
-  // Mock data para sightings del usuario
-  const mockSightings: Sighting[] = [
-    {
-      id: '1',
-      species_name: 'Águila Real',
-      location: 'Parque Nacional Yellowstone',
-      coordinates: { lat: 44.9778, lng: -110.6968 },
-      description: 'Avistada cerca del lago durante el amanecer. Comportamiento de caza observado.',
-      date: '2024-08-20',
-      image_url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500',
-    },
-    {
-      id: '2',
-      species_name: 'Lobo Gris',
-      location: 'Bosque Nacional de Alaska',
-      coordinates: { lat: 64.0685, lng: -152.2782 },
-      description: 'Manada de 5 individuos observada durante migración.',
-      date: '2024-08-18',
-      image_url: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=500',
-    },
-    {
-      id: '3',
-      species_name: 'Oso Pardo',
-      location: 'Montañas Rocosas',
-      coordinates: { lat: 39.7392, lng: -104.9903 },
-      description: 'Ejemplar adulto pescando salmón en el río.',
-      date: '2024-08-15',
-      image_url: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=500',
-    },
-  ];
+  // Obtener sightings reales del usuario
+  const {
+    sightings: rawSightings,
+    loading: sightingsLoading,
+    error: sightingsError,
+  } = useUserSightings();
 
-  // Mock data para especies encontradas por el usuario
-  const mockSpecies: Species[] = [
-    {
-      id: '1',
-      name: 'Mariposa Monarca',
-      description: 'Especie migratoria conocida por sus viajes de larga distancia.',
-      location: 'Reserva de la Biosfera Mariposa Monarca',
-      coordinates: { lat: 19.5943, lng: -100.2442 },
-      image_url: 'https://images.unsplash.com/photo-1444927714506-8492d94b5ba0?w=500',
-    },
-    {
-      id: '2',
-      name: 'Jaguar',
-      description: 'Felino más grande de América, especie en peligro de extinción.',
-      location: 'Selva Lacandona, Chiapas',
-      coordinates: { lat: 16.8563, lng: -91.5549 },
-      image_url: 'https://images.unsplash.com/photo-1551969014-7d2c4cddf0b6?w=500',
-    },
-    {
-      id: '3',
-      name: 'Quetzal Resplandeciente',
-      description: 'Ave sagrada de las culturas mesoamericanas.',
-      location: 'Bosque de Niebla, Guatemala',
-      coordinates: { lat: 14.6349, lng: -90.5069 },
-      image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500',
-    },
-  ];
+  // Obtener especies contribuidas reales del usuario
+  const {
+    species: contributedSpecies,
+    loading: speciesLoading,
+    error: speciesError,
+  } = useContributedSpecies();
+
+  // Transformar los datos de Sighting al formato esperado por el componente
+  const userSightings: HistorySighting[] = transformSightingsToHistory(rawSightings);
 
   const handleShowMap = (
     coordinates: { lat: number; lng: number },
@@ -121,7 +64,7 @@ export default function History() {
       key: 'location',
       label: 'Ubicación',
       sortable: true,
-      render: (value: unknown, row: Sighting) => (
+      render: (value: unknown, row: HistorySighting) => (
         <div className={styles.locationCell}>
           <span>{value as string}</span>
           <Button
@@ -175,7 +118,7 @@ export default function History() {
       key: 'location',
       label: 'Ubicación',
       sortable: true,
-      render: (value: unknown, row: Species) => (
+      render: (value: unknown, row: ContributedSpeciesData) => (
         <div className={styles.locationCell}>
           <span>{value as string}</span>
           <Button
@@ -194,11 +137,20 @@ export default function History() {
       key: 'image_url',
       label: 'Imagen',
       sortable: false,
-      render: (value: unknown) => (
-        <Button variant="secondary" size="small" onClick={() => handleShowImage(value as string)}>
-          🖼️ Ver imagen
-        </Button>
-      ),
+      render: (value: unknown) => {
+        if (value) {
+          return (
+            <Button
+              variant="secondary"
+              size="small"
+              onClick={() => handleShowImage(value as string)}
+            >
+              🖼️ Ver imagen
+            </Button>
+          );
+        }
+        return <span className={styles.noImage}>Sin imagen</span>;
+      },
     },
   ];
 
@@ -217,29 +169,40 @@ export default function History() {
           onClick={() => setCurrentView('sightings')}
           className={styles.toggleButton}
         >
-          📋 Mis Avistamientos ({mockSightings.length})
+          📋 Mis Avistamientos ({userSightings.length})
         </Button>
         <Button
           variant={currentView === 'species' ? 'primary' : 'secondary'}
           onClick={() => setCurrentView('species')}
           className={styles.toggleButton}
         >
-          🦋 Especies Contribuidas ({mockSpecies.length})
+          🦋 Especies Contribuidas ({contributedSpecies.length})
         </Button>
       </div>
+
+      {/* Mostrar error si hay alguno */}
+      {(sightingsError || speciesError) && (
+        <div className={styles.errorMessage}>
+          <p>
+            Error al cargar los datos: {currentView === 'sightings' ? sightingsError : speciesError}
+          </p>
+        </div>
+      )}
 
       <div className={styles.tableContainer}>
         {currentView === 'sightings' ? (
           <Table
-            data={mockSightings}
+            data={userSightings}
             columns={sightingsColumns}
             emptyMessage="No has registrado ningún avistamiento aún"
+            loading={sightingsLoading}
           />
         ) : (
           <Table
-            data={mockSpecies}
+            data={contributedSpecies}
             columns={speciesColumns}
             emptyMessage="No has contribuido a encontrar ninguna especie aún"
+            loading={speciesLoading}
           />
         )}
       </div>

@@ -61,6 +61,31 @@
   font-size: 14px;
 }
 
+.errorMessage {
+  background-color: var(--color-danger-background, #fee);
+  border: 1px solid var(--color-danger, #e53e3e);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.errorMessage p {
+  color: var(--color-danger, #e53e3e);
+  margin: 0;
+  font-weight: 500;
+}
+
+.sightingCount {
+  background-color: var(--color-primary-background, #e6f3ff);
+  color: var(--color-primary, #0066cc);
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
 @media (max-width: 768px) {
   .historyContainer {
     padding: 16px;

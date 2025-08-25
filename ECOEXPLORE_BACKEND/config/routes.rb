@@ -29,6 +29,14 @@ Rails.application.routes.draw do
   end
   resources :ecosystems
   
+  # User contributed species routes
+  resources :user_species, only: [] do
+    collection do
+      get :my_contributed_species
+      get :all_contributed_species
+    end
+  end
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
