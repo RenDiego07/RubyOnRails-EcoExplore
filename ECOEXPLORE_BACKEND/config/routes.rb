@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     collection do
       get :my_contributed_species
       get :all_contributed_species
+      get :explore_species
     end
   end
   

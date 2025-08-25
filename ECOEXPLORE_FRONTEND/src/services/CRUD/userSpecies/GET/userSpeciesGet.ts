@@ -20,3 +20,13 @@ export const getAllContributedSpecies = async (): Promise<ContributedSpeciesResp
     throw error;
   }
 };
+
+export const getExploreSpecies = async (): Promise<ContributedSpeciesResponse[]> => {
+  try {
+    const response = await APIClient.get('/user_species/explore_species');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching explore species:', error);
+    throw error;
+  }
+};
