@@ -1,7 +1,6 @@
 class SightingsController < ApplicationController
   wrap_parameters false
   
-  # GET /sightings - Todos los sightings (admin)
   def index
     result = SightingService.get_all
     if result.success
@@ -11,7 +10,6 @@ class SightingsController < ApplicationController
     end
   end
 
-  # GET /sightings/my_sightings - Sightings del usuario actual
   def my_sightings
     result = SightingService.get_user_sightings(user: current_user)
     if result.success

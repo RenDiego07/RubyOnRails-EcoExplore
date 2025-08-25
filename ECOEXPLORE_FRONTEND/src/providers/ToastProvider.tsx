@@ -32,17 +32,14 @@ export default function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastEntry[]>([]);
 
   const extractMessage = useCallback((element: React.ReactElement): string => {
-    // Si es un Alert component, extraer el mensaje de sus props
     if (element?.props?.message) {
       return element.props.message;
     }
 
-    // Si es un string directo
     if (typeof element === 'string') {
       return element;
     }
 
-    // Fallback: intentar extraer texto del children
     if (element?.props?.children) {
       const children = element.props.children;
       if (typeof children === 'string') {

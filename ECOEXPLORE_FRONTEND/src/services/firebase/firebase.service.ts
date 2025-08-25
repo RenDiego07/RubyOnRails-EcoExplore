@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -12,7 +11,6 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
@@ -25,19 +23,16 @@ export class FirebaseService {
    */
   static async uploadImage(file: File, folder: string = 'sightings'): Promise<string> {
     try {
-      console.log('🔄 Iniciando subida de imagen...', file.name);
+      console.log('Iniciando subida de imagen...', file.name);
 
-      // Generar nombre único para el archivo
       const timestamp = Date.now();
       const randomString = Math.random().toString(36).substring(2);
       const fileName = `${timestamp}_${randomString}_${file.name}`;
 
-      // Crear referencia al archivo en Storage
       const storageRef = ref(storage, `${folder}/${fileName}`);
 
-      console.log('📁 Referencia creada:', storageRef.toString());
+      console.log('Referencia creada:', storageRef.toString());
 
-      // Subir archivo con metadatos adicionales
       const metadata = {
         contentType: file.type,
         cacheControl: 'public,max-age=3600',
@@ -48,17 +43,15 @@ export class FirebaseService {
       };
 
       const snapshot = await uploadBytes(storageRef, file, metadata);
-      console.log('✅ Archivo subido:', snapshot.ref.fullPath);
+      console.log('Archivo subido:', snapshot.ref.fullPath);
 
-      // Obtener URL de descarga
       const downloadURL = await getDownloadURL(snapshot.ref);
-      console.log('✅ URL obtenida:', downloadURL);
+      console.log('URL obtenida:', downloadURL);
 
       return downloadURL;
     } catch (error: unknown) {
-      console.error('❌ Error detallado al subir imagen:', error);
+      console.error('Error detallado al subir imagen:', error);
 
-      // Manejar errores específicos de CORS
       if (
         error instanceof Error &&
         (error.message?.includes('CORS') || error.message?.includes('Cross-Origin'))
@@ -66,7 +59,6 @@ export class FirebaseService {
         throw new Error('Error de configuración CORS. Por favor contacta al administrador.');
       }
 
-      // Manejar otros errores comunes de Firebase
       const firebaseError = error as { code?: string; message?: string };
 
       if (firebaseError.code === 'storage/unauthorized') {
@@ -89,17 +81,15 @@ export class FirebaseService {
    */
   static async deleteImage(imageUrl: string): Promise<void> {
     try {
-      // Extraer la ruta del archivo desde la URL
       const url = new URL(imageUrl);
       const path = decodeURIComponent(url.pathname.split('/o/')[1].split('?')[0]);
 
-      // Crear referencia y eliminar
       const imageRef = ref(storage, path);
       await deleteObject(imageRef);
 
-      console.log('✅ Imagen eliminada exitosamente');
+      console.log('Imagen eliminada exitosamente');
     } catch (error) {
-      console.error('❌ Error al eliminar imagen:', error);
+      console.error('Error al eliminar imagen:', error);
       throw new Error('Error al eliminar la imagen.');
     }
   }
@@ -110,7 +100,6 @@ export class FirebaseService {
    * @returns true si es válido, false si no
    */
   static validateImageFile(file: File): { isValid: boolean; error?: string } {
-    // Validar tipo de archivo
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
       return {
@@ -119,8 +108,7 @@ export class FirebaseService {
       };
     }
 
-    // Validar tamaño (máximo 5MB)
-    const maxSize = 5 * 1024 * 1024; // 5MB en bytes
+    const maxSize = 5 * 1024 * 1024;
     if (file.size > maxSize) {
       return {
         isValid: false,
@@ -151,7 +139,6 @@ export class FirebaseService {
       const img = new Image();
 
       img.onload = () => {
-        // Calcular nuevas dimensiones manteniendo proporción
         let { width, height } = img;
 
         if (width > height) {
@@ -169,10 +156,8 @@ export class FirebaseService {
         canvas.width = width;
         canvas.height = height;
 
-        // Dibujar imagen redimensionada
         ctx.drawImage(img, 0, 0, width, height);
 
-        // Convertir a Blob y luego a File
         canvas.toBlob(
           (blob) => {
             const resizedFile = new File([blob!], file.name, {

@@ -2,7 +2,7 @@ class SightingService
   Result = Struct.new(:success, :sighting, :sightings, :error, keyword_init: true)
 
   def self.create(user:, params:)
-    Rails.logger.info "🔍 SightingService.create params: #{params.inspect}"
+    Rails.logger.info "SightingService.create params: #{params.inspect}"
     
     ActiveRecord::Base.transaction do
       sighting_state = resolve_state(params)
@@ -22,49 +22,46 @@ class SightingService
         specie: params[:specie]
       )
       
-      Rails.logger.info "🔍 Sighting antes de guardar: #{sighting.attributes.inspect}"
+      Rails.logger.info "Sighting antes de guardar: #{sighting.attributes.inspect}"
 
       if sighting.save
-        Rails.logger.info "✅ Sighting guardado exitosamente con ID: #{sighting.id}"
+        Rails.logger.info "Sighting guardado exitosamente con ID: #{sighting.id}"
         return Result.new(success: true, sighting: sighting)
       else
-        Rails.logger.error "❌ Error al guardar sighting: #{sighting.errors.full_messages}"
+        Rails.logger.error "Error al guardar sighting: #{sighting.errors.full_messages}"
         return Result.new(success: false, error: sighting.errors.full_messages.join(", "))
       end
     end
   rescue ActiveRecord::RecordNotFound => e
-    Rails.logger.error "❌ RecordNotFound: #{e.message}"
+    Rails.logger.error "RecordNotFound: #{e.message}"
     Result.new(success: false, error: e.message)
   rescue StandardError => e
-    Rails.logger.error "❌ StandardError: #{e.message}"
+    Rails.logger.error "StandardError: #{e.message}"
     Result.new(success: false, error: e.message)
   end
 
-  # Get all sightings (admin)
   def self.get_all
-    Rails.logger.info "🔍 SightingService.get_all"
+    Rails.logger.info "SightingService.get_all"
     begin
       sightings = Sighting.includes(:sighting_state, :location, :ecosystem, :user).order(created_at: :desc)
       Result.new(success: true, sightings: sightings)
     rescue StandardError => e
-      Rails.logger.error "❌ Error getting all sightings: #{e.message}"
+      Rails.logger.error "Error getting all sightings: #{e.message}"
       Result.new(success: false, error: e.message)
     end
   end
 
-  # Get user's sightings
   def self.get_user_sightings(user:)
-    Rails.logger.info "🔍 SightingService.get_user_sightings for user_id: #{user.id}"
+    Rails.logger.info "SightingService.get_user_sightings for user_id: #{user.id}"
     begin
       sightings = user.sightings.includes(:sighting_state, :location, :ecosystem).order(created_at: :desc)
       Result.new(success: true, sightings: sightings)
     rescue StandardError => e
-      Rails.logger.error "❌ Error getting user sightings: #{e.message}"
+      Rails.logger.error "Error getting user sightings: #{e.message}"
       Result.new(success: false, error: e.message)
     end
   end
 
-  # Update sighting state (admin-only)
   def self.update_state(user:, sighting_id:, params:)
     return Result.new(success: false, error: 'Unauthorized') unless user&.role == 'admin'
 
@@ -108,7 +105,6 @@ class SightingService
     elsif params[:sighting_state_code].present?
       SightingState.find_by!(code: params[:sighting_state_code].to_s.upcase)
     else
-      # Asignar automáticamente el estado "pending" por defecto
       SightingState.find_by!(code: 'PENDING')
     end
   end
@@ -116,8 +112,6 @@ class SightingService
 
   def self.find_or_create_location(name:, coordinates:)
     raise ArgumentError, "location_name is required" if name.blank?
-    ##
-    # Las coordenadas son opcionales
     coords = coordinates.present? ? coordinates : nil
     Location.find_or_create_by!(name: name, coordinates: coords)
   end

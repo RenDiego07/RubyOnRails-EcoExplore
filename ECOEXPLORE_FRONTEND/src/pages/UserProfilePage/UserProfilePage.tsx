@@ -24,7 +24,6 @@ interface ProfileUpdateData {
   new_password?: string;
 }
 
-// Helper function to safely get profile photo URL
 const getProfilePhotoUrl = (user: unknown): string => {
   return (user as { profile_photo_url?: string })?.profile_photo_url || '';
 };
@@ -74,7 +73,6 @@ export default function UserProfilePage() {
       newErrors.email = 'El email no es válido';
     }
 
-    // Password validation - only if user wants to change password
     if (formData.current_password || formData.new_password || formData.confirm_password) {
       if (!formData.current_password.trim()) {
         newErrors.current_password = 'La contraseña actual es requerida';
@@ -103,7 +101,6 @@ export default function UserProfilePage() {
       [field]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
@@ -121,27 +118,22 @@ export default function UserProfilePage() {
     try {
       setIsLoading(true);
 
-      // Prepare data for backend
       const updateData: ProfileUpdateData = {
         name: formData.name,
         email: formData.email,
       };
 
-      // Add password fields only if user wants to change password
       if (formData.current_password || formData.new_password || formData.confirm_password) {
         updateData.current_password = formData.current_password;
         updateData.new_password = formData.new_password;
       }
 
-      // Update user profile using UserService
       const updatedUser = await UserService.updateProfile(updateData);
 
-      // Update user context with the response
       if (updateUser) {
         updateUser(updatedUser);
       }
 
-      // Reset password fields after successful update
       setFormData((prev) => ({
         ...prev,
         current_password: '',
@@ -166,7 +158,6 @@ export default function UserProfilePage() {
   };
 
   const handleCancel = () => {
-    // Reset form to original values
     setFormData({
       name: user?.name || '',
       email: user?.email || '',
@@ -188,7 +179,6 @@ export default function UserProfilePage() {
       ...prev,
       profile_photo_url: photoUrl,
     }));
-    // Update user context immediately with new photo
     if (updateUser) {
       updateUser({ profile_photo_url: photoUrl });
     }
@@ -222,7 +212,7 @@ export default function UserProfilePage() {
           ) : (
             <>
               <Button variant="tertiary" onClick={handleCancel} className={styles.cancelButton}>
-                ❌ Cancelar
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -230,7 +220,7 @@ export default function UserProfilePage() {
                 disabled={isLoading}
                 className={styles.saveButton}
               >
-                💾 {isLoading ? 'Guardando...' : 'Guardar Cambios'}
+                {isLoading ? 'Guardando...' : 'Guardar Cambios'}
               </Button>
             </>
           )}

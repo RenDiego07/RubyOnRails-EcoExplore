@@ -1,7 +1,6 @@
 import { User } from '@/types';
 import APIClient from '../apiClient';
 
-// Interfaces para el perfil de usuario
 export interface UpdateProfileData {
   name: string;
   email: string;
@@ -25,7 +24,6 @@ export interface UserProfileResponse {
 }
 
 export class UserService {
-  // Métodos existentes (no modificar)
   static async getUsers(): Promise<User[] | null> {
     const response = await APIClient.get<User[]>('/user/getUsers');
     if (response.data) {
@@ -37,8 +35,6 @@ export class UserService {
   static async deleteUser(userId: string): Promise<void> {
     await APIClient.delete(`/user/deleteUser/${userId}`);
   }
-
-  // Nuevos métodos para perfil de usuario
 
   /**
    * Obtener el perfil del usuario actual
@@ -84,13 +80,10 @@ export class UserService {
    */
   static async uploadAndUpdateProfilePhoto(file: File): Promise<UserProfileResponse> {
     try {
-      // Importar dinámicamente el servicio de Firebase
       const { FirebaseService } = await import('@/services/firebase/firebase.service');
 
-      // Subir imagen a Firebase
       const photoUrl = await FirebaseService.uploadImage(file, 'profile-photos');
 
-      // Actualizar perfil con la nueva URL
       return await this.updateProfilePhoto({ profile_photo_url: photoUrl });
     } catch (error) {
       console.error('Error uploading and updating profile photo:', error);
@@ -103,12 +96,10 @@ export class UserService {
    */
   static async removeProfilePhoto(currentPhotoUrl?: string): Promise<UserProfileResponse> {
     try {
-      // Si hay una foto actual, eliminarla de Firebase
       if (currentPhotoUrl) {
         const { FirebaseService } = await import('@/services/firebase/firebase.service');
         await FirebaseService.deleteImage(currentPhotoUrl);
       }
-      // Actualizar perfil sin foto
       return await this.updateProfilePhoto({ profile_photo_url: '' });
     } catch (error) {
       console.error('Error removing profile photo:', error);

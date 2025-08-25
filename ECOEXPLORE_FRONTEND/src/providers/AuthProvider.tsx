@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const clearSession = () => {
-    console.log('🧹 AuthProvider: Clearing session');
+    console.log('AuthProvider: Clearing session');
     localStorage.removeItem('token');
     setUser(null);
   };
@@ -47,20 +47,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const currentTime = Date.now() / 1000;
 
       if (decoded.exp && decoded.exp < currentTime) {
-        console.log('⏰ AuthProvider: Token has expired');
+        console.log('AuthProvider: Token has expired');
         return true;
       }
 
-      console.log('✅ AuthProvider: Token is valid');
+      console.log('AuthProvider: Token is valid');
       return false;
     } catch (error) {
-      console.error('❌ AuthProvider: Error checking token expiration', error);
+      console.error('AuthProvider: Error checking token expiration', error);
       return true;
     }
   };
 
   const checkAuth = useCallback(() => {
-    console.log('🔍 AuthProvider: === VERIFICANDO AUTENTICACIÓN ===');
+    console.log('AuthProvider: === VERIFICANDO AUTENTICACION ===');
     try {
       const jwtToken = localStorage.getItem('token');
       if (!jwtToken) {
@@ -104,13 +104,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser((prevUser: User | null) => {
             if (!prevUser || prevUser.id !== userFromToken.id) {
               console.log('AuthProvider: Updating user state');
-              // Fetch complete user profile from API to get profile_photo_url and other missing data
               fetchUserProfile(payload.user_id).then((completeUser) => {
                 if (completeUser) {
                   setUser(completeUser);
                 }
               });
-              return userFromToken; // Return basic user first, then update with complete profile
+              return userFromToken;
             }
             return prevUser;
           });
@@ -128,7 +127,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user]);
 
-  // Inicialización inicial
   useEffect(() => {
     const initializeAuth = async () => {
       setIsLoading(true);
@@ -139,10 +137,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     initializeAuth();
   }, [checkAuth]);
 
-  // Escuchar eventos de logout desde interceptors de API
   useEffect(() => {
     const handleAuthLogout = (event: CustomEvent) => {
-      console.log('🔔 AuthProvider: Received automatic logout event:', event.detail);
+      console.log('AuthProvider: Received automatic logout event:', event.detail);
       clearSession();
     };
 
@@ -156,11 +153,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     console.log('AuthProvider: === CERRANDO SESIÓN ===');
     clearSession();
-    console.log('✅ AuthProvider: Session closed');
+    console.log('AuthProvider: Session closed');
   };
 
   const handleToken = (jwtToken: string) => {
-    console.log('🔍 AuthProvider: === Saving JWT token in localStorage ===');
+    console.log('AuthProvider: === Saving JWT token in localStorage ===');
     localStorage.setItem('token', jwtToken);
     console.log('AuthProvider: JWT token saved correctly');
     checkAuth();

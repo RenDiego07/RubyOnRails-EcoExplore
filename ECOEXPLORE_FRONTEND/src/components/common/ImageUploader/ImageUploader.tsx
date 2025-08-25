@@ -27,7 +27,6 @@ export default function ImageUploader({
 
     setError(null);
 
-    // Validar archivo
     const validation = FirebaseService.validateImageFile(file);
     if (!validation.isValid) {
       setError(validation.error || 'Archivo no válido');
@@ -37,20 +36,15 @@ export default function ImageUploader({
     try {
       setIsUploading(true);
 
-      // Crear preview local
       const localPreview = URL.createObjectURL(file);
       setPreviewUrl(localPreview);
 
-      // Redimensionar imagen si es muy grande
       const resizedFile = await FirebaseService.resizeImage(file, 1200, 800, 0.8);
 
-      // Subir a Firebase
       const downloadURL = await FirebaseService.uploadImage(resizedFile);
 
-      // Limpiar preview local
       URL.revokeObjectURL(localPreview);
 
-      // Actualizar con la URL real
       setPreviewUrl(downloadURL);
       onImageUploaded(downloadURL);
     } catch (error) {
@@ -59,7 +53,6 @@ export default function ImageUploader({
       setPreviewUrl(currentImage || null);
     } finally {
       setIsUploading(false);
-      // Limpiar input
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -119,7 +112,7 @@ export default function ImageUploader({
         </div>
       ) : (
         <div className={styles.uploadPlaceholder}>
-          <div className={styles.uploadIcon}>📸</div>
+          <div className={styles.uploadIcon}></div>
           <p className={styles.uploadText}>
             {isUploading ? 'Subiendo imagen...' : 'Agregar imagen del avistamiento'}
           </p>

@@ -46,39 +46,34 @@ export default function RegisterPage() {
         password: data.password,
       };
 
-      console.log('🔵 RegisterPage: Enviando datos de registro:', userData);
+      console.log('RegisterPage: Enviando datos de registro:', userData);
       const result = await AuthService.register(userData);
-      console.log('🔵 RegisterPage: Resultado del registro:', result);
+      console.log('RegisterPage: Resultado del registro:', result);
 
-      // Usar las utilidades para manejar la respuesta
       if (isSuccessResponse(result)) {
-        // Extraer y guardar token si existe
         const token = extractToken(result);
         if (token) {
           localStorage.setItem('token', token);
-          console.log('🟢 RegisterPage: Token guardado en localStorage');
+          console.log('RegisterPage: Token guardado en localStorage');
         }
-        // Obtener mensaje de éxito
         const successMessage = getSuccessMessage(
           result,
           'Cuenta creada exitosamente. Ahora puedes iniciar sesión.'
         );
-        console.log('🟢 RegisterPage: Registro exitoso, navegando a home');
+        console.log('RegisterPage: Registro exitoso, navegando a home');
         navigate('/', {
           state: {
             message: successMessage,
           },
         });
       } else {
-        // Usar la utilidad para extraer el mensaje de error
         const errorMessage = getErrorMessage(result, 'Error al crear la cuenta');
-        console.log('🔴 RegisterPage: Registro falló:', errorMessage);
+        console.log('RegisterPage: Registro falló:', errorMessage);
         setError(errorMessage);
       }
     } catch (error) {
-      // Usar la utilidad para manejar errores de conexión y otros errores
       const errorMessage = getErrorMessage(error, 'Error de conexión al servidor');
-      console.error('🔴 RegisterPage: Error en registro:', error);
+      console.error('RegisterPage: Error en registro:', error);
       setError(errorMessage);
     } finally {
       setLoading(false);

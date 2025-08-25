@@ -31,16 +31,15 @@ export const getErrorMessage = (
   error: unknown,
   defaultMessage: string = 'Ha ocurrido un error inesperado'
 ): string => {
-  console.log('🔍 getErrorMessage - error recibido:', error);
+  console.log('getErrorMessage - error recibido:', error);
 
-  // Si es un error de axios con response
   if (error && typeof error === 'object' && 'response' in error) {
     const axiosError = error as ErrorResponse;
     const responseData = axiosError.response?.data;
     const status = axiosError.response?.status;
 
-    console.log('🔍 getErrorMessage - responseData:', responseData);
-    console.log('🔍 getErrorMessage - status:', status);
+    console.log('getErrorMessage - responseData:', responseData);
+    console.log('getErrorMessage - status:', status);
 
     if (responseData) {
       if (responseData.errors && typeof responseData.errors === 'object') {

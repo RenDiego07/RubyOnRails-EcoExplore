@@ -26,7 +26,6 @@ export default function ProfilePhotoUpload({
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Validar archivo usando FirebaseService
     const validation = FirebaseService.validateImageFile(file);
     if (!validation.isValid) {
       showToast(
@@ -36,7 +35,6 @@ export default function ProfilePhotoUpload({
       return;
     }
 
-    // Create preview
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result as string;
@@ -53,15 +51,12 @@ export default function ProfilePhotoUpload({
       setIsUploading(true);
       const file = fileInputRef.current.files[0];
 
-      // Subir usando el servicio de usuarios que incluye Firebase
       const result = await UserService.uploadAndUpdateProfilePhoto(file);
-      // Call the callback to update parent component
       onPhotoChange(result.profile_photo_url || '');
 
       setHasChanges(false);
       setPreviewUrl('');
 
-      // Clear input
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -96,7 +91,6 @@ export default function ProfilePhotoUpload({
 
     try {
       setIsUploading(true);
-      // Usar el servicio para eliminar la foto
       await UserService.removeProfilePhoto(currentPhoto);
       onPhotoChange('');
 
@@ -145,7 +139,7 @@ export default function ProfilePhotoUpload({
               disabled={disabled || isUploading}
               className={styles.selectButton}
             >
-              📷 {currentPhoto ? 'Cambiar Foto' : 'Subir Foto'}
+              {currentPhoto ? 'Cambiar Foto' : 'Subir Foto'}
             </Button>
 
             {currentPhoto && (
@@ -155,7 +149,7 @@ export default function ProfilePhotoUpload({
                 disabled={disabled || isUploading}
                 className={styles.deleteButton}
               >
-                🗑️ {isUploading ? 'Eliminando...' : 'Eliminar Foto'}
+                {isUploading ? 'Eliminando...' : 'Eliminar Foto'}
               </Button>
             )}
           </>
@@ -167,7 +161,7 @@ export default function ProfilePhotoUpload({
               disabled={isUploading}
               className={styles.cancelButton}
             >
-              ❌ Cancelar
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -175,7 +169,7 @@ export default function ProfilePhotoUpload({
               disabled={isUploading}
               className={styles.uploadButton}
             >
-              ⬆️ {isUploading ? 'Subiendo...' : 'Subir'}
+              {isUploading ? 'Subiendo...' : 'Subir'}
             </Button>
           </div>
         )}

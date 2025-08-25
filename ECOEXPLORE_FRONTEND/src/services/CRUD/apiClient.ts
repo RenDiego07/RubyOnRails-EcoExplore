@@ -24,7 +24,7 @@ APIClient.interceptors.response.use(
   },
   (error) => {
     if (error.response?.status === 401) {
-      console.log('🔐 APIClient: Token inválido o expirado, limpiando sesión');
+      console.log('APIClient: Token inválido o expirado, limpiando sesión');
 
       localStorage.removeItem('token');
 

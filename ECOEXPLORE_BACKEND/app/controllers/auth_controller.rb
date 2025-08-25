@@ -40,7 +40,6 @@ class AuthController < ApplicationController
   end
   
   def logout
-    # Con JWT, el logout se maneja en el frontend eliminando el token
     render json: { message: "Logged out successfully" }, status: :ok
   end
   

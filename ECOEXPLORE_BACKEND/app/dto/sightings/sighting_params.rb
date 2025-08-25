@@ -2,7 +2,6 @@ class SightingParams
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  # Parámetros para crear un sighting
   def self.creation_params
     [
       :ecosystem_id,
@@ -14,7 +13,6 @@ class SightingParams
     ]
   end
 
-  # Parámetros para actualizar el estado de un sighting
   def self.update_params
     [
       :sighting_state_id,
@@ -22,7 +20,6 @@ class SightingParams
     ]
   end
 
-  # Método helper para filtrar parámetros en el controlador
   def self.permit_creation_params(params)
     params.permit(*creation_params)
   end

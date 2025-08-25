@@ -41,9 +41,7 @@ export default function LoginPage() {
 
       if (response?.token && response?.user) {
         console.log('Login exitoso:', response);
-        // Guardar token y establecer usuario en AuthProvider
         handleToken(response.token);
-        // La navegación se manejará automáticamente cuando el AuthProvider detecte el usuario
       } else {
         setError('Credenciales inválidas');
       }

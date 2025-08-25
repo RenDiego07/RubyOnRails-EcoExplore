@@ -1,5 +1,4 @@
 class UserController < ApplicationController
-  # Métodos existentes (no modificar - pertenecen a otro desarrollador)
   def getUsers
     users = User.all
     render json: users
@@ -11,7 +10,6 @@ class UserController < ApplicationController
     head :no_content
   end
   
-  # GET /user/profile - Obtener perfil del usuario actual
   def profile
     result = UserService.get_profile(user: current_user)
     if result.success
@@ -21,7 +19,6 @@ class UserController < ApplicationController
     end
   end
 
-  # PATCH /user/profile - Actualizar perfil del usuario actual
   def update_profile
     result = UserService.update_profile(user: current_user, params: profile_params)
     if result.success
@@ -31,7 +28,6 @@ class UserController < ApplicationController
     end
   end
 
-  # PATCH /user/profile_photo - Actualizar foto de perfil
   def update_profile_photo
     unless params[:profile_photo_url].present?
       return render json: { error: 'profile_photo_url is required' }, status: :bad_request

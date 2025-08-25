@@ -1,18 +1,15 @@
 class EcosystemsController < ApplicationController
   before_action :set_ecosystem, only: [:show, :update, :destroy]
 
-  # GET /ecosystems
   def index
     ecosystems = Ecosystem.all.order(:name)
     render json: ecosystems.map { |ecosystem| ecosystem_response(ecosystem) }
   end
 
-  # GET /ecosystems/:id
   def show
     render json: ecosystem_response(@ecosystem)
   end
 
-  # POST /ecosystems
   def create
     ecosystem = Ecosystem.new(ecosystem_params)
     
@@ -23,7 +20,6 @@ class EcosystemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ecosystems/:id
   def update
     if @ecosystem.update(ecosystem_params)
       render json: ecosystem_response(@ecosystem)
@@ -32,7 +28,6 @@ class EcosystemsController < ApplicationController
     end
   end
 
-  # DELETE /ecosystems/:id
   def destroy
     @ecosystem.destroy
     head :no_content
