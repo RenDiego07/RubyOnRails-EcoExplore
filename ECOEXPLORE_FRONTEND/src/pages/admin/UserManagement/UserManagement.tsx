@@ -91,7 +91,9 @@ export default function UserManagement() {
       key: 'isActive',
       label: 'Estado',
       render: (value: unknown) => (
-        <span className={`${styles.statusBadge} ${(value as boolean) ? styles.active : styles.inactive}`}>
+        <span
+          className={`${styles.statusBadge} ${(value as boolean) ? styles.active : styles.inactive}`}
+        >
           {(value as boolean) ? 'Activo' : 'Inactivo'}
         </span>
       ),
@@ -116,14 +118,14 @@ export default function UserManagement() {
       },
       variant: 'primary',
     },
-    {
-      label: 'Eliminar',
-      onClick: (user: User) => {
-        setSelectedUser(user);
-        setShowDeleteModal(true);
-      },
-      variant: 'danger',
-    },
+    // {
+    //   label: 'Eliminar',
+    //   onClick: (user: User) => {
+    //     setSelectedUser(user);
+    //     setShowDeleteModal(true);
+    //   },
+    //   variant: 'danger',
+    // },
   ];
 
   // Filtered and sorted users
@@ -185,17 +187,16 @@ export default function UserManagement() {
     // TODO: Implement user creation
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleEditUser = async (_formData: UserFormData) => {
-    updateUser({ 
+    updateUser({
       id: selectedUser!.id,
       name: _formData.name,
       email: _formData.email,
       role: _formData.role,
       points: _formData.points,
-      active: _formData.isActive
-     });
-     setShowEditModal(false);
+      active: _formData.isActive,
+    });
+    setShowEditModal(false);
   };
 
   const handleDeleteUser = async () => {

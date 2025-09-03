@@ -9,6 +9,7 @@ export interface HistorySighting {
   description: string;
   date: string;
   image_url?: string;
+  state: string;
 }
 
 export function transformSightingToHistory(sighting: Sighting): HistorySighting {
@@ -44,6 +45,7 @@ export function transformSightingToHistory(sighting: Sighting): HistorySighting 
     description: sighting.description,
     date: sighting.created_at,
     image_url: sighting.image_path,
+    state: sighting.sighting_state_name || 'Sin estado',
   };
 }
 
@@ -87,5 +89,6 @@ export function transformSightingResponseToHistory(
     description: sightingResponse.description,
     date: sightingResponse.created_at,
     image_url: sightingResponse.image_path,
+    state: sightingResponse.sighting_state_name || 'Sin estado',
   };
 }

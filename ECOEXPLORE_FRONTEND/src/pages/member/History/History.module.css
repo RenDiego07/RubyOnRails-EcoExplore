@@ -110,3 +110,37 @@
     gap: 4px;
   }
 }
+
+/* Estado tags */
+.stateTag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.stateApproved {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.statePending {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.stateRejected {
+  background-color: #fecaca;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.stateDefault {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}

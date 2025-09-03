@@ -54,6 +54,7 @@ export default function ExploreSpecies() {
               coordinates: { lat, lng },
               image_url: item.image_path,
               ecosystem_name: item.ecosystem_name,
+              type_specie_name: item.type_specie_name,
               sighting_description: item.sighting_description,
               contributed_date: item.contributed_date,
               total_sightings: item.total_sightings,
@@ -118,6 +119,19 @@ export default function ExploreSpecies() {
     setFilters({});
   };
 
+  const getSpecieTypeClass = (type: string) => {
+    switch (type.toLowerCase()) {
+      case 'native':
+      case 'nativa':
+        return styles.typeNative;
+      case 'invasive':
+      case 'invasiva':
+        return styles.typeInvasive;
+      default:
+        return styles.typeDefault;
+    }
+  };
+
   // Definir los campos de filtros
   const filterFields: FilterField[] = [
     {
@@ -142,6 +156,16 @@ export default function ExploreSpecies() {
   const speciesColumns = [
     { key: 'name', label: 'Nombre', sortable: true },
     { key: 'description', label: 'Descripción', sortable: false },
+    {
+      key: 'type_specie_name',
+      label: 'Tipo',
+      sortable: true,
+      render: (value: unknown) => {
+        const type = value as string;
+        const typeClass = getSpecieTypeClass(type);
+        return <span className={`${styles.typeTag} ${typeClass}`}>{type}</span>;
+      },
+    },
     {
       key: 'location',
       label: 'Ubicación',

@@ -233,3 +233,15 @@
     width: 100%;
   }
 }
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.formActions .saveButton {
+  min-width: 150px;
+}

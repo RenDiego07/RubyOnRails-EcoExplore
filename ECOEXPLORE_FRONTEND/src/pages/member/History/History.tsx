@@ -58,6 +58,22 @@ export default function History() {
     setSelectedImage(imageUrl);
   };
 
+  const getStateClass = (state: string) => {
+    switch (state.toLowerCase()) {
+      case 'approved':
+      case 'aprobado':
+        return styles.stateApproved;
+      case 'pending':
+      case 'pendiente':
+        return styles.statePending;
+      case 'rejected':
+      case 'rechazado':
+        return styles.stateRejected;
+      default:
+        return styles.stateDefault;
+    }
+  };
+
   const sightingsColumns = [
     { key: 'species_name', label: 'Especie', sortable: true },
     {
@@ -84,6 +100,16 @@ export default function History() {
       ),
     },
     { key: 'description', label: 'Descripción', sortable: false },
+    {
+      key: 'state',
+      label: 'Estado',
+      sortable: true,
+      render: (value: unknown) => {
+        const state = value as string;
+        const stateClass = getStateClass(state);
+        return <span className={`${styles.stateTag} ${stateClass}`}>{state}</span>;
+      },
+    },
     {
       key: 'date',
       label: 'Fecha',

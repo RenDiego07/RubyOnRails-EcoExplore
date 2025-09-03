@@ -106,6 +106,7 @@
 
 .actionButton.primary:hover {
   background: var(--primary-hover);
+  color: var(--info);
 }
 
 .actionButton.secondary {
@@ -114,7 +115,7 @@
 }
 
 .actionButton.secondary:hover {
-  background: var(--secondary-hover);
+  background: var(--info);
 }
 
 .actionButton.danger {
@@ -124,6 +125,7 @@
 
 .actionButton.danger:hover {
   background: var(--danger-hover);
+  color: var(--info)
 }
 
 .actionButton.tertiary {

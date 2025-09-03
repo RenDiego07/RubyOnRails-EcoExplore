@@ -52,7 +52,7 @@
 
 .selectButton {
   background-color: var(--secondary);
-  color: white;
+  color: var(--gray-500);
 }
 
 .deleteButton {

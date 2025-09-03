@@ -214,14 +214,6 @@ export default function UserProfilePage() {
               <Button variant="tertiary" onClick={handleCancel} className={styles.cancelButton}>
                 Cancelar
               </Button>
-              <Button
-                variant="primary"
-                onClick={handleSubmit}
-                disabled={isLoading}
-                className={styles.saveButton}
-              >
-                {isLoading ? 'Guardando...' : 'Guardar Cambios'}
-              </Button>
             </>
           )}
         </div>
@@ -327,6 +319,19 @@ export default function UserProfilePage() {
                 />
               </FormField>
             </div>
+
+            {isEditing && (
+              <div className={styles.formActions}>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={isLoading}
+                  className={styles.saveButton}
+                >
+                  {isLoading ? 'Guardando...' : 'Guardar Cambios'}
+                </Button>
+              </div>
+            )}
           </Form>
 
           <header className={styles.formHeader}>

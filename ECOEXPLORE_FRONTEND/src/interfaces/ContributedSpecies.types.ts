@@ -23,6 +23,7 @@ export interface ContributedSpeciesData {
   coordinates: { lat: number; lng: number };
   image_url?: string;
   ecosystem_name: string;
+  type_specie_name: string;
   sighting_description: string;
   contributed_date: string;
   total_sightings: number;

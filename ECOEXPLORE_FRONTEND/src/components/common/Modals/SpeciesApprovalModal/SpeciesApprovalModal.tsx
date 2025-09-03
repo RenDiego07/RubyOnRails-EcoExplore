@@ -10,7 +10,7 @@ export const SpeciesApprovalModal: React.FC<SpeciesApprovalModalProps> = ({
   onClose,
   onConfirm,
   defaultSpecieName,
-  loading = false
+  loading = false,
 }) => {
   const [action, setAction] = useState<'create' | 'select'>('create');
   const [speciesName, setSpeciesName] = useState(defaultSpecieName);
@@ -37,9 +37,9 @@ export const SpeciesApprovalModal: React.FC<SpeciesApprovalModalProps> = ({
     try {
       const [speciesData, typeSpeciesData] = await Promise.all([
         SpeciesService.getSpecies(),
-        SpeciesService.getTypeSpecies()
+        SpeciesService.getTypeSpecies(),
       ]);
-      
+
       if (speciesData) {
         setExistingSpecies(speciesData);
       }
@@ -54,13 +54,13 @@ export const SpeciesApprovalModal: React.FC<SpeciesApprovalModalProps> = ({
       action,
       speciesName: action === 'create' ? speciesName : undefined,
       selectedSpeciesId: action === 'select' ? selectedSpeciesId : undefined,
-      typeSpecieId: action === 'create' ? typeSpecieId : undefined
+      typeSpecieId: action === 'create' ? typeSpecieId : undefined,
     };
 
     onConfirm(data);
   };
 
-  const filteredSpecies = existingSpecies.filter(species =>
+  const filteredSpecies = existingSpecies.filter((species) =>
     species.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -187,11 +187,7 @@ export const SpeciesApprovalModal: React.FC<SpeciesApprovalModalProps> = ({
       </div>
 
       <div className={styles.footer}>
-        <button
-          className={styles.cancelButton}
-          onClick={onClose}
-          disabled={loading}
-        >
+        <button className={styles.cancelButton} onClick={onClose} disabled={loading}>
           Cancelar
         </button>
         <button

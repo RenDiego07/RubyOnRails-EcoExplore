@@ -128,7 +128,7 @@ EcoExplore es una aplicación web para el registro y monitoreo de avistamientos 
 - Visualizar avistamientos en el mapa
 - Filtrar por ecosistema o tipo de especie
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 RubyOnRails-EcoExplore/
