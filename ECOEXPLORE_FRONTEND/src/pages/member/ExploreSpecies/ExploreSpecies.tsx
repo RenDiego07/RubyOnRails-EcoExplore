@@ -8,12 +8,15 @@ import type { ContributedSpeciesResponse, ContributedSpeciesData } from '@/inter
 import type { FilterField } from '@/components/common/Filters/Filters.types';
 import styles from './ExploreSpecies.module.css';
 
+// Tipos para los filtros
 interface ExploreSpeciesFilters extends Record<string, unknown> {
   ecosystem?: string;
   search?: string;
 }
 
+// Componente principal para explorar especies
 export default function ExploreSpecies() {
+  // Estados principales
   const [species, setSpecies] = useState<ContributedSpeciesData[]>([]);
   const [ecosystems, setEcosystems] = useState<Ecosystem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,26 +33,24 @@ export default function ExploreSpecies() {
   });
   const [filters, setFilters] = useState<ExploreSpeciesFilters>({});
 
+  // Obtiene especies y ecosistemas al montar el componente
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        // Obtener todas las especies contribuidas y los ecosistemas
         const [speciesResponse, ecosystemsResponse] = await Promise.all([
           getExploreSpecies(),
           CRUDEcosystems.getAll(),
         ]);
 
-        // Transformar los datos de especies
+        // Transforma los datos recibidos
         const transformedSpecies: ContributedSpeciesData[] = speciesResponse.map(
           (item: ContributedSpeciesResponse) => {
-            // Parsear las coordenadas del string "lat,lng"
             const [lat, lng] = item.location_coordinates.split(',').map(Number);
-
             return {
               id: item.id.toString(),
               name: item.name,
-              description: item.sighting_description, // Usar la descripción del sighting
+              description: item.sighting_description,
               location: item.location,
               coordinates: { lat, lng },
               image_url: item.image_path,
@@ -74,14 +75,11 @@ export default function ExploreSpecies() {
     fetchData();
   }, []);
 
-  // Filtrar especies según los filtros activos
+  // Filtra especies según los filtros activos
   const filteredSpecies = species.filter((specie) => {
-    // Filtro por ecosistema
     if (filters.ecosystem && specie.ecosystem_name !== filters.ecosystem) {
       return false;
     }
-
-    // Filtro por búsqueda (nombre o descripción)
     if (filters.search) {
       const searchTerm = filters.search.toLowerCase();
       const matchesName = specie.name.toLowerCase().includes(searchTerm);
@@ -90,10 +88,10 @@ export default function ExploreSpecies() {
         return false;
       }
     }
-
     return true;
   });
 
+  // Muestra modal de mapa
   const handleShowMap = (
     coordinates: { lat: number; lng: number },
     title: string,
@@ -107,18 +105,22 @@ export default function ExploreSpecies() {
     });
   };
 
+  // Muestra modal de imagen
   const handleShowImage = (imageUrl: string) => {
     setSelectedImage(imageUrl);
   };
 
+  // Actualiza los filtros
   const handleFilterChange = (key: string, value: unknown) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
+  // Resetea los filtros
   const handleResetFilters = () => {
     setFilters({});
   };
 
+  // Devuelve la clase CSS según el tipo de especie
   const getSpecieTypeClass = (type: string) => {
     switch (type.toLowerCase()) {
       case 'native':
@@ -132,7 +134,7 @@ export default function ExploreSpecies() {
     }
   };
 
-  // Definir los campos de filtros
+  // Campos para los filtros
   const filterFields: FilterField[] = [
     {
       key: 'search',
@@ -152,7 +154,7 @@ export default function ExploreSpecies() {
     },
   ];
 
-  // Definir las columnas de la tabla (mismos headers que History)
+  // Columnas de la tabla
   const speciesColumns = [
     { key: 'name', label: 'Nombre', sortable: true },
     { key: 'description', label: 'Descripción', sortable: false },
@@ -211,6 +213,7 @@ export default function ExploreSpecies() {
     },
   ];
 
+  // Render principal
   if (loading) {
     return (
       <div className={styles.container}>
