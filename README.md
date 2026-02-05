@@ -74,12 +74,12 @@ EcoExplore es una aplicación web para el registro y monitoreo de avistamientos 
    
    ```env
    VITE_API_BASE_URL=http://localhost:3000/api
-   VITE_FIREBASE_API_KEY=AIzaSyBu8x7Y9QFJLMNOqRsTuvwxyz123456789
-   VITE_FIREBASE_AUTH_DOMAIN=ecoexplore-project.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=ecoexplore-project
-   VITE_FIREBASE_STORAGE_BUCKET=ecoexplore-project.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=123456789012
-   VITE_FIREBASE_APP_ID=1:123456789012:web:abcdef1234567890
+   VITE_FIREBASE_API_KEY=
+   VITE_FIREBASE_AUTH_DOMAIN=
+   VITE_FIREBASE_PROJECT_ID=
+   VITE_FIREBASE_STORAGE_BUCKET=
+   VITE_FIREBASE_MESSAGING_SENDER_ID=
+   VITE_FIREBASE_APP_ID=
    ```
    
    **Nota:** Estas credenciales se incluyen únicamente para facilitar la evaluación del proyecto por parte del profesor. En un entorno de producción, estas variables NUNCA deben exponerse públicamente.
