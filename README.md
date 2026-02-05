@@ -2,7 +2,7 @@
 
 EcoExplore es una aplicación web para el registro y monitoreo de avistamientos de especies en diferentes ecosistemas, diseñada para contribuir a la conservación de la biodiversidad.
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Backend (Ruby on Rails)
 - **Ruby on Rails 8.0.2** - Framework web principal
@@ -25,7 +25,7 @@ EcoExplore es una aplicación web para el registro y monitoreo de avistamientos 
 - **Firebase** - Almacenamiento de imágenes
 - **Leaflet Maps** - Visualización geográfica
 
-## 🚀 Instalación y Configuración
+## Instalación y Configuración
 
 ### Prerrequisitos
 - Ruby 3.x
@@ -147,7 +147,7 @@ RubyOnRails-EcoExplore/
     └── public/          # Archivos estáticos
 ```
 
-## 🔧 Scripts Disponibles
+## Scripts Disponibles
 
 ### Backend
 - `rails server` - Iniciar servidor de desarrollo
@@ -185,7 +185,7 @@ Authorization: Bearer {token}
 - `DELETE /auth/logout` - Cerrar sesión
   - **Response:** `{ message }`
 
-#### 👤 **Usuarios**
+#### **Usuarios**
 - `GET /user/getUsers` - Obtener todos los usuarios (Admin)
 - `DELETE /user/deleteUser/:id` - Eliminar usuario (Admin)
 - `PUT /user/updateUser` - Actualizar usuario (Admin)
@@ -193,7 +193,7 @@ Authorization: Bearer {token}
 - `PATCH /user/profile` - Actualizar perfil del usuario
 - `PATCH /user/profile_photo` - Actualizar foto de perfil
 
-#### 🦋 **Especies**
+#### **Especies**
 - `GET /species/getSpecies` - Obtener todas las especies
 - `POST /species/create` - Crear nueva especie
 - `POST /species` - Crear nueva especie (alternativo)
